@@ -236,6 +236,55 @@ html {
   margin-top: 2rem;
   color: var(--inverse-color);
 }
+.section__action {
+  margin-bottom: 4rem;
+}
+.section-separator {
+  margin-top: 4rem;
+  border: 1px solid var(--separate-color);
+}
+
+/* PORTFOLIO */
+
+.grid {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 4rem auto;
+  width: 90%;
+  max-width: 800px;
+}
+.project {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  color: white;
+  border: 1px solid var(--main-color);
+}
+.project:hover {
+  border-color: var(--secondary);
+}
+.project img {
+  width: 100%;
+}
+.project__overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--secondary-dark);
+  opacity: 0;
+}
+.project__overlay .btn {
+  padding: 10px 15px;
+}
+.project:hover .project__overlay {
+  opacity: 1;
+}
 
 /* HERO */
 
