@@ -50,8 +50,6 @@ html {
 .card {
   background: var(--inverse-color);
   border-radius: 12px;
-  width: 90%;
-  margin: auto;
   box-shadow: 0 0 10px rgba(50, 50, 50, 0.2);
   overflow: hidden;
   display: flex;
@@ -66,6 +64,9 @@ html {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
+.card:hover {
+  border: 1px solid var(--secondary);
+}
 .card__column {
   padding: 2rem;
   border-bottom: 1px solid var(--separate-color);
@@ -79,7 +80,7 @@ html {
   margin-bottom: 0.5rem;
   color: var(--secondary);
 }
-.card__column h3 {
+.card h3 {
   margin: 2rem 0;
   font-weight: bolder;
 }
@@ -93,6 +94,18 @@ html {
 }
 .card__column img {
   margin: auto;
+}
+.card__column-top img {
+  width: 100%;
+}
+.card__column-footer {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid var(--separate-color);
+}
+.card__column-footer span {
+  padding: 0.5rem;
+  cursor: pointer;
 }
 
 /* NAVIGATION BAR */
