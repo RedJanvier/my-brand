@@ -67,6 +67,9 @@ html {
 .card:hover {
   border: 1px solid var(--secondary);
 }
+.card:hover {
+  border: 1px solid var(--secondary);
+}
 .card__column {
   padding: 2rem;
   border-bottom: 1px solid var(--separate-color);
