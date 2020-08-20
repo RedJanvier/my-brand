@@ -50,8 +50,6 @@ html {
 .card {
   background: var(--inverse-color);
   border-radius: 12px;
-  width: 90%;
-  margin: auto;
   box-shadow: 0 0 10px rgba(50, 50, 50, 0.2);
   overflow: hidden;
   display: flex;
@@ -64,7 +62,10 @@ html {
 }
 .card.straight {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.card:hover {
+  border: 1px solid var(--secondary);
 }
 .card__column {
   padding: 2rem;
@@ -79,7 +80,7 @@ html {
   margin-bottom: 0.5rem;
   color: var(--secondary);
 }
-.card__column h3 {
+.card h3 {
   margin: 2rem 0;
   font-weight: bolder;
 }
@@ -93,6 +94,18 @@ html {
 }
 .card__column img {
   margin: auto;
+}
+.card__column-top img {
+  width: 100%;
+}
+.card__column-footer {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid var(--separate-color);
+}
+.card__column-footer span {
+  padding: 0.5rem;
+  cursor: pointer;
 }
 
 /* NAVIGATION BAR */
@@ -235,6 +248,73 @@ html {
 .footer__text {
   margin-top: 2rem;
   color: var(--inverse-color);
+}
+.section__action {
+  margin-bottom: 4rem;
+}
+.section-separator {
+  margin-top: 4rem;
+  border: 1px solid var(--separate-color);
+}
+
+/* PORTFOLIO */
+
+.grid {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 4rem auto;
+  width: 90%;
+  max-width: 800px;
+}
+.slides-container {
+  max-width: 1000px;
+  position: relative;
+  margin: 2rem auto;
+}
+.slides {
+  display: none;
+}
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 3px 0 0 3px;
+}
+.prev {
+  left: 0;
+}
+.next {
+  right: 0;
+}
+.slides img {
+  width: 100%;
+}
+.slides .btn {
+  margin: 1rem;
+}
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* HERO */
