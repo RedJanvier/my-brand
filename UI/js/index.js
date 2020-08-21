@@ -21,3 +21,20 @@ function showSlides(n) {
   }
   slides[slide - 1].style.display = "flex";
 }
+
+// contact form validations
+const contactForm = document.querySelector(".contact-form");
+
+contactForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const name = contactForm.name.value.trim();
+  const email = contactForm.email.value.trim();
+  const message = contactForm.message.value.trim();
+
+  if (!name.length || !email.length || !message)
+    return showErrorIn(
+      contactForm.querySelector("#error-panel"),
+      "Please fill all form fields!"
+    );
+});

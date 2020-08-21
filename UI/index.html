@@ -344,7 +344,36 @@
         <div class="section__action">
           <a href="#" class="btn">Read more here</a>
         </div>
-      </section>
+      </section><hr class="section-separator" />
+      <section id="contact" class="section">
+        <h2 class="section__heading">Contact Me</h2>
+        <p class="section__subheading">
+          Interested in my work?
+          <a href="#" class="active">Don’t leave without saying hi!</a>
+        </p>
+        <form class="form contact-form">
+          <div id="error-panel" class="error fade"></div>
+          <div class="form__field">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required placeholder="Your full name" />
+          </div>
+          <div class="form__field">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required placeholder="Your Email" />
+          </div>
+          <div class="form__field">
+            <label for="message">Message:</label>
+            <textarea
+              name="message"
+              id="message"
+              placeholder="Your message"
+              required
+            ></textarea>
+          </div>
+          <div class="form__field">
+            <button type="submit" class="btn">Send Message</button>
+          </div>
+        </form>
       <footer class="section colored footer">
         <div class="section__overlay">
           <div class="card dark">
@@ -381,6 +410,7 @@
         </p>
       </footer>
     </div>
+    <script src="./js/error.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>
