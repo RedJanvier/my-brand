@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Edit blog page for the RedBlog site" />
+    <meta
+      name="description"
+      content="Edit Profile page for the RedBlog site owner"
+    />
     <meta name="author" content="RedJanvier" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <link
@@ -12,7 +15,7 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-    <title>Edit Blog post</title>
+    <title>Edit Profile</title>
   </head>
   <body>
     <div class="container">
@@ -30,7 +33,7 @@
         </ul>
         <div class="profile-drop hide fade">
           <ul>
-            <li><a href="./profile.html">Edit Profile</a></li>
+            <li><a href="#">Edit Profile</a></li>
             <li><a href="#" class="btn">Logout</a></li>
           </ul>
         </div>
@@ -40,50 +43,51 @@
             <li><a href="./index.html">Dashboard</a></li>
             <li><a href="./create.html">Create</a></li>
             <li><a href="./queries.html">Queries</a></li>
-            <li><a href="./profile.html">Edit Profile</a></li>
+            <li><a href="#">Edit Profile</a></li>
             <li><button class="btn">Logout</button></li>
           </ul>
         </div>
       </nav>
-      <main id="main-blog" class="section colored">
-        <h2 class="section__heading">Edit Blog Post</h2>
+      <main class="section colored">
+        <h2 class="section__heading">Edit Profile</h2>
         <div class="card">
           <div class="card__column">
             <form class="form edit-form">
               <div class="form__field">
-                <label for="title">Title</label>
-                <input
-                  type="text"
-                  name="title"
-                  placeholder="Blog Title"
-                  value="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-                  required
-                />
-              </div>
-              <div class="form__field">
-                <label for="editor">Body</label>
-                <textarea
-                  name="body"
-                  placeholder="Blog Body"
-                  required
-                  id="editor"
-                >
-                  &lt;p&gt;This is some sample content.&lt;/p&gt;
-              </textarea
-                >
-              </div>
-              <div class="form__field">
+                <label for="image">Profile Image: </label>
                 <input
                   type="file"
                   name="image"
-                  placeholder="Blog Image"
+                  id="image"
                   accept="image/x-png,image/x-jpeg"
                 />
+                <div class="profile__preview img-preview">
+                  <img src="../../img/profile.jpg" />
+                </div>
               </div>
-              <div class="form__field img-preview"></div>
+              <div class="form__field">
+                <label for="name">Name: </label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  value="RedJanvier"
+                  required
+                />
+              </div>
+              <div class="form__field">
+                <label for="email">Email: </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  value="janvierntwali@gmail.com"
+                  required
+                />
+              </div>
               <div class="form__field">
                 <button class="btn" type="submit" name="submit">
-                  Update Post
+                  Update Profile
                 </button>
               </div>
             </form>
@@ -91,12 +95,10 @@
         </div>
       </main>
     </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
     <script src="../../js/navbar.js"></script>
-    <script src="../../js/editor.js"></script>
     <script>
       const editForm = document.querySelector(".edit-form");
-      const previewImage = editForm.querySelector(".img-preview");
+      const previewImage = document.querySelector(".img-preview");
 
       editForm.image.addEventListener("change", showPreviewImg);
 

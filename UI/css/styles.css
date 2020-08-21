@@ -342,13 +342,15 @@ html {
   width: 90%;
   max-width: 800px;
 }
+.grid-wide,
 .grid {
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   margin: 4rem auto;
-  width: 90%;
-  max-width: 800px;
+}
+.grid .card {
+  width: 100%;
 }
 .slides-container {
   max-width: 1000px;
@@ -437,11 +439,20 @@ html {
 .author__profile {
   width: 50px;
   height: 50px;
+}
+.profile__preview {
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
+}
+.profile__preview,
+.author__profile {
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--separate-color);
   background: var(--separate-color);
 }
+.profile__preview img,
 .author__profile img {
   width: 100%;
 }
