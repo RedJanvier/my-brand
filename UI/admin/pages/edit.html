@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Edit blog page for the RedBlog site" />
+    <meta name="author" content="RedJanvier" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <title>Edit Blog post</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar">
+        <h1 class="navbar__logo">RedJanvier</h1>
+        <ul class="navbar__links">
+          <li><a href="./index.html">Dashboard</a></li>
+          <li><a href="#">Create</a></li>
+          <li><a href="#">Queries</a></li>
+          <li>
+            <div class="author__profile">
+              <img src="../../img/blank_avatar.png" />
+            </div>
+          </li>
+        </ul>
+        <div class="profile-drop hide fade">
+          <ul>
+            <li><a href="#">Edit Profile</a></li>
+            <li><a href="#" class="btn">Logout</a></li>
+          </ul>
+        </div>
+        <div class="mobile">
+          <a href="#0"><i class="fa fa-bars"></i></a>
+          <ul class="navbar__mobile">
+            <li><a href="./index.html">Dashboard</a></li>
+            <li><a href="#">Create</a></li>
+            <li><a href="#">Queries</a></li>
+            <li><a href="#">Edit Profile</a></li>
+            <li><button class="btn">Logout</button></li>
+          </ul>
+        </div>
+      </nav>
+      <main id="main-blog" class="section colored">
+        <h2 class="section__heading">Edit Blog Post</h2>
+        <div class="card">
+          <div class="card__column">
+            <form class="form edit-form">
+              <div class="form__field">
+                <label for="title">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Blog Title"
+                  value="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+                  required
+                />
+              </div>
+              <div class="form__field">
+                <label for="editor">Body</label>
+                <textarea
+                  name="body"
+                  placeholder="Blog Body"
+                  required
+                  id="editor"
+                >
+                  &lt;p&gt;This is some sample content.&lt;/p&gt;
+              </textarea
+                >
+              </div>
+              <div class="form__field">
+                <input
+                  type="file"
+                  name="image"
+                  placeholder="Blog Image"
+                  accept="image/x-png,image/x-jpeg"
+                />
+              </div>
+              <div class="form__field img-preview"></div>
+              <div class="form__field">
+                <button class="btn" type="submit" name="submit">
+                  Update Post
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script src="../../js/navbar.js"></script>
+    <script>
+      ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+        console.error(error);
+      });
+      const editForm = document.querySelector(".edit-form");
+      const previewImage = editForm.querySelector(".img-preview");
+
+      editForm.image.addEventListener("change", showPreviewImg);
+
+      function showPreviewImg(e) {
+        previewImage.innerHTML = "";
+        file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.addEventListener("load", () => {
+            const preview = document.createElement("img");
+            preview.setAttribute("src", reader.result);
+
+            return previewImage.appendChild(preview);
+          });
+
+          reader.readAsDataURL(file);
+        }
+      }
+    </script>
+  </body>
+</html>
