@@ -10,7 +10,7 @@
   --main-color: #333;
   --secondary: #7510f7;
   --secondary-dark: #270b4b;
-  --separate-color: #f1f1f1;
+  --separate-color: #d6d6d6;
   --inverse-color: white;
   --middle-color: #5a5a5a;
 }
@@ -61,6 +61,9 @@ html {
   padding: 1rem;
   display: none;
   border-radius: 20px;
+}
+.hide {
+  display: none !important;
 }
 
 /* CARDS */
@@ -187,6 +190,42 @@ html {
   width: 100vw;
   height: 100vh;
   background: #fff;
+}
+.navbar .profile-drop::before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: -0.3rem;
+  right: 1rem;
+  background: var(--inverse-color);
+  transform: rotate(45deg);
+  /* box-shadow: 2px 2px 12px var(--separate-color); */
+}
+.navbar .profile-drop a:hover {
+  color: var(--secondary);
+}
+.navbar .profile-drop a,
+.navbar .profile-drop li {
+  width: 100%;
+  padding: 0.3rem 2rem;
+}
+.navbar .profile-drop {
+  background: var(--inverse-color);
+  position: absolute;
+  top: 6rem;
+  right: 3rem;
+  padding: 1rem;
+  box-shadow: 0px 0px 12px var(--separate-color);
+  border-radius: 6px;
+}
+.navbar .profile-drop ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
 @media screen and (max-width: 800px) {
   .mobile {
@@ -350,7 +389,7 @@ html {
 }
 .fade {
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 150ms;
 }
 @keyframes fade {
   from {
@@ -445,6 +484,7 @@ html {
 .form__field textarea {
   border-radius: 12px;
 }
+.form__field img,
 .form .btn {
   width: 100%;
 }
@@ -453,7 +493,7 @@ html {
   box-sizing: border-box;
   width: 100%;
   padding: 0.8rem 1.2rem;
-  border: 1px solid var(--main-color);
+  border: 1px solid var(--separate-color);
 }
 .form__field input:focus ~ label,
 .form__field textarea:focus,
