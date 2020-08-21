@@ -554,6 +554,18 @@ html {
   height: 50px;
   width: 50px;
 }
+.admin .comment.green h3,
+.admin .comment.green .fa {
+  color: #1bd47e;
+}
+.admin .comment.orange h3,
+.admin .comment.orange .fa {
+  color: #f7a610;
+}
+.admin .comment.blue h3,
+.admin .comment.blue .fa {
+  color: var(--secondary);
+}
 .login {
   display: flex;
   justify-content: center;
