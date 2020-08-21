@@ -545,3 +545,22 @@ html {
     margin-top: 0.4rem;
   }
 }
+
+/* ADMIN  */
+
+.admin .fa {
+  font-size: 50px;
+  margin: 2rem auto;
+  height: 50px;
+  width: 50px;
+}
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--secondary-dark);
+}
+.login .card__column img {
+  width: 100%;
+}
