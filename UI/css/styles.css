@@ -572,6 +572,9 @@ html {
 .admin .queries .card p {
   line-height: 1rem;
 }
+.admin .queries .card__column {
+  border-bottom: none;
+}
 .admin .queries {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
