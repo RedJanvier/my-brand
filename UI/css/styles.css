@@ -111,9 +111,13 @@ html {
   color: var(--secondary);
 }
 .card__image {
-  max-height: 230px;
+  height: 230px;
   overflow: hidden;
   background: var(--separate-color);
+}
+.card__image img {
+  height: 100%;
+  width: auto !important;
 }
 .card h3 {
   margin: 2rem 0;
@@ -215,7 +219,6 @@ html {
   right: 1rem;
   background: var(--inverse-color);
   transform: rotate(45deg);
-  /* box-shadow: 2px 2px 12px var(--separate-color); */
 }
 .navbar .profile-drop a:hover {
   color: var(--secondary);
@@ -267,6 +270,9 @@ html {
   }
   .btn {
     display: flex;
+    align-items: center;
+  }
+  .navbar .btn {
     margin: auto;
   }
 }
@@ -327,6 +333,9 @@ html {
   color: var(--inverse-color);
   border: 1px solid var(--inverse-color);
   border-radius: 50%;
+}
+.footer__links.login-links .fa {
+  color: var(--main-color);
 }
 .footer__links .fa:hover {
   color: var(--secondary);
@@ -430,8 +439,7 @@ html {
   margin: auto;
 }
 .hero .responsive {
-  width: 100%;
-  max-width: 1100px;
+  max-height: 80vh;
 }
 .hero .profile {
   border-radius: 50%;

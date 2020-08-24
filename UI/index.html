@@ -349,7 +349,7 @@
     <script src="./js/utils.js"></script>
     <script src="./js/index.js"></script>
     <script>
-      const {displayName, uid:userUid, providerData: [ { providerId: provider }]} = JSON.parse(localStorage.getItem("user")) || {uid, providerData: [ { providerId: null }]};
+      const {displayName, uid:userUid, providerData: [ { providerId: provider }]} = JSON.parse(localStorage.getItem("user")) || {uid: null, providerData: [ { providerId: null }]};
       const logBtns = document.getElementsByClassName("logBtn");
       for(let i = 0; i<logBtns.length; i++){ 
         if(provider) {
@@ -371,7 +371,7 @@
         }
       }
     const blogs = document.querySelector(".blogs");
-      db.collection("posts").orderBy("createdAt").limit(6).get().then(docs => {
+      db.collection("posts").orderBy("createdAt", "desc").limit(6).get().then(docs => {
         let html = '';
         docs.forEach(doc => {
           const blog = doc.data();

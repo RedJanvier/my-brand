@@ -162,6 +162,7 @@
         if (doc.exists) {
           const blog = doc.data();
           localStorage.setItem(doc.id, JSON.stringify(blog));
+          document.querySelector("title").textContent = `${blog.title} - Blog`;
           document.querySelector(
             ".hero"
           ).innerHTML = `<h2 class="section__heading left">

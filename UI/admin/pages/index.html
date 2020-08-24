@@ -65,7 +65,7 @@
         </p>
         <div class="queries grid">
           <div class="comment card purple">
-            <div class="card__column"><i class="fa fa-eye fs"></i><span class="fs">923</span></div>
+            <div class="card__column"><i class="fa fa-eye fs"></i><span class="fs views">923</span></div>
             <div class="card__column">
               <div class="top">
                 <div class="author">
@@ -80,7 +80,7 @@
             </div>
           </div>
           <div class="comment card green">
-            <div class="card__column"><i class="fa fa-globe fs"></i><span class="fs">93</span></div>
+            <div class="card__column"><i class="fa fa-globe fs"></i><span class="fs subscribers">93</span></div>
             <div class="card__column">
               <div class="top">
                 <div class="author">
@@ -95,7 +95,7 @@
             </div>
           </div>
           <div class="comment card orange">
-            <div class="card__column"><i class="fa fa-commenting-o fs"></i><span class="fs">34</span></div>
+            <div class="card__column"><i class="fa fa-commenting-o fs"></i><span class="fs comments">34</span></div>
             <div class="card__column">
               <div class="top">
                 <div class="author">
@@ -110,7 +110,7 @@
             </div>
           </div>
           <div class="comment card pink">
-            <div class="card__column"><i class="fa fa-heart-o fs"></i><span class="fs">87</span></div>
+            <div class="card__column"><i class="fa fa-heart-o fs"></i><span class="fs likes">87</span></div>
             <div class="card__column">
               <div class="top">
                 <div class="author">
@@ -125,7 +125,7 @@
             </div>
           </div>
           <div class="comment card red">
-            <div class="card__column"><i class="fa fa-envelope-o fs"></i><span class="fs">43</span></div>
+            <div class="card__column"><i class="fa fa-envelope-o fs"></i><span class="fs queries">43</span></div>
             <div class="card__column">
               <div class="top">
                 <div class="author">
@@ -140,7 +140,7 @@
             </div>
           </div>
           <div class="comment card blue">
-            <div class="card__column"><i class="fa fa-cog fs"></i><span class="fs">5</span></div>
+            <div class="card__column"><i class="fa fa-cog fs"></i><span class="fs projects">5</span></div>
             <div class="card__column">
               <div class="top">
                 <div class="author">
@@ -164,73 +164,7 @@
       <hr class="section-separator">
       <section class="section">
         <h2 class="section__heading">Portfolio</h2>
-        <div class="blogs grid">
-          <div class="card">
-            <div class="card__column"><div class="card__column-top">
-              <img src="../../img/projects/drumroot.png">
-              <h3>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              </h3>
-            </div>
-            <div class="card__column-footer">
-              <span><button class="btn"><i class="fa fa-pencil-square-o"></i> Edit</button></span>
-              <span><button class="btn"><i class="fa fa-trash-o"></i> Delete</button></span>
-            </div>
-          </div>
-        </div>
-          <div class="card">
-            <div class="card__column"><div class="card__column-top">
-              <img src="../../img/projects/home-of-cakes.png">
-              <h3>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              </h3>
-            </div>
-            <div class="card__column-footer">
-              <span><button class="btn"><i class="fa fa-pencil-square-o"></i> Edit</button></span>
-              <span><button class="btn"><i class="fa fa-trash-o"></i> Delete</button></span>
-            </div>
-          </div>
-        </div>
-          <div class="card">
-            <div class="card__column"><div class="card__column-top">
-              <img src="../../img/projects/redblog cased.png">
-              <h3>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              </h3>
-            </div>
-            <div class="card__column-footer">
-              <span><button class="btn"><i class="fa fa-pencil-square-o"></i> Edit</button></span>
-              <span><button class="btn"><i class="fa fa-trash-o"></i> Delete</button></span>
-            </div>
-          </div>
-        </div>
-          <div class="card">
-            <div class="card__column"><div class="card__column-top">
-              <img src="../../img/projects/igihe scrapper.png">
-              <h3>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              </h3>
-            </div>
-            <div class="card__column-footer">
-                <span><button class="btn"><i class="fa fa-pencil-square-o"></i> Edit</button></span>
-                <span><button class="btn"><i class="fa fa-trash-o"></i> Delete</button></span>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card__column"><div class="card__column-top">
-              <img src="../../img/projects/UR-Newsposter.png">
-              <h3>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              </h3>
-            </div>
-            <div class="card__column-footer">
-                <span><button class="btn"><i class="fa fa-pencil-square-o"></i> Edit</button></span>
-                <span><button class="btn"><i class="fa fa-trash-o"></i> Delete</button></span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="blogs grid portfolio"></div>
       </section>
       <section class="section colored">
         <h2 class="section__heading">Activities</h2>
@@ -257,12 +191,20 @@
     <script src="../../js/utils.js"></script>
     <script src="../../js/navbar.js"></script>
     <script>
+      let totalViews = 0;
+      let totalLikes = 0;
+      let totalQueries = 0;
+      let totalProjects = 0;
+      let totalComments = 0;
       const db = firebase.firestore();
       const blogs = document.querySelector(".blogs");
-      db.collection("posts").orderBy("createdAt").get().then(docs => {
+      db.collection("posts").orderBy("createdAt", "desc").onSnapshot(docs => {
         let html = '';
         docs.forEach(doc => {
           const blog = doc.data();
+          totalComments += blog.comments;
+          totalViews += blog.views;
+          totalLikes += blog.likes;
           html += `<a href="../../pages/blog.html?id=${doc.id}" class="card">
             <div class="card__column-top">
               <div class="card__image">
@@ -280,12 +222,40 @@
           </a>`
         });
         blogs.innerHTML = html;
-        disableLoader();
-      }).catch(err => {
-        console.log(err);
-        showErrorIn(document.querySelector('#error-panel'), err.message);
-        disableLoader();
+      });
+      db.collection("queries").onSnapshot(snaps => {
+        snaps.forEach(snap => totalQueries++);
+      })
+      db.collection("projects").orderBy("createdAt", "desc").onSnapshot(docs => {
+        let html = '';
+        docs.forEach(doc => {
+          const project = doc.data();
+          totalProjects ++;
+          html += `
+          <div class="card">
+            <div class="card__column"><div class="card__column-top">
+              <img src="${project.image}">
+              <h3>${project.title}</h3>
+            </div>
+            <div class="card__column-footer">
+                
+                <span><button class="btn" onclick="deleteProject('${doc.id}')"><i class="fa fa-trash-o"></i> Delete</button></span>
+              </div>
+            </div>
+          </div>`
         });
+        document.querySelector(".portfolio.blogs.grid").innerHTML = html;
+      document.querySelector("span.fs.queries").textContent = totalQueries
+        document.querySelector("span.fs.comments").textContent = totalComments
+        document.querySelector("span.fs.likes").textContent = totalLikes
+        document.querySelector("span.fs.views").textContent = totalViews
+        document.querySelector("span.fs.projects").textContent = totalProjects
+        disableLoader();
+      });
+        function deleteProject(id) {
+          const result = confirm("Want to delete project ?")
+          result && db.collection("projects").doc(id).delete().catch(console.log);
+        }
       const ctx = document.getElementById('myChart').getContext('2d');
       const ctx1 = document.getElementById('myChart1').getContext('2d');
       const ctx2 = document.getElementById('myChart2').getContext('2d');
