@@ -35,7 +35,7 @@
         <div class="profile-drop hide fade">
           <ul>
             <li><a href="./profile.html">Edit Profile</a></li>
-            <li><a href=".." class="btn">Logout</a></li>
+            <li><button class="btn" id="logout-btn">Logout</button></li>
           </ul>
         </div>
         <div class="mobile">
@@ -46,7 +46,7 @@
             <li><a href="./queries.html">Queries</a></li>
             <li><a href="./portfolio.html">Portfolio</a></li>
             <li><a href="./profile.html">Edit Profile</a></li>
-            <li><a href=".." class="btn">Logout</a></li>
+            <li><button class="btn" id="logout-btn">Logout</button></li>
           </ul>
         </div>
       </nav>
@@ -409,7 +409,13 @@
         </div>
       </section>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="../../js/init.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/utils.js"></script>
     <script src="../../js/navbar.js"></script>
     <script>
       const ctx = document.getElementById('myChart').getContext('2d');

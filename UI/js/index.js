@@ -23,6 +23,7 @@ function showSlides(n) {
 }
 
 // contact form validations
+const db = firebase.firestore();
 const contactForm = document.querySelector(".contact-form");
 
 contactForm.addEventListener("submit", (e) => {

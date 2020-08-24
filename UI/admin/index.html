@@ -12,6 +12,14 @@
     <title>Login</title>
   </head>
   <body>
+    <div class="loading">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <main class="login section dark">
       <div class="container">
         <div class="card straight">
@@ -19,7 +27,8 @@
             <img src="../img/undraw_Fingerprint_re_uf3f.svg" />
           </div>
           <div class="card__column">
-            <form class="form">
+            <form class="form login-form">
+              <div id="error-panel" class="error fade"></div>
               <div class="form__field">
                 <label for="email">Email: </label>
                 <input
@@ -27,6 +36,8 @@
                   id="email"
                   name="email"
                   placeholder="Your Email"
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                 />
               </div>
               <div class="form__field">
@@ -36,15 +47,73 @@
                   id="password"
                   name="password"
                   placeholder="Your Password"
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                 />
               </div>
               <div class="form__field">
-                <button type="button" class="btn">Login</button>
+                <button type="submit" name="submit" class="btn">Login</button>
               </div>
             </form>
           </div>
         </div>
       </div>
     </main>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+    <script src="../js/init.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+      const auth = firebase.auth();
+      const loginForm = document.querySelector(".login-form");
+      const errorBox = document.querySelector("#error-panel");
+
+      window.addEventListener("DOMContentLoaded", () => {
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            const { email } = user;
+            console.log(
+              `${email} just logged in. Enjoy the best blog ever....`
+            );
+            localStorage.setItem("user", JSON.stringify(user));
+            redirectTo("/admin/pages/index.html");
+          } else {
+            disableLoader();
+          }
+        });
+        loginForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const email = loginForm.email.value.trim();
+          const password = loginForm.password.value.trim();
+
+          if (!email.length || !password.length)
+            return showErrorIn(errorBox, "Please fill all fields");
+
+          disableButton(loginForm.submit);
+          enableLoader();
+
+          auth.signInWithEmailAndPassword(email, password).catch((err) => {
+            let message;
+            let time = undefined;
+            switch (err.code) {
+              case "auth/popup-closed-by-user":
+                message = "Network error";
+                break;
+              case "auth/invalid-email":
+              case "auth/user-not-found":
+              case "auth/wrong-password":
+                message = "Wrong credentials";
+                break;
+              default:
+                message = err.message;
+            }
+            showErrorIn(errorBox, message);
+            enableButton(loginForm.submit);
+            disableLoader();
+          });
+        });
+      });
+    </script>
   </body>
 </html>

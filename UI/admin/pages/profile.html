@@ -35,7 +35,7 @@
         <div class="profile-drop hide fade">
           <ul>
             <li><a href="#">Edit Profile</a></li>
-            <li><a href="#" class="btn">Logout</a></li>
+            <li><button class="btn" id="logout-btn">Logout</button></li>
           </ul>
         </div>
         <div class="mobile">
@@ -46,7 +46,7 @@
             <li><a href="./queries.html">Queries</a></li>
             <li><a href="./portfolio.html">Portfolio</a></li>
             <li><a href="#">Edit Profile</a></li>
-            <li><button class="btn">Logout</button></li>
+            <li><button id="logout-btn" class="btn">Logout</button></li>
           </ul>
         </div>
       </nav>
@@ -64,7 +64,7 @@
                   accept="image/x-png,image/x-jpeg"
                 />
                 <div class="profile__preview img-preview">
-                  <img src="../../img/profile.jpg" />
+                  <img src="../../img/blank_avatar.png" />
                 </div>
               </div>
               <div class="form__field">
@@ -73,7 +73,6 @@
                   type="text"
                   name="name"
                   placeholder="Full Name"
-                  value="RedJanvier"
                   required
                 />
               </div>
@@ -83,7 +82,7 @@
                   type="email"
                   name="email"
                   placeholder="Your Email"
-                  value="janvierntwali@gmail.com"
+                  disabled
                   required
                 />
               </div>
@@ -97,13 +96,20 @@
         </div>
       </main>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+    <script src="../../js/init.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/utils.js"></script>
     <script src="../../js/navbar.js"></script>
     <script>
+      let file;
       const editForm = document.querySelector(".edit-form");
       const previewImage = document.querySelector(".img-preview");
 
       editForm.image.addEventListener("change", showPreviewImg);
-
       function showPreviewImg(e) {
         previewImage.innerHTML = "";
         file = e.target.files[0];
@@ -118,6 +124,82 @@
 
           reader.readAsDataURL(file);
         }
+      }
+
+      const user = JSON.parse(localStorage.getItem("user"));
+      editForm.email.value = user.email;
+      editForm.name.value = user.displayName;
+      previewImage.querySelector("img").src =
+        user.photoURL || "../../img/blank_avatar.png";
+
+      editForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        disableButton(editForm.submit);
+
+        if (file) return updateWithImage();
+        return updateProfile();
+      });
+      function updateProfile(URL = user.photoURL) {
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            user
+              .updateProfile({
+                displayName: editForm.name.value.trim(),
+                photoURL: URL,
+              })
+              .then(function () {
+                console.log("User Updated!");
+                redirectTo("/admin/pages");
+              })
+              .catch((err) => {
+                console.log(err);
+                enableButton(editForm.submit);
+              });
+          }
+        });
+      }
+      function updateWithImage() {
+        const metadata = {
+          "content-type": "image/x-jpeg",
+        };
+        const uploadTask = firebase
+          .storage()
+          .ref()
+          .child(`profile-images/${file.name}`)
+          .put(file, metadata);
+
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED,
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            editForm.submit.textContent = `Upload is ${rounder(
+              progress
+            )}% done`;
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED:
+                console.log("Upload is paused");
+                break;
+              case firebase.storage.TaskState.RUNNING:
+                console.log("Upload is running");
+                break;
+            }
+          },
+          (error) => {
+            switch (error.code) {
+              case "storage/unauthorized":
+                localStorage.clear();
+                auth.signOut().catch(console.log);
+                redirectTo("/admin");
+                break;
+            }
+          },
+          () => {
+            uploadTask.snapshot.ref
+              .getDownloadURL()
+              .then((downloadURL) => updateProfile(downloadURL));
+          }
+        );
       }
     </script>
   </body>
