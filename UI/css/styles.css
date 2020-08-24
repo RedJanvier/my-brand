@@ -71,7 +71,7 @@ html {
 .card {
   background: var(--inverse-color);
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(50, 50, 50, 0.2);
+  box-shadow: 0 0 8px var(--separate-color);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -86,6 +86,11 @@ html {
 .card.straight {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.btn:hover,
+.card:hover {
+  margin-top: -2px;
+  box-shadow: 2px 2px 12px var(--separate-color);
 }
 .card__column {
   padding: 2rem;
@@ -548,11 +553,54 @@ html {
 
 /* ADMIN  */
 
-.admin .fa {
-  font-size: 50px;
-  margin: 2rem auto;
+.admin .fs {
+  font-size: 40px;
+  margin: 1rem auto;
+  margin-top: 0;
   height: 50px;
   width: 50px;
+}
+.admin .queries {
+  max-width: 865px;
+}
+.admin .queries .card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.admin .queries .card p {
+  line-height: 1rem;
+}
+.admin .queries .card__column {
+  border-bottom: none;
+}
+.admin .queries {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.green h3,
+.green .fs {
+  color: #1bd47e;
+}
+.pink h3,
+.pink .fs {
+  color: #f710bd;
+}
+.blue h3,
+.blue .fs {
+  color: #108ff7;
+}
+.red h3,
+.red .fs {
+  color: #f71010;
+}
+.orange h3,
+.orange .fs {
+  color: #f76c10;
+}
+.purple h3,
+.purple .fs {
+  color: var(--secondary);
 }
 .login {
   display: flex;
