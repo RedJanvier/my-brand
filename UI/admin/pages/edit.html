@@ -52,14 +52,15 @@
         <div class="card">
           <div class="card__column">
             <form class="form edit-form">
+              <div id="error-panel" class="error fade"></div>
               <div class="form__field">
                 <label for="title">Title</label>
                 <input
                   type="text"
                   name="title"
                   placeholder="Blog Title"
-                  value="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-                  required
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                 />
               </div>
               <div class="form__field">
@@ -67,7 +68,8 @@
                 <textarea
                   name="body"
                   placeholder="Blog Body"
-                  required
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                   id="editor"
                 >
                   &lt;p&gt;This is some sample content.&lt;/p&gt;
@@ -82,7 +84,7 @@
                   accept="image/x-png,image/x-jpeg"
                 />
               </div>
-              <div class="form__field img-preview"></div>
+              <div class="form__field img-preview"><img src="" alt="" /></div>
               <div class="form__field">
                 <button class="btn" type="submit" name="submit">
                   Update Post
@@ -94,11 +96,34 @@
       </main>
     </div>
     <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="../../js/init.js"></script>
+    <script src="../../js/utils.js"></script>
     <script src="../../js/navbar.js"></script>
     <script src="../../js/editor.js"></script>
     <script>
       const editForm = document.querySelector(".edit-form");
       const previewImage = editForm.querySelector(".img-preview");
+      const postId = location.href.split("?id=")[1];
+      const db = firebase.firestore();
+      db.collection("posts")
+        .doc(postId)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const blog = doc.data();
+            previewImage.innerHTML = `<img src="${blog.image}" alt=""/>`;
+            editForm.title.value = blog.title;
+            editForm.body.innerHTML = blog.body;
+          } else {
+            throw new Error("Post not found!!");
+          }
+        })
+        .catch(console.log);
 
       editForm.image.addEventListener("change", showPreviewImg);
 
@@ -117,6 +142,17 @@
           reader.readAsDataURL(file);
         }
       }
+
+      editForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        disableButton(editForm.submit);
+
+        if (!editForm.title.value.trim() || !editForm.body.value.trim())
+          return showErrorIn(
+            document.querySelector("#error-panel"),
+            "Please fill in all fields!"
+          );
+      });
     </script>
   </body>
 </html>

@@ -11,6 +11,14 @@
     />
   </head>
   <body>
+    <div class="loading">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <div class="container">
       <nav class="navbar">
         <h1 class="navbar__logo">RedJanvier</h1>
@@ -40,161 +48,19 @@
           </ul>
         </div>
       </nav>
-      <header class="section hero">
-        <h2 class="section__heading left">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        </h2>
-        <div class="section__action">
-          <div class="author">
-            <div class="author__profile">
-              <img src="../img/blank_avatar.png" alt="" />
-            </div>
-            <div class="author__details">
-              <h3>RedJanvier</h3>
-              <p>Mar 11, 2010</p>
-            </div>
-          </div>
-          <div class="controls">
-            <a href="../admin/pages/edit.html" class="btn"
-              ><i class="fa fa-pencil"></i> <span>edit</span></a
-            >
-            <button onclick="deletePost()" class="btn">
-              <i class="fa fa-trash"></i> <span>delete</span>
-            </button>
-          </div>
-        </div>
-        <img
-          src="../img/projects/OWC-books.png"
-          class="responsive"
-          alt="post-image"
-        />
-      </header>
-      <section class="section blog">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
-          reprehenderit sed, asperiores non facere adipisci aliquam nesciunt
-          culpa. Provident ratione illo reprehenderit autem accusantium in,
-          numquam delectus sint amet incidunt itaque. Mollitia inventore
-          voluptates vel quae quod veniam. Aspernatur, nobis!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
-          reprehenderit sed, asperiores non facere adipisci aliquam nesciunt
-          culpa. Provident ratione illo reprehenderit autem accusantium in,
-          numquam delectus sint amet incidunt itaque. Mollitia inventore
-          voluptates vel quae quod veniam. Aspernatur, nobis!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
-          reprehenderit sed, asperiores non facere adipisci aliquam nesciunt
-          culpa. Provident ratione illo reprehenderit autem accusantium in,
-          numquam delectus sint amet incidunt itaque. Mollitia inventore
-          voluptates vel quae quod veniam. Aspernatur, nobis!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
-          reprehenderit sed, asperiores non facere adipisci aliquam nesciunt
-          culpa. Provident ratione illo reprehenderit autem accusantium in,
-          numquam delectus sint amet incidunt itaque. Mollitia inventore
-          voluptates vel quae quod veniam. Aspernatur, nobis!
-        </p>
-        <div class="blog__reactions">
-          <button class="like btn" onclick="toggleLike()">
-            <i class="fa fa-heart-o"></i> <span>34</span>
-          </button>
-        </div>
-      </section>
+      <header class="section hero"></header>
+      <section class="section blog"></section>
       <hr class="section-separator" />
       <section id="comments" class="section">
         <h2 class="section__heading left">Comments (3)</h2>
-        <div class="comments column">
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__profile">
-                    <img src="../img/blank_avatar.png" alt="" />
-                  </div>
-                  <div class="author__details">
-                    <h3>RedJanvier</h3>
-                    <p>3 minutes ago</p>
-                  </div>
-                </div>
-                <div class="controls">
-                  <button class="btn">
-                    <i class="fa fa-trash"></i> <span>Delete</span>
-                  </button>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__profile">
-                    <img src="../img/blank_avatar.png" alt="" />
-                  </div>
-                  <div class="author__details">
-                    <h3>John Doe</h3>
-                    <p>2 minutes ago</p>
-                  </div>
-                </div>
-                <div class="controls">
-                  <button class="btn">
-                    <i class="fa fa-trash"></i> <span>Delete</span>
-                  </button>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__profile">
-                    <img src="../img/profile.jpg" alt="" />
-                  </div>
-                  <div class="author__details">
-                    <h3>RedJanvier</h3>
-                    <p>A few seconds ago</p>
-                  </div>
-                </div>
-                <div class="controls">
-                  <button class="btn">
-                    <i class="fa fa-trash"></i> <span>Delete</span>
-                  </button>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <form class="form left">
+        <div class="comments column"></div>
+        <form class="form left comment-form">
           <div class="form__field">
             <textarea
-              name="comment"
-              id="comment"
+              name="body"
+              id="body"
+              onchange="validate(this)"
+              onkeyup="validate(this)"
               placeholder="Leave a comment here..."
             ></textarea>
           </div>
@@ -208,17 +74,22 @@
         <div class="section__overlay">
           <div class="card dark">
             <h2 class="subscribe__heading">Subscribe to Mail List</h2>
-            <form class="form inline">
+            <form class="form inline subscribe-form">
+              <div id="error-panel" class="error fade"></div>
               <div class="form__field">
                 <input
                   type="email"
                   name="email"
                   id="email"
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                   placeholder="email"
                 />
               </div>
               <div class="form__field">
-                <button type="button" class="btn light">Subscribe</button>
+                <button type="submit" name="submit" class="btn light">
+                  Subscribe
+                </button>
               </div>
             </form>
           </div>
@@ -240,21 +111,194 @@
         </p>
       </footer>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="../js/init.js"></script>
     <script src="../js/utils.js"></script>
     <script>
+      const postId = location.href.split("?id=")[1];
+      const db = firebase.firestore();
+      const { displayName, photoURL, uid: userUid } = JSON.parse(
+        localStorage.getItem("user")
+      );
+      const increment = firebase.firestore.FieldValue.increment(1);
+      const decrement = firebase.firestore.FieldValue.increment(-1);
+      const postRef = db.collection("posts").doc(postId);
+
+      postRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const blog = doc.data();
+            document.querySelector(
+              ".hero"
+            ).innerHTML = `<h2 class="section__heading left">
+          ${blog.title}
+        </h2>
+        <div class="section__action">
+          <div class="author">
+            <div class="author__profile">
+              <img src="${blog.authorProfile}" alt="blog-author" />
+            </div>
+            <div class="author__details">
+              <h3>${blog.authorName}</h3>
+              <p>${moment(blog.createdAt).format("MMM, DD YYYY")}</p>
+            </div>
+          </div>
+          ${
+            localStorage.getItem("user")
+              ? `
+          <div class="controls">
+            <a href="../admin/pages/edit.html?id=${doc.id}" class="btn"
+              ><i class="fa fa-pencil"></i> <span>edit</span></a
+            >
+            <button onclick="deletePost()" class="btn">
+              <i class="fa fa-trash"></i> <span>delete</span>
+            </button>
+          </div>
+          `
+              : ""
+          }
+        </div>
+        <img
+          src="${blog.image}"
+          class="responsive"
+          alt="post-image"
+        />`;
+            document.querySelector(".blog").innerHTML = `
+        ${blog.body}
+        <div class="blog__reactions">
+          <button class="like btn " onclick="toggleLike()">
+              <i class="fa fa-heart-o"></i> <span>${blog.likes}</span>
+            </button>
+        </div>`;
+            postRef
+              .collection("likers")
+              .get()
+              .then((docs) => {
+                docs.forEach((doc) => {
+                  if (doc.id === userUid) {
+                    document
+                      .querySelector(".blog__reactions .like.btn")
+                      .classList.add("active");
+                  }
+                });
+              })
+              .catch(console.log);
+            disableLoader();
+            return postRef.update({ views: increment });
+          } else {
+            throw new Error("Post Not found!!");
+          }
+        })
+        .catch(console.log);
+
+      postRef.collection("commenters").onSnapshot((docs) => {
+        let html = "";
+        docs.forEach((doc) => {
+          const comment = doc.data();
+          html += `
+          <div class="comment card">
+            <div class="card__column">
+              <div class="top">
+                <div class="author">
+                  <div class="author__profile">
+                    <img src="${comment.authorProfile}" alt="" />
+                  </div>
+                  <div class="author__details">
+                    <h3>${comment.authorName}</h3>
+                    <p>${moment(comment.createdAt).fromNow()}</p>
+                  </div>
+                </div>
+                ${
+                  displayName === "RedJanvier"
+                    ? `
+                <div class="controls">
+                  <button class="btn" onclick="deleteComment('${doc.id}')">
+                    <i class="fa fa-trash"></i> <span>Delete</span>
+                  </button>
+                </div>`
+                    : ""
+                }
+              </div>
+              <div class="comment__body">
+                <p class="left">
+                  ${comment.body}
+                </p>
+              </div>
+            </div>
+          </div>`;
+        });
+        document.querySelector(".comments").innerHTML = html;
+      });
+      function deleteComment(id) {
+        const result = confirm("Are you sure to delete comment?");
+        if (result) {
+          postRef.collection("commenters").doc(id).delete();
+        }
+      }
       function deletePost() {
         const result = confirm("Want to delete?");
         if (result) {
-          location.href = "../#blog";
+          postRef
+            .delete()
+            .then(() => {
+              console.log("Post deleted successfully");
+              redirectTo("/admin/pages");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       }
       function toggleLike() {
         const likeButton = document.querySelector(".like");
         likeButton.classList.toggle("active");
         const number = likeButton.querySelector("span");
-        number.textContent = likeButton.classList.contains("active")
-          ? `${parseInt(number.textContent) + 1}`
-          : `${parseInt(number.textContent) - 1}`;
+        if (likeButton.classList.contains("active")) {
+          number.textContent = `${parseInt(number.textContent) + 1}`;
+          postRef.update({ likes: increment });
+          postRef
+            .collection("likers")
+            .doc(userUid)
+            .set({ name: displayName, createdAt: Date.now() })
+            .catch(console.log);
+        } else {
+          number.textContent = `${parseInt(number.textContent) - 1}`;
+          postRef.update({ likes: decrement });
+          postRef.collection("likers").doc(userUid).delete().catch(console.log);
+        }
+      }
+
+      const commentForm = document.querySelector(".comment-form");
+      commentForm.addEventListener("submit", addComment);
+      function addComment(e) {
+        e.preventDefault();
+        if (!commentForm.body.value.trim())
+          return showErrorIn(
+            commentForm.querySelector("#comment-form"),
+            "Please provide a comment!"
+          );
+        const comment = {
+          body: commentForm.body.value.trim(),
+          createdAt: Date.now(),
+          authorName: displayName,
+          authorUid: userUid,
+          authorProfile: photoURL,
+        };
+        console.log(comment);
+        db.collection("posts")
+          .doc(postId)
+          .collection("commenters")
+          .add(comment)
+          .then(() => {
+            postRef.update({ comments: increment });
+            return commentForm.reset();
+          })
+          .catch(console.log);
       }
     </script>
   </body>

@@ -35,7 +35,7 @@
         <div class="profile-drop hide fade">
           <ul>
             <li><a href="./profile.html">Edit Profile</a></li>
-            <li><a href=".." class="btn">Logout</a></li>
+            <li><button class="btn" id="logout-btn">Logout</button></li>
           </ul>
         </div>
         <div class="mobile">
@@ -46,7 +46,7 @@
             <li><a href="./queries.html">Queries</a></li>
             <li><a href="#" class="active">portfolio</a></li>
             <li><a href="./profile.html">Edit Profile</a></li>
-            <li><a href=".." class="btn">Logout</a></li>
+            <li><button class="btn" id="logout-btn">Logout</button></li>
           </ul>
         </div>
       </nav>
@@ -60,8 +60,9 @@
                 <input
                   type="text"
                   name="title"
-                  placeholder="Blog Title"
-                  required
+                  placeholder="Project Title"
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                 />
               </div>
               <div class="form__field">
@@ -69,7 +70,8 @@
                 <textarea
                   name="body"
                   placeholder="Blog Body"
-                  required
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                   id="editor"
                 ></textarea>
               </div>
@@ -79,6 +81,7 @@
                   type="file"
                   name="image"
                   id="image"
+                  required
                   placeholder="Blog Image"
                   accept="image/x-png,image/x-jpeg"
                 />
@@ -96,10 +99,10 @@
     </div>
     <script src="../../js/navbar.js"></script>
     <script>
-      const editForm = document.querySelector(".create-form");
-      const previewImage = editForm.querySelector(".img-preview");
+      const CreateForm = document.querySelector(".create-form");
+      const previewImage = CreateForm.querySelector(".img-preview");
 
-      editForm.image.addEventListener("change", showPreviewImg);
+      CreateForm.image.addEventListener("change", showPreviewImg);
 
       function showPreviewImg(e) {
         previewImage.innerHTML = "";

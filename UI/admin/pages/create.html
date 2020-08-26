@@ -32,7 +32,7 @@
         <div class="profile-drop hide fade">
           <ul>
             <li><a href="#">Edit Profile</a></li>
-            <li><a href="#" class="btn">Logout</a></li>
+            <li><button id="logout-btn" class="btn">Logout</button></li>
           </ul>
         </div>
         <div class="mobile">
@@ -43,7 +43,7 @@
             <li><a href="./queries.html">Queries</a></li>
             <li><a href="./portfolio.html">Portfolio</a></li>
             <li><a href="#">Edit Profile</a></li>
-            <li><button class="btn">Logout</button></li>
+            <li><button id="logout-btn" class="btn">Logout</button></li>
           </ul>
         </div>
       </nav>
@@ -58,7 +58,8 @@
                   type="text"
                   name="title"
                   placeholder="Blog Title"
-                  required
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                 />
               </div>
               <div class="form__field">
@@ -66,7 +67,8 @@
                 <textarea
                   name="body"
                   placeholder="Blog Body"
-                  required
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                   id="editor"
                 >
                 </textarea>
@@ -77,6 +79,7 @@
                   type="file"
                   name="image"
                   id="image"
+                  required
                   placeholder="Blog Image"
                   accept="image/x-png,image/x-jpeg"
                 />
@@ -92,15 +95,25 @@
         </div>
       </main>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script src="../../js/init.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/utils.js"></script>
     <script src="../../js/navbar.js"></script>
     <script src="../../js/editor.js"></script>
     <script>
-      const editForm = document.querySelector(".create-form");
-      const previewImage = editForm.querySelector(".img-preview");
+      const createForm = document.querySelector(".create-form");
+      const previewImage = createForm.querySelector(".img-preview");
+      const createBtn = createForm.submit;
+      const db = firebase.firestore();
+      const storageRef = firebase.storage().ref();
 
-      editForm.image.addEventListener("change", showPreviewImg);
-
+      createForm.image.addEventListener("change", showPreviewImg);
       function showPreviewImg(e) {
         previewImage.innerHTML = "";
         file = e.target.files[0];
@@ -116,6 +129,81 @@
           reader.readAsDataURL(file);
         }
       }
+
+      createForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const title = createForm.title.value.trim();
+        const body = createForm.body.value.trim();
+
+        if (!title || !body)
+          return showErrorIn(
+            createForm.querySelector("#error-panel"),
+            "please fill all fields!"
+          );
+        disableButton(createBtn);
+        const metadata = {
+          "content-type": "image/x-jpeg",
+        };
+        const uploadTask = storageRef
+          .child("post-images/" + file.name)
+          .put(file, metadata);
+
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED,
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            createBtn.textContent = "Upload is " + rounder(progress) + "% done";
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED:
+                console.log("Upload is paused");
+                break;
+              case firebase.storage.TaskState.RUNNING:
+                console.log("Upload is running");
+                break;
+            }
+          },
+          (error) => {
+            switch (error.code) {
+              case "storage/unauthorized":
+                localStorage.clear();
+                auth.signOut().catch(console.log);
+                redirectTo("/admin");
+                break;
+            }
+          },
+          () => {
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+              const { email, displayName, photoURL, uid } = JSON.parse(
+                localStorage.getItem("user")
+              );
+              const blogData = {
+                title,
+                body,
+                authorName: displayName,
+                authorProfile: photoURL,
+                authorEmail: email,
+                authorUid: uid,
+                likes: 0,
+                views: 0,
+                comments: 0,
+                image: downloadURL,
+                createdAt: Date.now(),
+              };
+              db.collection("posts")
+                .add(blogData)
+                .then((docRef) => {
+                  console.log("Document written with ID: ", docRef.id);
+                  setTimeout(() => redirectTo("/admin/pages/"), 800);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  enableButton(createBtn);
+                });
+            });
+          }
+        );
+      });
     </script>
   </body>
 </html>
