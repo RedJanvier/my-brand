@@ -37,4 +37,20 @@ contactForm.addEventListener("submit", (e) => {
       contactForm.querySelector("#error-panel"),
       "Please fill all form fields!"
     );
+  const queryData = {
+    message,
+    email,
+    name,
+    createdAt: Date.now(),
+  };
+
+  db.collection("queries")
+    .add(queryData)
+    .then((docRef) => {
+      console.log("Query submitted with id: ", docRef.id);
+      setTimeout(() => redirectTo("/index.html"), 800);
+    })
+    .catch((err) => {
+      showErrorIn(contactForm.querySelector("#error-panel"), err.message);
+    });
 });

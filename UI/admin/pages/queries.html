@@ -55,162 +55,46 @@
         <p class="section__subheading">
           Here is what your followers are saying to you.
         </p>
-        <div class="queries column">
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__details">
-                    <h3>RedJanvier</h3>
-                    <p>3 minutes ago</p>
-                  </div>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__details">
-                    <h3>RedJanvier</h3>
-                    <p>3 minutes ago</p>
-                  </div>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__details">
-                    <h3>RedJanvier</h3>
-                    <p>3 minutes ago</p>
-                  </div>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__details">
-                    <h3>RedJanvier</h3>
-                    <p>3 minutes ago</p>
-                  </div>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__details">
-                    <h3>RedJanvier</h3>
-                    <p>3 minutes ago</p>
-                  </div>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__details">
-                    <h3>RedJanvier</h3>
-                    <p>3 minutes ago</p>
-                  </div>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__details">
-                    <h3>RedJanvier</h3>
-                    <p>3 minutes ago</p>
-                  </div>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="comment card">
-            <div class="card__column">
-              <div class="top">
-                <div class="author">
-                  <div class="author__details">
-                    <h3>RedJanvier</h3>
-                    <p>3 minutes ago</p>
-                  </div>
-                </div>
-              </div>
-              <div class="comment__body">
-                <p class="left">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolore tempora eum tenetur tempore nobis perferendis optio
-                  esse ut blanditiis neque!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="queries column"></div>
       </main>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="../../js/init.js"></script>
     <script src="../../js/navbar.js"></script>
+    <script>
+      const queries = document.querySelector(".queries");
+
+      db.collection("queries")
+        .get()
+        .then((snapshots) => {
+          let html = "";
+          snapshots.forEach((doc) => {
+            const data = doc.data();
+            html += `<div class="comment card">
+            <div class="card__column">
+              <div class="top">
+                <div class="author">
+                  <div class="author__details">
+                    <h3>${data.name}</h3>
+                    <p>${moment(data.createdAt).fromNow()}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="comment__body">
+                <p class="left">
+                  ${data.message}
+                </p>
+              </div>
+            </div>
+          </div>`;
+            queries.innerHTML = html;
+            setTimeout(() => loader.classList.add("hide"), 1000);
+          });
+        })
+        .catch(console.log);
+    </script>
   </body>
 </html>
