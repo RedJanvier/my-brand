@@ -87,7 +87,7 @@
           const email = loginForm.email.value.trim();
           const password = loginForm.password.value.trim();
 
-          if (!email.length || !password.length)
+          if (!validate(loginForm.email) || !validate(loginForm.password))
             return showErrorIn(errorBox, "Please fill all fields");
 
           disableButton(loginForm.submit);

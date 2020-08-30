@@ -30,7 +30,7 @@ function disableLoader() {
 }
 const regexes = {
   email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+  password: /^[a-zA-Z\d\s.!@#$%&*()_+-=:?]{6,}$/,
   title: /^[a-zA-Z\d\s]{10,}$/,
   body: /^[a-zA-Z\d\s&<>\/]{10,}$/,
 };
@@ -38,7 +38,9 @@ const regexes = {
 function validate(e) {
   const value = e.value.trim();
   if (!regexes[e.name].test(value)) {
-    return e.classList.add("form__field-error");
+    e.classList.add("form__field-error");
+    return false;
   }
   e.classList.remove("form__field-error");
+  return true;
 }
