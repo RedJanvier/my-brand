@@ -5,27 +5,28 @@ let globalUser = {
 };
 const auth = firebase.auth();
 window.addEventListener("DOMContentLoaded", () => {
-  const logoutBtn = document.querySelector("#logout-btn");
+  const logoutBtns = document.querySelectorAll("#logout-btn");
 
   auth.onAuthStateChanged((user) => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
       globalUser = user;
-      const { email } = user;
-      const { email: mail, displayName, uid } = auth.currentUser;
+      const {
+        email,
+        providerData: [{ providerId: provider }],
+      } = user;
+      if (provider !== "password") return redirectTo("/index.html");
       console.log(`${email} just logged in. Enjoy the best blog ever....`);
-
-      globalUser.email = mail;
-      globalUser.name = displayName;
-      globalUser.uid = uid;
     } else {
       redirectTo("/admin");
     }
   });
 
-  logoutBtn.addEventListener("click", () => {
-    disableButton(logoutBtn);
-    localStorage.clear();
-    auth.signOut().catch(console.log);
-  });
+  for (let i = 0; i < logoutBtns.length; i++) {
+    logoutBtns[i].addEventListener("click", () => {
+      disableButton(logoutBtn);
+      localStorage.clear();
+      auth.signOut().catch(console.log);
+    });
+  }
 });
