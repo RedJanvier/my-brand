@@ -18,6 +18,14 @@
     <title>Edit Profile</title>
   </head>
   <body>
+    <div class="loading">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <div class="container">
       <nav class="navbar">
         <h1 class="navbar__logo">RedJanvier</h1>
@@ -131,6 +139,7 @@
       editForm.name.value = user.displayName;
       previewImage.querySelector("img").src =
         user.photoURL || "../../img/blank_avatar.png";
+      disableLoader();
 
       editForm.addEventListener("submit", (e) => {
         e.preventDefault();

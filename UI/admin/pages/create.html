@@ -135,7 +135,7 @@
         const title = createForm.title.value.trim();
         const body = createForm.body.value.trim();
 
-        if (!title || !body)
+        if (!validate(createForm.title) || !validate(createForm.body))
           return showErrorIn(
             createForm.querySelector("#error-panel"),
             "please fill all fields!"

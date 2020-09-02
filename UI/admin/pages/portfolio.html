@@ -18,6 +18,14 @@
     <title>New portfolio project</title>
   </head>
   <body>
+    <div class="loading">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <div class="container">
       <nav class="navbar">
         <h1 class="navbar__logo">RedJanvier</h1>
@@ -103,7 +111,6 @@
       const previewImage = CreateForm.querySelector(".img-preview");
 
       CreateForm.image.addEventListener("change", showPreviewImg);
-
       function showPreviewImg(e) {
         previewImage.innerHTML = "";
         file = e.target.files[0];
@@ -119,6 +126,8 @@
           reader.readAsDataURL(file);
         }
       }
+
+      disableLoader();
     </script>
   </body>
 </html>

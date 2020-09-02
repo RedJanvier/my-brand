@@ -262,6 +262,13 @@ html {
   .btn span {
     display: none;
   }
+  .btn span.unhide {
+    display: block;
+  }
+  .btn {
+    display: flex;
+    margin: auto;
+  }
 }
 
 /* SECTION */
@@ -638,13 +645,14 @@ html {
   z-index: 5;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .lds-ring {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
+  left: 50%;
+  transform: translate(-50%);
 }
 .lds-ring div {
   box-sizing: border-box;
@@ -657,6 +665,10 @@ html {
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: var(--secondary) transparent transparent transparent;
+}
+.lds-ring.white div {
+  border: 8px solid var(--inverse-color) !important;
+  border-color: var(--inverse-color) transparent transparent transparent !important;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
