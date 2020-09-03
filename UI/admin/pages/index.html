@@ -259,7 +259,7 @@
     <script>
       const db = firebase.firestore();
       const blogs = document.querySelector(".blogs");
-      db.collection("posts").orderBy("createdAt").get().then(docs => {
+      db.collection("posts").orderBy("createdAt", "desc").get().then(docs => {
         let html = '';
         docs.forEach(doc => {
           const blog = doc.data();
