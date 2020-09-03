@@ -19,3 +19,28 @@ function redirectTo(path) {
     ? `/my-brand/ui${path}`
     : `/ui${path}`);
 }
+function rounder(num) {
+  return (Math.round(num * 100) / 100).toFixed(2);
+}
+function enableLoader() {
+  document.querySelector(".loading").style.display = "flex";
+}
+function disableLoader() {
+  document.querySelector(".loading").style.display = "none";
+}
+const regexes = {
+  email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  password: /^[a-zA-Z\d\s.!@#$%&*()_+-=:?]{6,}$/,
+  title: /^[a-zA-Z\d\s]{10,}$/,
+  body: /^[a-zA-Z\d\s&<>\/]{10,}$/,
+};
+
+function validate(e) {
+  const value = e.value.trim();
+  if (!regexes[e.name].test(value)) {
+    e.classList.add("form__field-error");
+    return false;
+  }
+  e.classList.remove("form__field-error");
+  return true;
+}

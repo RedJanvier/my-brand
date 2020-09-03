@@ -65,6 +65,7 @@
     <script src="../../js/init.js"></script>
     <script src="../../js/navbar.js"></script>
     <script>
+      const db = firebase.firestore();
       const queries = document.querySelector(".queries");
 
       db.collection("queries")

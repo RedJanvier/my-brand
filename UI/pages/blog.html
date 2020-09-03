@@ -20,7 +20,9 @@
           <li><a href="../index.html#portfolio">Portfolio</a></li>
           <li><a href="../index.html#blog" class="active">Blog</a></li>
           <li><a href="../index.html#contact">Contact</a></li>
-          <li><button class="btn">Login</button></li>
+          <li>
+            <button onclick="redirectTo('/admin')" class="btn">Login</button>
+          </li>
         </ul>
         <div class="mobile">
           <a href="#0"><i class="fa fa-bars"></i></a>
@@ -32,7 +34,9 @@
             <li>
               <a href="../index.html#contact">Contact</a>
             </li>
-            <li><button class="btn">Login</button></li>
+            <li>
+              <button onclick="redirectTo('/admin')" class="btn">Login</button>
+            </li>
           </ul>
         </div>
       </nav>
@@ -236,6 +240,7 @@
         </p>
       </footer>
     </div>
+    <script src="../js/utils.js"></script>
     <script>
       function deletePost() {
         const result = confirm("Want to delete?");

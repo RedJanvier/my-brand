@@ -23,6 +23,7 @@ function showSlides(n) {
 }
 
 // contact form validations
+const db = firebase.firestore();
 const contactForm = document.querySelector(".contact-form");
 
 contactForm.addEventListener("submit", (e) => {
@@ -32,7 +33,11 @@ contactForm.addEventListener("submit", (e) => {
   const email = contactForm.email.value.trim();
   const message = contactForm.message.value.trim();
 
-  if (!name.length || !email.length || !message)
+  if (
+    !validate(contactForm.name) ||
+    !validate(contactForm.email) ||
+    !validate(contactForm.message)
+  )
     return showErrorIn(
       contactForm.querySelector("#error-panel"),
       "Please fill all form fields!"
