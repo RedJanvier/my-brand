@@ -18,6 +18,14 @@
     <title>Queries List</title>
   </head>
   <body>
+    <div class="loading">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <div class="container">
       <nav class="navbar">
         <h1 class="navbar__logo">RedJanvier</h1>
@@ -64,11 +72,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="../../js/init.js"></script>
     <script src="../../js/navbar.js"></script>
+    <script src="../../js/utils.js"></script>
     <script>
       const db = firebase.firestore();
       const queries = document.querySelector(".queries");
 
       db.collection("queries")
+        .orderBy("createdAt", "desc")
         .get()
         .then((snapshots) => {
           let html = "";
@@ -92,10 +102,13 @@
             </div>
           </div>`;
             queries.innerHTML = html;
-            setTimeout(() => loader.classList.add("hide"), 1000);
+            disableLoader();
           });
         })
-        .catch(console.log);
+        .catch((err) => {
+          console.log(err);
+          disableLoader();
+        });
     </script>
   </body>
 </html>

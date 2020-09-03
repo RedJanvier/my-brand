@@ -15,6 +15,14 @@
     <title>Edit Blog post</title>
   </head>
   <body>
+    <div class="loading">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <div class="container">
       <nav class="navbar">
         <h1 class="navbar__logo">RedJanvier</h1>
@@ -52,14 +60,15 @@
         <div class="card">
           <div class="card__column">
             <form class="form edit-form">
+              <div id="error-panel" class="error fade"></div>
               <div class="form__field">
                 <label for="title">Title</label>
                 <input
                   type="text"
                   name="title"
                   placeholder="Blog Title"
-                  value="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-                  required
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                 />
               </div>
               <div class="form__field">
@@ -67,12 +76,10 @@
                 <textarea
                   name="body"
                   placeholder="Blog Body"
-                  required
+                  onchange="validate(this)"
+                  onkeyup="validate(this)"
                   id="editor"
-                >
-                  &lt;p&gt;This is some sample content.&lt;/p&gt;
-              </textarea
-                >
+                ></textarea>
               </div>
               <div class="form__field">
                 <input
@@ -82,7 +89,7 @@
                   accept="image/x-png,image/x-jpeg"
                 />
               </div>
-              <div class="form__field img-preview"></div>
+              <div class="form__field img-preview"><img src="" alt="" /></div>
               <div class="form__field">
                 <button class="btn" type="submit" name="submit">
                   Update Post
@@ -94,11 +101,47 @@
       </main>
     </div>
     <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="../../js/init.js"></script>
+    <script src="../../js/utils.js"></script>
     <script src="../../js/navbar.js"></script>
     <script src="../../js/editor.js"></script>
     <script>
+      let file;
       const editForm = document.querySelector(".edit-form");
       const previewImage = editForm.querySelector(".img-preview");
+      const postId = location.href.split("?id=")[1].split("#")[0];
+      const post = firebase.firestore().collection("posts").doc(postId);
+      const currentPost = JSON.parse(localStorage.getItem(postId));
+      post
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const blog = doc.data();
+            previewImage.innerHTML = `<img src="${blog.image}" alt=""/>`;
+            editForm.title.value = blog.title;
+            const editor = editForm.querySelector("#editor");
+            const refreshEditor = setInterval(() => {
+              if (!editor.value) {
+                editor.value = blog.body;
+                console.log("New value: ", editor.value);
+                clearInterval(refreshEditor);
+              }
+            }, 200);
+            disableLoader();
+          } else {
+            throw new Error("Post not found!!");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          showErrorIn(editForm.querySelector("#error-panel"), err.message);
+          disableLoader();
+        });
 
       editForm.image.addEventListener("change", showPreviewImg);
 
@@ -116,6 +159,37 @@
 
           reader.readAsDataURL(file);
         }
+      }
+
+      editForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const title = editForm.title.value.trim();
+        const body = editForm.body.value.trim();
+
+        if (!validate(editForm.title) || !validate(editForm.body)) {
+          return showErrorIn(
+            document.querySelector("#error-panel"),
+            "Please fill in all fields!"
+          );
+        }
+        enableLoader();
+        if (file) {
+          const imageUrl = await uploadImage(file, editForm.submit);
+          return updatePost(title, body, imageUrl);
+        }
+        return updatePost(title, body);
+      });
+
+      function updatePost(title, body, image = currentPost.image) {
+        const blogData = { title, body, image };
+        post
+          .update(blogData)
+          .then(() => redirectTo("/admin"))
+          .catch((err) => {
+            console.log(err);
+            showErrorIn(editForm.querySelector("#error-panel"), err.message);
+            disableLoader();
+          });
       }
     </script>
   </body>
