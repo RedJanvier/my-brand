@@ -1,0 +1,36 @@
+{
+  "name": "my-brand",
+  "version": "1.0.0",
+  "description": "My brand server with express and mongodb",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "babel-node src/index",
+    "dev": "nodemon --exec babel-node src/index"
+  },
+  "keywords": [
+    "my-brand"
+  ],
+  "author": "RedJanvier",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/polyfill": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.5",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
+  }
+}
