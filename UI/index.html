@@ -309,13 +309,16 @@
         <div class="section__overlay">
           <div class="card dark">
             <h2 class="subscribe__heading">Subscribe to Mail List</h2>
-            <form class="form inline">
+            <form class="form inline subscribe-form">
+              <div id="error-panel" class="error fade"></div>
               <div class="form__field">
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   id="email"
                   placeholder="email"
+                  onkeyup="validate(this)"
+                  onchange="validate(this)"
                 />
               </div>
               <div class="form__field">
@@ -328,10 +331,10 @@
           Connect further more for the best implementation of your ideas.
         </p>
         <div class="footer__links">
-          <i class="fa fa-facebook"></i>
-          <i class="fa fa-github"></i>
-          <i class="fa fa-twitter"></i>
-          <i class="fa fa-stack-overflow"></i>
+          <i class="fa fa-facebook" onclick="redirectTo('https://www.facebook.com/jan.h.red')"></i>
+          <i class="fa fa-github" onclick="redirectTo('https://github.com/RedJanvier')"></i>
+          <i class="fa fa-twitter" onclick="redirectTo('https://twitter.com/red_janvier')"></i>
+          <i class="fa fa-stack-overflow" onclick="redirectTo('https://www.facebook.com/jan.h.red')"></i>
         </div>
         <p class="footer__text">
           &copy; 2020 Made with ❤ by
@@ -348,6 +351,7 @@
     <script src="./js/init.js"></script>
     <script src="./js/utils.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/subscribe.js"></script>
     <script>
       const {displayName, uid:userUid, providerData: [ { providerId: provider }]} = JSON.parse(localStorage.getItem("user")) || {uid: null, providerData: [ { providerId: null }]};
       const logBtns = document.getElementsByClassName("logBtn");
