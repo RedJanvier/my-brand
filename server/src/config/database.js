@@ -1,5 +1,5 @@
 import { connect } from 'mongoose';
-import { info as log } from '../helpers';
+import { logger } from '../helpers';
 
 const connectDB = async () => {
   try {
@@ -9,9 +9,9 @@ const connectDB = async () => {
       useUnifiedTopology: true,
     });
 
-    log(`Database Connected: ${conn.connection.host}`);
+    logger.info(`Database Connected: ${conn.connection.host}`);
   } catch (err) {
-    log(`Error: ${err.message}`);
+    logger.info(`Error: ${err.message}`);
     process.exit(1);
   }
 };

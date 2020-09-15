@@ -3,7 +3,8 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import express, { json } from 'express';
 import connectDB from './config/database';
-import { info as log } from './helpers';
+import { errorHandler, logger } from './helpers';
+import routes from './routes';
 
 dotenv.config();
 const app = express();
@@ -14,6 +15,7 @@ app.use(json());
 app.use(cors());
 app.use(morgan('dev'));
 
-app.get('/api', (req, res) => res.sendStatus(200));
+app.use('/api', routes);
+app.use(errorHandler);
 
-app.listen(PORT, log(`Server started at http://localhost:${PORT}/api`));
+app.listen(PORT, logger.info(`Server started at http://localhost:${PORT}/api`));
