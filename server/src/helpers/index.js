@@ -1,3 +1,4 @@
 import logger from './logger';
+import errorHandler from './error';
 
-export const { log, info } = logger;
+export { logger, errorHandler };

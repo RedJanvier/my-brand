@@ -2,7 +2,15 @@ import winston from 'winston';
 
 const { NODE_ENV } = process.env;
 const logger = winston.createLogger({
-  level: 'info',
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6,
+  },
   format: winston.format.json(),
   transports: [
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
