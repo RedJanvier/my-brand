@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   for (let i = 0; i < logoutBtns.length; i++) {
     logoutBtns[i].addEventListener("click", () => {
-      disableButton(logoutBtn);
+      disableButton(logoutBtns[i]);
       localStorage.clear();
       auth.signOut().catch(console.log);
     });

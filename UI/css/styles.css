@@ -270,6 +270,9 @@ html {
   }
   .btn {
     display: flex;
+    align-items: center;
+  }
+  .navbar .btn {
     margin: auto;
   }
 }
