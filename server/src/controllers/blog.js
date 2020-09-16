@@ -1,4 +1,5 @@
 import { asyncHandler, deleteImage } from '../middlewares';
+import { blogValidate, validate } from '../validation';
 import BlogModel from '../models/Blog';
 import Response from '../utils';
 
@@ -23,12 +24,12 @@ export const getOne = asyncHandler(async (req, res) => {
 });
 
 export const create = asyncHandler(async (req, res) => {
-  const { title, author, body } = req.body;
   const { image, imageId } = req;
-  if (!title || !author || !body || !image)
-    return Response.error(res, 400, 'Please provide all blog info!');
+  const post = { ...req.body, image, imageId };
 
-  const blog = await BlogModel.create({ title, author, body, image, imageId });
+  validate(blogValidate.CreateSchema, post, res);
+
+  const blog = await BlogModel.create(post);
 
   return Response.success(res, 201, blog, 'Blog Created successfully');
 });
@@ -36,11 +37,12 @@ export const create = asyncHandler(async (req, res) => {
 export const update = asyncHandler(async (req, res) => {
   const { blogId } = req.params;
 
-  const blog = await BlogModel.findOneAndUpdate(
-    { _id: blogId },
-    { ...req.body },
-    { new: true, runValidators: true }
-  );
+  validate(blogValidate.UpdateSchema, req.body, res);
+
+  const blog = await BlogModel.findOneAndUpdate({ _id: blogId }, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
   return Response.success(res, 200, blog, 'Blog Updated successfully');
 });

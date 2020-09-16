@@ -1,4 +1,5 @@
 import { asyncHandler } from '../middlewares';
+import { queryValidate, validate } from '../validation';
 import QueryModel from '../models/Query';
 import Response from '../utils';
 
@@ -13,11 +14,9 @@ export const getAll = asyncHandler(async (req, res) => {
 });
 
 export const create = asyncHandler(async (req, res) => {
-  const { name, email, body } = req.body;
-  if (!body || !name || !email)
-    return Response.error(res, 400, 'Please provide all query info!');
+  validate(queryValidate, req.body, res);
 
-  const query = await QueryModel.create({ email, body, name });
+  const query = await QueryModel.create(req.body);
 
   return Response.success(res, 201, query, 'Query submitted!');
 });
