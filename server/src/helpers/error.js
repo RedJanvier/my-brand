@@ -18,6 +18,6 @@ export default (err, req, res, next) => {
     const message = Object.values(err.errors).map((val) => val.message);
     return Response.error(res, 400, message);
   }
-  Response.error(res, error.statusCode, error.message);
+  Response.error(res, error.statusCode, error.message, error);
   return next();
 };
