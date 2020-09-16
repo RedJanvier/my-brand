@@ -20,6 +20,10 @@ const BlogSchema = new Schema(
       type: String,
       required: [true, 'Please provide a blog image!'],
     },
+    views: {
+      type: Number,
+      default: 0,
+    },
     likes: {
       type: Number,
       default: 0,

@@ -11,7 +11,7 @@ const connectDB = async () => {
 
     logger.info(`Database Connected: ${conn.connection.host}`);
   } catch (err) {
-    logger.info(`Error: ${err.message}`);
+    logger.error(`Error: ${err.message}`);
     process.exit(1);
   }
 };
