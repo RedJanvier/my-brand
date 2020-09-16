@@ -1,9 +1,10 @@
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-import express, { json } from 'express';
-import connectDB from './config/database';
+import uploader from 'express-fileupload';
+import express, { json, urlencoded } from 'express';
 import { errorHandler, logger } from './helpers';
+import connectDB from './config/database';
 import routes from './routes';
 
 dotenv.config();
@@ -14,6 +15,8 @@ connectDB();
 app.use(json());
 app.use(cors());
 app.use(morgan('dev'));
+app.use(urlencoded({ extended: false }));
+app.use(uploader({ useTempFiles: true }));
 
 app.use('/api', routes);
 app.use(errorHandler);

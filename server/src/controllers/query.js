@@ -1,4 +1,4 @@
-import asyncHandler from '../middlewares/async';
+import { asyncHandler } from '../middlewares';
 import QueryModel from '../models/Query';
 import Response from '../utils';
 
