@@ -3,7 +3,7 @@ import queryValidate from './query';
 import Response from '../utils';
 
 function validate(schema, value, res) {
-  const { error } = [schema].validate(value);
+  const { error } = schema.validate(value);
   if (error) Response.error(res, 400, error.details[0].message, error);
 }
 
