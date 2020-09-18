@@ -28,13 +28,20 @@ const BlogSchema = new Schema(
       type: Number,
       default: 0,
     },
-    comments: {
+    likers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    commentsCount: {
       type: Number,
       default: 0,
     },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment',
+      },
+    ],
     author: {
-      type: String,
-      default: 'RedJanvier',
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: [true, 'Please provide the blog author!'],
     },
   },

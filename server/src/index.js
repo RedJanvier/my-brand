@@ -1,9 +1,11 @@
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import passport from 'passport';
 import uploader from 'express-fileupload';
 import express, { json, urlencoded } from 'express';
 import { errorHandler, logger } from './helpers';
+import jwtStrategy from './config/passport';
 import connectDB from './config/database';
 import routes from './routes';
 
@@ -17,6 +19,9 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(urlencoded({ extended: false }));
 app.use(uploader({ useTempFiles: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(jwtStrategy);
 
 app.use('/api', routes);
 app.use(errorHandler);
