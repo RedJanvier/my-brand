@@ -1,10 +1,12 @@
 import * as blogValidate from './blog';
+import * as userValidate from './user';
+import commentValidate from './comment';
 import queryValidate from './query';
-import Response from '../utils';
 
-function validate(schema, value, res) {
+function validate(schema, value) {
   const { error } = schema.validate(value);
-  if (error) Response.error(res, 400, error.details[0].message, error);
+  if (error) return error;
+  return false;
 }
 
-export { validate, blogValidate, queryValidate };
+export { validate, blogValidate, queryValidate, userValidate, commentValidate };
