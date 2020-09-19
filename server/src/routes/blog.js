@@ -5,6 +5,7 @@ import { auth, uploadImage } from '../middlewares';
 const router = Router();
 
 router.route('/').get(blog.getAll).post(auth, uploadImage, blog.create);
+router.route('/subscribe').post(blog.Subscribe);
 router
   .route('/:blogId')
   .get(blog.getOne)

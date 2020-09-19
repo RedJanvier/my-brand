@@ -11,12 +11,12 @@ export default class Response {
     res,
     status = 500,
     message = 'Internal server error',
-    data = {}
+    error = {}
   ) {
     return res.status(status).json({
       status,
       message,
-      data,
+      error,
     });
   }
 }
