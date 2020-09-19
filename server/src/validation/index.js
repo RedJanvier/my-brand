@@ -1,6 +1,7 @@
 import * as blogValidate from './blog';
 import * as userValidate from './user';
 import commentValidate from './comment';
+import subscriberValidate from './subscriber';
 import queryValidate from './query';
 
 function validate(schema, value) {
@@ -9,4 +10,11 @@ function validate(schema, value) {
   return false;
 }
 
-export { validate, blogValidate, queryValidate, userValidate, commentValidate };
+export {
+  validate,
+  blogValidate,
+  queryValidate,
+  userValidate,
+  commentValidate,
+  subscriberValidate,
+};

@@ -1,4 +1,5 @@
 import logger from './logger';
+import sendEmail from './mail';
 import errorHandler from './error';
 import {
   encryptPassword,
@@ -9,6 +10,7 @@ import {
 
 export {
   logger,
+  sendEmail,
   errorHandler,
   encryptPassword,
   decryptPassword,

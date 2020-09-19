@@ -1,7 +1,14 @@
-import { blogValidate, commentValidate, validate } from '../validation';
+import {
+  blogValidate,
+  commentValidate,
+  subscriberValidate,
+  validate,
+} from '../validation';
 import { asyncHandler, deleteImage } from '../middlewares';
+import SubscriberModel from '../models/Subscriber';
 import CommentModel from '../models/Comment';
 import BlogModel from '../models/Blog';
+import { sendEmail } from '../helpers';
 import Response from '../utils';
 
 export const getAll = asyncHandler(async (req, res) => {
@@ -52,6 +59,11 @@ export const create = asyncHandler(async (req, res) => {
 
   const { _doc: blog } = await BlogModel.create(post);
   if (!blog) return Response.error(res, 404, 'Blog not created!');
+
+  const subscribers = await SubscriberModel.find();
+  subscribers.forEach(({ email }) =>
+    sendEmail('New Blog post', { email, blogId: blog._id, title: blog.title })
+  );
 
   return Response.success(res, 201, blog, 'Blog Created successfully');
 });
@@ -169,5 +181,26 @@ export const removeComment = asyncHandler(async (req, res) => {
     200,
     { comments: blog.comments, commentsCount: blog.commentsCount },
     'Successfully removed comment'
+  );
+});
+
+export const Subscribe = asyncHandler(async (req, res) => {
+  const { details: errors } = validate(subscriberValidate, req.body);
+  if (errors)
+    return Response.error(
+      res,
+      400,
+      `Please provide ${errors[0].context.key}`,
+      errors[0]
+    );
+
+  const user = await SubscriberModel.create(req.body);
+  if (!user) return Response.error(res, 500, 'Subscription failed!');
+
+  return Response.success(
+    res,
+    201,
+    { subscriber: user.email },
+    'Successfully subscribed to mail list'
   );
 });
