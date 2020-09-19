@@ -5,9 +5,14 @@ import passport from 'passport';
 import uploader from 'express-fileupload';
 import express, { json, urlencoded } from 'express';
 import { errorHandler, logger } from './helpers';
-import jwtStrategy from './config/passport';
 import connectDB from './config/database';
 import routes from './routes';
+import {
+  jwtStrategy,
+  fbStrategy,
+  gitStrategy,
+  googleStrategy,
+} from './config/passport';
 
 dotenv.config();
 const app = express();
@@ -21,7 +26,10 @@ app.use(urlencoded({ extended: false }));
 app.use(uploader({ useTempFiles: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(googleStrategy);
+passport.use(gitStrategy);
 passport.use(jwtStrategy);
+passport.use(fbStrategy);
 
 app.use('/api', routes);
 app.use(errorHandler);

@@ -1,6 +1,6 @@
 import { userValidate, validate } from '../validation';
+import { encryptPassword, signToken } from '../helpers';
 import { asyncHandler } from '../middlewares';
-import { signToken } from '../helpers';
 import UserModel from '../models/User';
 import Response from '../utils';
 
@@ -16,8 +16,8 @@ export const signup = asyncHandler(async (req, res) => {
       `Please provide ${errors[0].context.key}`,
       errors[0]
     );
-
-  const user = await UserModel.create(data);
+  const hash = await encryptPassword(this.password);
+  const user = await UserModel.create({ ...data, password: hash });
   if (!user) return Response.error(res, 500, 'User not created!');
 
   return Response.success(
@@ -52,6 +52,19 @@ export const login = asyncHandler(async (req, res) => {
     email: user.email,
     userId: user._id,
     name: user.name,
+    image: user.image,
+  });
+
+  return Response.success(res, 200, token, 'Successfully logged in!');
+});
+
+export const oauthLogin = asyncHandler(async (req, res) => {
+  const { user } = req;
+  const token = signToken({
+    email: user.email,
+    userId: user._id,
+    name: user.name,
+    image: user.image,
   });
 
   return Response.success(res, 200, token, 'Successfully logged in!');
@@ -62,7 +75,7 @@ export const profile = asyncHandler(async (req, res) => {
   if (error) return Response.error(res, 400, error.details[0].message, error);
 
   const user = await UserModel.findOne({ _id: req.params.id });
-  if (!user) return Response.error(res, 400, 'User not found!');
+  if (!user) return Response.error(res, 404, 'User not found!');
 
   await user.update(req.body);
 
