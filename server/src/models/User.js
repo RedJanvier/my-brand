@@ -1,5 +1,4 @@
 import { Schema, model } from 'mongoose';
-import { decryptPassword } from '../helpers';
 
 const UserSchema = new Schema(
   {
@@ -23,14 +22,10 @@ const UserSchema = new Schema(
     name: {
       type: String,
       required: [true, 'Please provide a user name'],
+      unique: false,
     },
   },
   { timestamps: true }
 );
-
-UserSchema.methods.isValidPassword = async (password) => {
-  const compare = await decryptPassword(password, this.password);
-  return compare;
-};
 
 export default model('User', UserSchema);

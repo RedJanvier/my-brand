@@ -9,6 +9,13 @@ export const auth = asyncHandler(async (req, res, next) => {
   })(req, res, next);
 });
 
+export const isAdmin = asyncHandler(async (req, res, next) => {
+  const { user } = req;
+  if (user.provider !== 'email')
+    return next({ message: 'Forbidden resources!', statusCode: 403 });
+  return next();
+});
+
 export const oAuth = {
   main: asyncHandler(async (req, res, next) => {
     const { provider } = req.params;
@@ -19,7 +26,6 @@ export const oAuth = {
     passport.authenticate(provider, config, (err, user, info) => {
       if (err || !user) return next(info);
       req.user = user;
-      console.log('Reached!!!!', user);
       return next();
     })(req, res, next);
   }),

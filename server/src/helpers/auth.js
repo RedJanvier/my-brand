@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import { genSalt, hash as _hash, compare } from 'bcrypt';
-import { sign, verify } from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 
 config();
 const { JWT_SECRET } = process.env;
@@ -22,9 +22,4 @@ export const signToken = (data, secret = JWT_SECRET, duration = null) => {
   const tokenOptions = duration ? { expiresIn: duration } : undefined;
   const token = sign(data, secret, tokenOptions);
   return token;
-};
-
-export const verifyToken = (token, secret = JWT_SECRET) => {
-  const data = verify(token, secret);
-  return data;
 };
