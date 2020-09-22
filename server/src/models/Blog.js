@@ -18,7 +18,6 @@ const BlogSchema = new Schema(
     },
     imageId: {
       type: String,
-      required: [true, 'Please provide a blog image!'],
     },
     views: {
       type: Number,

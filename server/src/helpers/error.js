@@ -2,36 +2,29 @@ import logger from './logger';
 import Response from '../utils';
 
 export default (err, req, res, next) => {
-  const error = { ...err, message: err.message };
+  const error = { ...err, message: err.message, statusCode: 500 };
+  let message = 'Internal Server error';
 
   if (err.name === 'CastError') {
-    const message = `Resource not found of id ${err.value}`;
-    return Response.error(res, 404, message, error);
+    message = `Resource not found of id ${err.value}`;
+    error.statusCode = 404;
   }
   if (err.code === 11000) {
-    const message = `Values entered already exist (${
+    message = `Values entered already exist (${
       err.message.split('"')[1].split('"')[0]
     })`;
-    return Response.error(res, 400, message);
+    error.statusCode = 409;
   }
   if (err.name === 'ValidationError') {
-    const message = Object.values(err.errors).map((val) => val.message);
-    return Response.error(res, 400, message, error);
+    message = Object.values(err.errors).map((val) => val.message);
+    error.statusCode = 400;
   }
-  if (error.message === 'jwt expired') {
-    return Response.error(res, 401, 'please signup/login first!', error);
-  }
-  if (
-    error.message === `Cannot read property 'startsWith' of undefined` ||
-    error.message === `No auth token`
-  ) {
-    return Response.error(res, 401, 'please provide a token', error);
-  }
-  if (error.message === `jwt malformed`) {
-    return Response.error(res, 401, 'please provide a valid token', error);
+  if (error.message === `No auth token`) {
+    message = 'please provide a token';
+    error.statusCode = 401;
   }
   logger.error(error);
 
-  Response.error(res, error.statusCode, error.message, error);
+  Response.error(res, error.statusCode, error.message || message, error);
   return next();
 };

@@ -20,15 +20,7 @@ export const signup = asyncHandler(async (req, res) => {
   const user = await UserModel.create({ ...data, password: hash });
   if (!user) return Response.error(res, 500, 'User not created!');
 
-  return Response.success(
-    res,
-    201,
-    signToken({
-      email: user.email,
-      userId: user._id,
-      name: user.name,
-    })
-  );
+  return Response.success(res, 201, signToken(user));
 });
 
 export const login = asyncHandler(async (req, res) => {
@@ -47,26 +39,14 @@ export const login = asyncHandler(async (req, res) => {
   if (!(await decryptPassword(password, user.password)))
     return Response.error(res, 401, 'Wrong credentials!');
 
-  const token = signToken({
-    email: user.email,
-    userId: user._id,
-    name: user.name,
-    image: user.image,
-    provider: user.provider,
-  });
+  const token = signToken(user);
 
   return Response.success(res, 200, token, 'Successfully logged in!');
 });
 
 export const oauthLogin = asyncHandler(async (req, res) => {
   const { user } = req;
-  const token = signToken({
-    email: user.email,
-    userId: user._id,
-    name: user.name,
-    image: user.image,
-    provider: user.provider,
-  });
+  const token = signToken(user);
 
   return Response.success(res, 200, token, 'Successfully logged in!');
 });
@@ -75,10 +55,12 @@ export const profile = asyncHandler(async (req, res) => {
   const error = validate(userValidate.UpdateSchema, req.body);
   if (error) return Response.error(res, 400, error.details[0].message, error);
 
-  const user = await UserModel.findOne({ _id: req.params.id });
+  const user = await UserModel.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    { new: true, runValidators: true }
+  );
   if (!user) return Response.error(res, 404, 'User not found!');
-
-  await user.update(req.body);
 
   return Response.success(res, 200, user);
 });

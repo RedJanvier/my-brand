@@ -1,6 +1,7 @@
+import '@babel/polyfill';
 import { config } from 'dotenv';
 import { genSalt, hash as _hash, compare } from 'bcrypt';
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 
 config();
 const { JWT_SECRET } = process.env;
@@ -18,8 +19,27 @@ export const decryptPassword = async (password, hash) => {
   return isValid;
 };
 
-export const signToken = (data, secret = JWT_SECRET, duration = null) => {
+export const signToken = (
+  { email, _id: userId, name, image, provider },
+  secret = JWT_SECRET,
+  duration = null
+) => {
   const tokenOptions = duration ? { expiresIn: duration } : undefined;
-  const token = sign(data, secret, tokenOptions);
+  const token = sign(
+    {
+      email,
+      userId,
+      name,
+      image,
+      provider,
+    },
+    secret,
+    tokenOptions
+  );
   return token;
+};
+
+export const verifyToken = (token, secret = JWT_SECRET) => {
+  const decoded = verify(token, secret);
+  return decoded;
 };

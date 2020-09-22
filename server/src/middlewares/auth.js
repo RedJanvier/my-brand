@@ -23,11 +23,7 @@ export const oAuth = {
     if (provider === 'github') config.scope = ['user:email'];
     if (provider === 'google') config.scope = ['profile'];
 
-    passport.authenticate(provider, config, (err, user, info) => {
-      if (err || !user) return next(info);
-      req.user = user;
-      return next();
-    })(req, res, next);
+    return passport.authenticate(provider, config)(req, res, next);
   }),
   callback: asyncHandler(async (req, res, next) => {
     const { provider } = req.params;
