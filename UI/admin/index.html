@@ -95,7 +95,7 @@
             );
             localStorage.setItem("user", JSON.stringify(user));
             redirectTo(
-              provider === "password"
+              user.providerData[0].providerId === "password"
                 ? "/admin/pages/index.html"
                 : "/index.html"
             );

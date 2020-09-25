@@ -4,19 +4,19 @@ import logger from './logger';
 
 config();
 const { EMAIL, PASS, FRONT_URL } = process.env;
+export const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  auth: {
+    user: EMAIL,
+    pass: PASS,
+  },
+});
 
 const sendEmail = (type, data = {}) => {
   try {
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      auth: {
-        user: EMAIL,
-        pass: PASS,
-      },
-    });
     const mail = {
-      from: '"noreply - RedJanvier" <noreply@redjanvier.netlify.com>',
+      from: '"noreply - RedJanvier" <noreply@redjanvier.netlify.app>',
       to: data.email,
       subject: type,
     };

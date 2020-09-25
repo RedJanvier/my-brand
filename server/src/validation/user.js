@@ -12,13 +12,12 @@ export const CreateSchema = joi.object().keys({
     ),
   image: joi
     .string()
-    .required()
     .min(8)
     .pattern(
       /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/,
       'link'
     ),
-  imageId: joi.string().required().min(3),
+  imageId: joi.string().min(3),
   password: joi
     .string()
     .required()

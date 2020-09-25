@@ -37,7 +37,7 @@ const googleOptions = {
   clientSecret: GOOGLE_CONSUMER_SECRET,
   callbackURL: `${BASE_URL}/user/login/google/callback`,
 };
-const cbFunction = async (accessToken, refreshToken, profile, done) => {
+export const cbFunction = async (accessToken, refreshToken, profile, done) => {
   const { photos, provider } = profile;
   const genUser = {
     name: profile._json.name,

@@ -14,8 +14,8 @@ export const getAll = asyncHandler(async (req, res) => {
 });
 
 export const create = asyncHandler(async (req, res) => {
-  const error = validate(queryValidate.CreateSchema, req.body);
-  if (error) return Response.error(res, 400, error.details[0].message, error);
+  const { details: errors } = validate(queryValidate, req.body);
+  if (errors) return Response.error(res, 400, errors[0].message, errors[0]);
 
   const query = await QueryModel.create(req.body);
 

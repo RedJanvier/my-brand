@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
@@ -16,7 +17,7 @@ import {
 
 dotenv.config();
 const app = express();
-const { PORT } = process.env;
+const { PORT = 4000 } = process.env;
 connectDB();
 
 app.use(json());
@@ -35,3 +36,5 @@ app.use('/api', routes);
 app.use(errorHandler);
 
 app.listen(PORT, logger.info(`Server started at http://localhost:${PORT}/api`));
+
+export default app;
