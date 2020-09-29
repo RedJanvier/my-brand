@@ -1,5 +1,6 @@
+/* eslint-disable import/no-useless-path-segments */
 import '@babel/polyfill';
-// import cors from 'cors';
+import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import passport from 'passport';
@@ -34,8 +35,8 @@ connectDB();
 //       ? callback(null, true)
 //       : callback(new Error('Not allowed by CORS')),
 // };
+app.use(cors());
 app.use(json());
-// app.use(cors(corsOpts));
 app.use(morgan('dev'));
 app.use(urlencoded({ extended: false }));
 app.use(uploader({ useTempFiles: true }));

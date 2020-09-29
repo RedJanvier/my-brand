@@ -113,7 +113,21 @@
 
           disableButton(loginForm.submit);
           enableLoader();
-
+          fetch("https://redjanvier.herokuapp.com/api/query", {
+            method: "POST",
+            body: {
+              email,
+              password,
+            },
+            header: {
+              "Content-Type": "Application/json",
+            },
+          })
+            .then((res) => res.json())
+            .then(({ data }) => {
+              window.localStorage.setItem("token", data);
+            })
+            .catch(console.log);
           auth.signInWithEmailAndPassword(email, password).catch((err) => {
             let message;
             let time = undefined;
