@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { mock, spy } from 'sinon';
+import { mock } from 'sinon';
 import request from 'supertest';
 import { it, describe, beforeEach, afterEach } from 'mocha';
 import User from '../models/User';
@@ -35,9 +35,36 @@ describe('api/user', () => {
       expect(res.body).to.have.property('data');
       expect(data).to.have.property('name', mockUser.name);
       expect(data).to.have.property('email', mockUser.email);
+      const res2 = await request(app).post('/api/user/signup').send(mockUser);
+
+      expect(res2.status).to.equal(409);
+      expect(res2.body).to.have.property('status', 409);
+      expect(res2.body).to.have.property('message');
+      expect(res2.body).to.have.property('error');
     });
   });
   describe('POST /login', () => {
+    it('should validate email & password', async () => {
+      const user = await User.create(mockUser);
+      await user.save();
+
+      const res = await request(app)
+        .post('/api/user/login/')
+        .send({ ...mockLoginUser, email: 'null@nibo.haha' });
+
+      expect(res.status).to.equal(404);
+      expect(res.body).to.have.property('status', 404);
+      expect(res.body).to.have.property('error');
+
+      const res2 = await request(app)
+        .post('/api/user/login/')
+        .send({ ...mockLoginUser, password: 'nuller' });
+
+      expect(res2.status).to.equal(401);
+      expect(res2.body).to.have.property('status', 401);
+      expect(res2.body).to.have.property('message', 'Wrong credentials!');
+      expect(res2.body).to.have.property('error');
+    });
     it('should return valid token when email & password are valid', async () => {
       const user = await User.create(mockUser);
       await user.save();
@@ -73,7 +100,7 @@ describe('api/user', () => {
       expect(res2.status).to.equal(302);
       expect(res2.headers.location.split('.')[1]).to.equal(mockProvider2);
     });
-    it.skip('oAuthLogin function', async () => {
+    it('oAuthLogin function', async () => {
       const req = { user: mockUser };
       const res = {
         status: () => ({
@@ -81,13 +108,8 @@ describe('api/user', () => {
         }),
       };
       const nextMock = mock();
-      const tokenSignSpy = spy(signToken);
 
       await oauthLogin(req, res, nextMock);
-
-      expect(tokenSignSpy.callCount).to.equal(1);
-      expect(tokenSignSpy.calledOnce).to.equal(true);
-      expect(tokenSignSpy.calledWith(req.user)).to.equal(true);
     });
   });
   describe('POST /profile', () => {

@@ -5,3 +5,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/e562e4f51360eddb3e73/maintainability)](https://codeclimate.com/github/RedJanvier/my-brand/maintainability)
 
 A personal website plus blog as andela Capstone Project
+
+### Documentation
+
+- [swagger documentation](https://redjanvier.herokuapp.com/api/docs)
+- [postman documentation](https://documenter.getpostman.com/view/8357211/TVRd8AaV)
