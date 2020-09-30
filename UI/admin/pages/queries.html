@@ -77,26 +77,24 @@
       const db = firebase.firestore();
       const queries = document.querySelector(".queries");
 
-      db.collection("queries")
-        .orderBy("createdAt", "desc")
-        .get()
-        .then((snapshots) => {
+      fetch("http://localhost:4000/api/query")
+        .then((res) => res.json())
+        .then(({ data }) => {
           let html = "";
-          snapshots.forEach((doc) => {
-            const data = doc.data();
+          data.queries.forEach((query) => {
             html += `<div class="comment card">
             <div class="card__column">
               <div class="top">
                 <div class="author">
                   <div class="author__details">
-                    <h3>${data.name}</h3>
-                    <p>${moment(data.createdAt).fromNow()}</p>
+                    <h3>${query.name}</h3>
+                    <p>${moment(query.createdAt).fromNow()}</p>
                   </div>
                 </div>
               </div>
               <div class="comment__body">
                 <p class="left">
-                  ${data.message}
+                  ${query.message}
                 </p>
               </div>
             </div>

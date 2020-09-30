@@ -49,10 +49,17 @@ contactForm.addEventListener("submit", (e) => {
     createdAt: Date.now(),
   };
 
-  db.collection("queries")
-    .add(queryData)
-    .then((docRef) => {
-      console.log("Query submitted with id: ", docRef.id);
+  fetch("https://redjanvier.herokuapp.com/api/query", {
+    method: "POST",
+    body: queryData,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+  })
+    .then((res) => res.json())
+    .then(({ data }) => {
+      console.log("Query submitted with id: ", data._id);
       setTimeout(() => redirectTo("/index.html"), 800);
     })
     .catch((err) => {
