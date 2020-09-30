@@ -11,4 +11,4 @@ const SubscriberSchema = new Schema(
   { timestamps: true }
 );
 
-export default model('Subscriber', SubscriberSchema);
+export default model('Fan', SubscriberSchema);

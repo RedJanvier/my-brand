@@ -4,9 +4,11 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import passport from 'passport';
 import uploader from 'express-fileupload';
+import { serve, setup } from 'swagger-ui-express';
 import express, { json, urlencoded } from 'express';
 import { errorHandler, logger } from './helpers';
 import connectDB from './config/database';
+import docs from './docs/index.json';
 import routes from './routes';
 import {
   jwtStrategy,
@@ -33,6 +35,7 @@ passport.use(jwtStrategy);
 passport.use(fbStrategy);
 
 app.use('/api', routes);
+app.use('/api/docs', serve, setup(docs));
 app.use(errorHandler);
 
 app.listen(PORT, logger.info(`Server started at http://localhost:${PORT}/api`));

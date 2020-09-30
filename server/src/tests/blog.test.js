@@ -31,6 +31,14 @@ describe('/api/blog', () => {
     image:
       'https://www.vippng.com/png/full/416-4161690_empty-profile-picture-blank-avatar-image-circle.png',
   })}`;
+  const mockInvalidToken = `Bearer ${signToken({
+    _id: 'mockUser._id',
+    name: 'test',
+    provider: 'google',
+    email: 'test@gmail.com',
+    image:
+      'https://www.vippng.com/png/full/416-4161690_empty-profile-picture-blank-avatar-image-circle.png',
+  })}`;
   beforeEach(async () => {
     await Blog.deleteMany({});
     mockUser = await User.create({
@@ -63,12 +71,28 @@ describe('/api/blog', () => {
       expect(res.body).to.have.property('status', 401);
       expect(res.body).to.have.property('message', 'No auth token');
     });
-    it('should create post when valid token provided', async () => {
+    it('should fail to create post when not all fields provided', async () => {
       const imageId = 'newId';
       const image =
         'https://www.vippng.com/png/full/416-4161690_empty-profile-picture-blank-avatar-image-circle.png';
       stub(uploader, 'upload').resolves({ url: image, public_id: imageId });
 
+      const res = await request(app)
+        .post('/api/blog')
+        .set('authorization', mockToken)
+        .set('content-type', 'multipart/form-data')
+        .attach('image', path.join(__dirname, 'assets/dummy.txt'))
+        .field('body', mockBlog.body)
+        .field('author', mockUser._id.toString());
+
+      expect(res).to.have.property('status', 400);
+      expect(res.body).to.have.property('status', 400);
+      expect(res.body).to.have.property('message', '"title" is required');
+      expect(res.body).not.to.have.property('data');
+      expect(res.body).to.have.property('error');
+      expect(res.body.error.path[0]).to.equal('title');
+    });
+    it('should create post when valid token provided', async () => {
       const res = await request(app)
         .post('/api/blog')
         .set('authorization', mockToken)
@@ -83,9 +107,35 @@ describe('/api/blog', () => {
       expect(res.body).to.have.property('message', 'Blog Created successfully');
       expect(res.body).to.have.property('data');
       expect(res.body.data).to.have.property('title', mockBlog.title);
+
+      const res2 = await request(app)
+        .post('/api/blog')
+        .set('authorization', mockToken)
+        .set('content-type', 'multipart/form-data')
+        .attach('image', path.join(__dirname, 'assets/dummy.txt'))
+        .field('title', mockBlog.title)
+        .field('body', mockBlog.body)
+        .field('author', mockUser._id.toString());
+
+      expect(res2).to.have.property('status', 409);
+      expect(res2.body).to.have.property('status', 409);
     });
   });
   describe('PATCH /:blogId', () => {
+    it('should not update post when invalid token provided', async () => {
+      const blog = await Blog.create({ ...mockBlog, author: mockUser._id });
+      await blog.save();
+
+      const res = await request(app)
+        .patch(`/api/blog/${blog._id}`)
+        .set('authorization', mockInvalidToken)
+        .send({ title: 'new' });
+
+      expect(res).to.have.property('status', 500);
+      expect(res.body).to.have.property('status', 500);
+      expect(res.body).to.have.property('message', 'Forbidden resources!');
+      expect(res.body).to.have.property('error');
+    });
     it('should update post when valid token provided', async () => {
       const blog = await Blog.create({ ...mockBlog, author: mockUser._id });
       await blog.save();
@@ -94,6 +144,7 @@ describe('/api/blog', () => {
         .patch(`/api/blog/${blog._id}`)
         .set('authorization', mockToken)
         .send({ title: 'new' });
+
       expect(res).to.have.property('status', 200);
       expect(res.body).to.have.property('status', 200);
       expect(res.body).to.have.property('data');
@@ -181,6 +232,12 @@ describe('/api/blog', () => {
       expect(res.body).to.have.property('message', 'Blog deleted successfully');
       expect(res.body).to.have.property('data');
       expect(res.body.data).to.have.property('title', toDelete.title);
+      const res2 = await request(app)
+        .delete(`/api/blog/${toDelete._id}`)
+        .set('authorization', mockToken);
+      expect(res2).to.have.property('status', 404);
+      expect(res2.body).to.have.property('status', 404);
+      expect(res2.body).to.have.property('message', 'Blog not found!');
     });
   });
 });

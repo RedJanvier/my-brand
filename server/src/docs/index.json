@@ -1,0 +1,712 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The need for professionals to have an online presence and brand in this current age and generation can not be overemphasized. One having a good online presence means quick and easy access to opportunities. It gives prospective customers, employer easy to review your work, experience, and future ambition. While there are various ways and means to build online brands. We believe that having a personal website + blog which one can use to share basic information about themself and also share ideas with their network can have a huge impact on one's career.",
+    "version": "1.0.0",
+    "title": "RedJanvier",
+    "contact": {
+      "email": "janvierntwali@gmail.com"
+    }
+  },
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operations related to authentication"
+    },
+    {
+      "name": "Blog",
+      "description": "Knowledge sharing and fun"
+    },
+    {
+      "name": "Query",
+      "description": "Contact form queries from users"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "paths": {
+    "/blog/subscribe": {
+      "post": {
+        "tags": ["Blog"],
+        "summary": "Create an email subscription to maillist",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Sub"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully created"
+          },
+          "400": {
+            "description": "Invalid Input"
+          },
+          "404": {
+            "description": "Unable to create query"
+          }
+        }
+      }
+    },
+    "/query": {
+      "post": {
+        "tags": ["Query"],
+        "summary": "Create a query from contact form",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Query"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully created"
+          },
+          "400": {
+            "description": "Invalid Input"
+          },
+          "404": {
+            "description": "Unable to create query"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Query"],
+        "summary": "Fetch all queries",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Queries successfully retrieved",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Query"
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token supplied"
+          }
+        }
+      }
+    },
+    "/blog": {
+      "get": {
+        "tags": ["Blog"],
+        "summary": "Find all Blog posts",
+        "description": " ",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successfully retrieved",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Blog"
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token supplied"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Blog"],
+        "summary": "Create a blog | Performed by Admin only ",
+        "description": " ",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Successfully",
+            "schema": {
+              "$ref": "#/definitions/Blog"
+            }
+          },
+          "401": {
+            "description": "Invalid Token supplied"
+          },
+          "404": {
+            "description": "Blog not created!"
+          }
+        }
+      }
+    },
+    "/blog/{blogId}": {
+      "get": {
+        "tags": ["Blog"],
+        "summary": "Find Blog by ID",
+        "description": " ",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful retrieved",
+            "schema": {
+              "$ref": "#/definitions/Blog"
+            }
+          },
+          "401": {
+            "description": "Invalid Token supplied"
+          },
+          "404": {
+            "description": "Blog not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Blog"],
+        "summary": "Delete blog | Performed by Admin only ",
+        "description": " ",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted Successfully"
+          },
+          "401": {
+            "description": "Invalid Token supplied"
+          },
+          "404": {
+            "description": "Blog not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Blog"],
+        "summary": "Update blog title or body | Performed by Admin only",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Blog"
+            },
+            "required": false
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blog updated successfully"
+          },
+          "400": {
+            "description": "Invalid Input"
+          },
+          "401": {
+            "description": "Invalid Token supplied"
+          },
+          "403": {
+            "description": "Access denied, Admin only can update blog"
+          },
+          "404": {
+            "description": "Blog not found"
+          }
+        }
+      }
+    },
+    "/blog/{blogId}/like": {
+      "patch": {
+        "tags": ["Blog"],
+        "summary": "Like or Unlike blog",
+        "description": "Like if were not yet a liker but unlike if you are a liker",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blog liked successfully | Blog unliked successfully"
+          },
+          "401": {
+            "description": "Invalid Token supplied"
+          },
+          "404": {
+            "description": "Blog not found"
+          }
+        }
+      }
+    },
+    "/comment/{blogId}": {
+      "post": {
+        "tags": ["Blog"],
+        "summary": "Create blog comment",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Comment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blog comment created successfully"
+          },
+          "400": {
+            "description": "Invalid Input"
+          },
+          "401": {
+            "description": "Invalid Token supplied"
+          },
+          "404": {
+            "description": "Comment not created!"
+          }
+        }
+      }
+    },
+    "/comment/{blogId}/{commentId}": {
+      "delete": {
+        "tags": ["Blog"],
+        "summary": "Delete blog comment by ID | Performed by Admin only",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blog comment deleted successfully"
+          },
+          "400": {
+            "description": "Invalid Input"
+          },
+          "401": {
+            "description": "Invalid Token supplied"
+          },
+          "403": {
+            "description": "Access denied, Admin only can delete comment"
+          },
+          "404": {
+            "description": "Comment not found"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Login a user with email & password",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successfully",
+            "schema": {
+              "$ref": "#/definitions/LoginResponse"
+            }
+          },
+          "400": {
+            "description": "Wrong credentials (password)"
+          },
+          "404": {
+            "description": "Wrong credentials (email)"
+          }
+        }
+      }
+    },
+    "/user/signup": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Signup user",
+        "description": "Provide proper information to create account",
+        "operationId": "registerUser",
+        "consumes": "multipart/form-data",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ],
+
+        "responses": {
+          "201": {
+            "description": "User created successfully ",
+            "schema": {
+              "$ref": "#/definitions/LoginResponse"
+            }
+          },
+          "400": {
+            "description": "Operation failed"
+          }
+        }
+      }
+    },
+    "/user/login/{provider}": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Log user in by OAuth2",
+        "description": "",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "enum": ["google", "github", "facebook"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successful logged in",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        }
+      }
+    },
+    "/user/profile/{userId}": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Update user profile by ID | Performed by Admin only",
+        "description": " ",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "object"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful"
+          },
+          "401": {
+            "description": "Invalid Token supplied"
+          },
+          "403": {
+            "description": "Access denied!, Allowed by Admin only"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Blog": {
+      "type": "object",
+      "required": ["title", "body", "image", "author"],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "likes": {
+          "type": "Integer",
+          "minimum": 0
+        },
+        "commentCount": {
+          "type": "Interger",
+          "minimum": 0
+        },
+        "views": {
+          "type": "Interger",
+          "minimum": 0
+        },
+        "likers": {
+          "type": "array",
+          "xml": {
+            "wrapped": true
+          },
+          "items": {
+            "type": "string",
+            "xml": {
+              "name": "userId"
+            }
+          }
+        },
+        "comments": {
+          "type": "array",
+          "xml": {
+            "wrapped": true
+          },
+          "items": {
+            "type": "string",
+            "xml": {
+              "name": "comment"
+            }
+          }
+        }
+      },
+
+      "xml": {
+        "name": "Blog"
+      }
+    },
+    "Sub": {
+      "type": "object",
+      "required": ["email"],
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Sub"
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "required": ["body"],
+      "properties": {
+        "body": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Comment"
+      }
+    },
+    "Query": {
+      "type": "object",
+      "required": ["body", "title", "email"],
+      "properties": {
+        "body": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Query"
+      }
+    },
+    "Login": {
+      "type": "object",
+      "required": ["email", "password"],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "LoginResponse": {
+      "type": "object",
+      "required": ["token", "status"],
+      "properties": {
+        "status": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "LoginResponse"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
