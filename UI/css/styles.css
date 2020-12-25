@@ -387,6 +387,7 @@ html {
   max-width: 1000px;
   position: relative;
   margin: 2rem auto;
+  min-height: 300px;
 }
 .slides {
   display: none;
@@ -611,26 +612,32 @@ html {
 .admin .queries {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
+.green,
 .green h3,
 .green .fs {
   color: #1bd47e;
 }
+.pink,
 .pink h3,
 .pink .fs {
   color: #f710bd;
 }
+.blue,
 .blue h3,
 .blue .fs {
   color: #108ff7;
 }
+.red,
 .red h3,
 .red .fs {
   color: #f71010;
 }
+.orange,
 .orange h3,
 .orange .fs {
   color: #f76c10;
 }
+.purple,
 .purple h3,
 .purple .fs {
   color: var(--secondary);
@@ -673,6 +680,10 @@ html {
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: var(--secondary) transparent transparent transparent;
+}
+.white {
+  color: var(--inverse-color);
+  border-color: var(--inverse-color);
 }
 .lds-ring.white div {
   border: 8px solid var(--inverse-color) !important;

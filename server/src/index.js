@@ -6,20 +6,15 @@ import passport from 'passport';
 import uploader from 'express-fileupload';
 import { serve, setup } from 'swagger-ui-express';
 import express, { json, urlencoded } from 'express';
+import { jwtStrategy, fbStrategy, gitStrategy, googleStrategy } from './config/passport';
 import { errorHandler, logger } from './helpers';
 import connectDB from './config/database';
 import docs from '../src/docs/index.json';
 import routes from './routes';
-import {
-  jwtStrategy,
-  fbStrategy,
-  gitStrategy,
-  googleStrategy,
-} from './config/passport';
 
 dotenv.config();
 const app = express();
-const { PORT = 4000 } = process.env;
+const { PORT } = process.env;
 connectDB();
 
 app.use(json());
