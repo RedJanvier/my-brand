@@ -5,3 +5,6 @@ tmp/
 .nyc_output
 coverage
 build/
+.dccache
+DS_Store
+.vscode

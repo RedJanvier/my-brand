@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 import { config } from 'dotenv';
-import { genSalt, hash as _hash, compare } from 'bcrypt';
+import { genSalt, hash as _hash, compare } from 'bcryptjs';
 import { sign, verify } from 'jsonwebtoken';
 
 config();

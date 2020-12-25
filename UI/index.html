@@ -123,142 +123,18 @@
           <a href="#contact" class="active">Email me.</a>
         </p>
         <div class="slides-container">
-          <div class="slides fade">
-            <div class="card straight">
-              <div class="card__column">
-                <img src="./img/projects/UR-Newsposter.png" />
-              </div>
-              <div class="card__column">
-                <h4>UR News Post</h4>
-                <p>
-                  A Progressive web application where all members of University
-                  of Rwanda can share news
-                </p>
-                <a
-                  href="https://inspiring-panini-9117a4.netlify.app/"
-                  class="btn"
-                  >Visit Site</a
-                >
-              </div>
-            </div>
+          <div class="lds-ring purple" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <p class="purple">Loading Projects...</p>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
-
-          <div class="slides fade">
-            <div class="card straight">
-              <div class="card__column">
-                <img src="./img/projects/igihe scrapper.png" />
-              </div>
-              <div class="card__column">
-                <h4>Igihe Scrapper</h4>
-                <p>
-                  Scrapper made for igihe news site where you can read all the
-                  news from igihe through this REST API
-                </p>
-                <a
-                  href="https://scrap-igihe.herokuapp.com/api/posts"
-                  target="_blank"
-                  class="btn"
-                  >View Source</a
-                >
-                <a
-                  href="https://github.com/RedJanvier/scrap-igihe"
-                  target="_blank"
-                  class="btn"
-                  >Visit Site</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="slides fade">
-            <div class="card straight">
-              <div class="card__column">
-                <img src="./img/projects/portfolio responsive.png" />
-              </div>
-              <div class="card__column">
-                <h4>Portfolio</h4>
-                <p>This is the site you are visiting right now</p>
-                <a href="#" target="_blank" class="btn">View Source</a>
-                <a
-                  href="https://github.com/RedJanvier/my-brand"
-                  target="_blank"
-                  class="btn"
-                  >Visit Site</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="slides fade">
-            <div class="card straight">
-              <div class="card__column">
-                <img src="./img/projects/redblog cased.png" />
-              </div>
-              <div class="card__column">
-                <h4>RedBlog</h4>
-                <p>Most amazing Blog made in just 2 days</p>
-                <a
-                  href="https://github.com/RedJanvier/redblog"
-                  target="_blank"
-                  class="btn"
-                  >View Source</a
-                >
-                <a
-                  href="https://redjanvier.github.io/redblog"
-                  target="_blank"
-                  class="btn"
-                  >Visit Site</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="slides fade">
-            <div class="card straight">
-              <div class="card__column">
-                <img src="./img/projects/home-of-cakes.png" />
-              </div>
-              <div class="card__column">
-                <h4>Home of cakes</h4>
-                <p>
-                  Fully featured web application where everyone from anywhere
-                  can order a cake for his/her ceremony and owner of the site
-                  recieves the order through SMS for better UX
-                </p>
-                <a
-                  href="https://homeofcakes-rwanda.com"
-                  target="_blank"
-                  class="btn"
-                  >Visit Site</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="slides fade">
-            <div class="card straight">
-              <div class="card__column">
-                <img src="./img/projects/drumroot.png" />
-              </div>
-              <div class="card__column">
-                <h4>Drumroot</h4>
-                <p>
-                  A community project made for music lovers to create or modify
-                  their favorite songs and make them as unique and special as
-                  they can be
-                </p>
-                <a
-                  href="https://homeofcakes-rwanda.com"
-                  target="_blank"
-                  class="btn"
-                  >Visit Site</a
-                >
-              </div>
-            </div>
-          </div>
-          <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-          <a class="next" onclick="changeSlide(1)">&#10095;</a>
         </div>
         <br />
         <div class="section__action">
           <a href="https://github.com/RedJanvier" class="btn" target="_blank"
-            ><i class="fa fa-github"></i> More on Github</a
+          ><i class="fa fa-github"></i> More on Github</a
           >
         </div>
       </section>
@@ -267,6 +143,7 @@
         <p class="section__subheading">Latest posts from my blog.</p>
         <div class="blogs grid">
           <div class="lds-ring white">
+            <span class="white">Loading Blogs...</span>
             <div></div>
             <div></div>
             <div></div>
@@ -353,6 +230,32 @@
     <script src="./js/index.js"></script>
     <script src="./js/subscribe.js"></script>
     <script>
+      db.collection('projects').orderBy("createdAt", "desc").get().then(docs => {
+        let html = '';
+        docs.forEach(doc => {
+          const project = doc.data();
+          let links = project.live && `<a href="${project.live}" class="btn">Visit Site</a>`; 
+          links += project.code && `<a href="${project.code}" class="btn">View Source</a>`; 
+          html += `<div class="slides fade">
+              <div class="card straight">
+                <div class="card__column">
+                  <img src="${project.image}" />
+                </div>
+                <div class="card__column">
+                  <h4>${project.title}</h4>
+                  <p>
+                    ${project.body}
+                  </p>
+                  ${links}
+                </div>
+              </div>
+            </div>`;
+            html += `<a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+          <a class="next" onclick="changeSlide(1)">&#10095;</a>`
+          document.querySelector('.slides-container').innerHTML = html;
+          initSlides();
+        })
+      }).catch(console.log);
       const {displayName, uid:userUid, providerData: [ { providerId: provider }]} = JSON.parse(localStorage.getItem("user")) || {uid: null, providerData: [ { providerId: null }]};
       const logBtns = document.getElementsByClassName("logBtn");
       for(let i = 0; i<logBtns.length; i++){ 
