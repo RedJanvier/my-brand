@@ -3,7 +3,7 @@ sudo: false
 language: node_js
 
 env:
-  - MONGO_URI_TEST=mongodb://localhost/my-brand-test
+  - MONGO_URI_TEST=mongodb://localhost/MYBRAND_TEST
 
 node_js:
   - "stable"
@@ -18,7 +18,7 @@ notifications:
   email: false
 
 script:
-  - cd server/
+  - cd backend/
   - npm ci
   - npm test
   - npm run cover
