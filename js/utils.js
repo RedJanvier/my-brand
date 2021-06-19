@@ -18,7 +18,7 @@ function enableButton(btn) {
 function redirectTo(path) {
   return (location.href = location.href.includes("github")
     ? `/my-brand/ui${path}`
-    : `/${path}`);
+    : path);
 }
 function rounder(num) {
   return (Math.round(num * 100) / 100).toFixed(2);
