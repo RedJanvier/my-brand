@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RedJanvier</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar">
+        <h1 class="navbar__logo">RedJanvier</h1>
+        <ul class="navbar__links">
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><button onclick="redirectTo('/admin')" class="btn logBtn">Login</button></li>
+        </ul>
+        <div class="mobile">
+          <a href="#0"><i class="fa fa-bars"></i></a>
+          <ul class="navbar__mobile">
+            <li><a href="#0" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+            <li><button onclick="redirectTo('/admin')" class="btn logBtn">Login</button></li>
+          </ul>
+        </div>
+      </nav>
+      <header class="section hero">
+        <h2 class="section__heading">Designer and Full-stack Developer</h2>
+        <p class="section__subheading">
+          I design and code beautifully simple things, and I do it with care.
+        </p>
+        <img src="./img/profile.jpg" class="profile" alt="my-profile" /> <br />
+        <img
+          src="./img/hero-illustration.svg"
+          class="illustration"
+          alt="main-illustration"
+        />
+      </header>
+      <section id="about" class="section colored">
+        <h2 class="section__heading">Hi, I’m Janvier. Nice to meet you.</h2>
+        <p class="section__subheading">
+          It has been more than a year now that I help businesses grow through
+          well presented and simply functional and tested web applictions,
+          amazing websites that attract customers through powerful SEO process
+          and I am so confident that you problem will be solved through the
+          software we’ll build together.
+        </p>
+        <div class="card straight">
+          <div class="card__column">
+            <img src="./img/designer.svg" alt="designer-icon" />
+            <h3>Designer</h3>
+            <p>
+              Amazing designs with a simplistic touch of well thought
+              interactions that provide unforgettable experience
+            </p>
+            <h4>Things I enjoy designing:</h4>
+            <p>UX, UI, Web, Mobile, Apps, Logos</p>
+            <h4>Design Tools</h4>
+            <ul>
+              <li>Figma</li>
+              <li>Invision</li>
+              <li>AdobeXD</li>
+              <li>Pen & Paper</li>
+              <li>Sketch</li>
+            </ul>
+          </div>
+          <div class="card__column">
+            <img src="./img/frontend.svg" alt="frontend-icon" />
+            <h3>Frontend Developer</h3>
+            <p>
+              I enjoy taking your beautiful ideas from a beautiful design to an
+              amazing functional site for your business
+            </p>
+            <h4>Languages I speak:</h4>
+            <p>HTML, CSS, Sass, React, PWA, EJS, HBS</p>
+            <h4>Dev Tools</h4>
+            <ul>
+              <li>VSCode</li>
+              <li>Github</li>
+              <li>Bootstrap</li>
+              <li>Material Design</li>
+              <li>Codepen</li>
+            </ul>
+          </div>
+          <div class="card__column">
+            <img src="./img/mentor.svg" alt="backend-icon" />
+            <h3>Backend Developer</h3>
+            <p>
+              Advance your business even furthe with impressive control on your
+              data amazing presentation and modification ease
+            </p>
+            <h4>Experiences I have:</h4>
+            <p>Node, Express, HeadlessCMS, Severless, Strapi</p>
+            <h4>Amazing Tools</h4>
+            <ul>
+              <li>Firebase</li>
+              <li>REST & GRAPHQL</li>
+              <li>Postgres</li>
+              <li>MongoDB</li>
+              <li>Terminal</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <hr class="section-separator" />
+      <section id="portfolio" class="section">
+        <h2 class="section__heading">My Recent Work</h2>
+        <p class="section__subheading">
+          Here are a few design projects I've worked on recently. Want to see
+          yours?
+          <a href="#contact" class="active">Email me.</a>
+        </p>
+        <div class="slides-container">
+          <div class="lds-ring purple" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <p class="purple">Loading Projects...</p>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <br />
+        <div class="section__action">
+          <a href="https://github.com/RedJanvier" class="btn" target="_blank"
+          ><i class="fa fa-github"></i> More on Github</a
+          >
+        </div>
+      </section>
+      <section id="blog" class="section colored">
+        <h2 class="section__heading">Blog</h2>
+        <p class="section__subheading">Latest posts from my blog.</p>
+        <div class="blogs grid">
+          <div class="lds-ring white">
+            <span class="white">Loading Blogs...</span>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="section__action">
+          <a href="#" class="btn">Read more here</a>
+        </div>
+      </section><hr class="section-separator" />
+      <section id="contact" class="section">
+        <h2 class="section__heading">Contact Me</h2>
+        <p class="section__subheading">
+          Interested in my work?
+          <a href="#" class="active">Don’t leave without saying hi!</a>
+        </p>
+        <form class="form contact-form">
+          <div id="error-panel" class="error fade"></div>
+          <div class="form__field">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" onchange="validate(this)" onkeyup="validate(this)" placeholder="Your full name" />
+          </div>
+          <div class="form__field">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" onchange="validate(this)" onkeyup="validate(this)" placeholder="Your Email" />
+          </div>
+          <div class="form__field">
+            <label for="message">Message:</label>
+            <textarea
+              name="message"
+              id="message"
+              placeholder="Your message" onchange="validate(this)" onkeyup="validate(this)" 
+            ></textarea>
+          </div>
+          <div class="form__field">
+            <button type="submit" name="submit" class="btn">Send Message</button>
+          </div>
+        </form>
+      <footer class="section colored footer">
+        <div class="section__overlay">
+          <div class="card dark">
+            <h2 class="subscribe__heading">Subscribe to Mail List</h2>
+            <form class="form inline subscribe-form">
+              <div id="error-panel" class="error fade"></div>
+              <div class="form__field">
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="email"
+                  onkeyup="validate(this)"
+                  onchange="validate(this)"
+                />
+              </div>
+              <div class="form__field">
+                <button type="button" class="btn light">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <p class="section__subheading">
+          Connect further more for the best implementation of your ideas.
+        </p>
+        <div class="footer__links">
+          <i class="fa fa-facebook" onclick="redirectTo('https://www.facebook.com/jan.h.red')"></i>
+          <i class="fa fa-github" onclick="redirectTo('https://github.com/RedJanvier')"></i>
+          <i class="fa fa-twitter" onclick="redirectTo('https://twitter.com/red_janvier')"></i>
+          <i class="fa fa-stack-overflow" onclick="redirectTo('https://www.facebook.com/jan.h.red')"></i>
+        </div>
+        <p class="footer__text">
+          &copy; 2020 Made with ❤ by
+          <a href="https://github.com/redjanvier" class="active dark"
+            >RedJanvier</a
+          >
+        </p>
+      </footer>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
+    <script src="./js/init.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/subscribe.js"></script>
+    <script>
+      db.collection('projects').orderBy("createdAt", "desc").get().then(docs => {
+        let html = '';
+        docs.forEach(doc => {
+          const project = doc.data();
+          let links = project.live && `<a href="${project.live}" class="btn">Visit Site</a>`; 
+          links += project.code && `<a href="${project.code}" class="btn">View Source</a>`; 
+          html += `<div class="slides fade">
+              <div class="card straight">
+                <div class="card__column">
+                  <img src="${project.image}" />
+                </div>
+                <div class="card__column">
+                  <h4>${project.title}</h4>
+                  <p>
+                    ${project.body}
+                  </p>
+                  ${links}
+                </div>
+              </div>
+            </div>`;
+            html += `<a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+          <a class="next" onclick="changeSlide(1)">&#10095;</a>`
+          document.querySelector('.slides-container').innerHTML = html;
+          initSlides();
+        })
+      }).catch(console.log);
+      const {displayName, uid:userUid, providerData: [ { providerId: provider }]} = JSON.parse(localStorage.getItem("user")) || {uid: null, providerData: [ { providerId: null }]};
+      const logBtns = document.getElementsByClassName("logBtn");
+      for(let i = 0; i<logBtns.length; i++){ 
+        if(provider) {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          }
+          logBtns[i].textContent = "Logout";
+          logBtns[i].addEventListener("click", () => {
+            disableButton(logBtns[i]);
+            localStorage.clear();
+            firebase.auth().signOut().catch(console.log);
+          });
+        } else {
+          logBtns[i].textContent = "Login"
+          logBtns[i].addEventListener("click", () => {
+            disableButton(logBtns[i]);
+            redirectTo("/admin")
+          });
+        }
+      }
+    const blogs = document.querySelector(".blogs");
+      db.collection("posts").orderBy("createdAt", "desc").limit(6).get().then(docs => {
+        let html = '';
+        docs.forEach(doc => {
+          const blog = doc.data();
+          html += `<a href="./pages/blog.html?id=${doc.id}" class="card">
+            <div class="card__column-top">
+              <div class="card__image">
+                <img src="${blog.image}" alt="post-image" />
+              </div>
+              <h3>
+               ${blog.title}
+              </h3>
+            </div>
+            <div class="card__column-footer">
+              <span><i class="fa fa-heart-o"></i> ${blog.likes || 0}</span>
+              <span><i class="fa fa-commenting-o"></i> ${blog.comments || 0}</span>
+              <span><i class="fa fa-eye"></i> ${blog.views || 0}</span>
+            </div>
+          </a>`
+        });
+        blogs.innerHTML = html;
+      }).catch(err => {
+          console.log(err);
+          showErrorIn(document.querySelector('#error-panel'), err.message);
+        });
+        function showPosition(position) {
+          firebase.firestore().collection("visitors").doc(userUid).set({ name: displayName, longitude: position.coords.longitude, latitude: position.coords.latitude }).catch(console.log)
+        }
+        </script>
+  </body>
+</html>
