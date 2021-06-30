@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link rel="stylesheet" href="../css/prism.css" />
   </head>
   <body>
     <div class="loading">
@@ -123,36 +124,40 @@
     <script src="../js/init.js"></script>
     <script src="../js/utils.js"></script>
     <script src="./js/subscribe.js"></script>
+    <script src="../js/prism.js"></script>
     <script>
-      const postId = location.href.split("?id=")[1];
+      const postId = location.href.split('?id=')[1];
       const db = firebase.firestore();
-      const { displayName, photoURL, uid: userUid, providerData } = JSON.parse(
-        localStorage.getItem("user")
-      ) || {
-        displayName: "anonymous",
-        photoURL: "../img/blank_avatar.png",
+      const {
+        displayName,
+        photoURL,
+        uid: userUid,
+        providerData,
+      } = JSON.parse(localStorage.getItem('user')) || {
+        displayName: 'anonymous',
+        photoURL: '../img/blank_avatar.png',
         uid: null,
         providerData: [{ providerId: null }],
       };
       const { providerId: provider } = providerData[0];
       const increment = firebase.firestore.FieldValue.increment(1);
       const decrement = firebase.firestore.FieldValue.increment(-1);
-      const postRef = db.collection("posts").doc(postId);
+      const postRef = db.collection('posts').doc(postId);
 
-      const logBtns = document.getElementsByClassName("logBtn");
+      const logBtns = document.getElementsByClassName('logBtn');
       for (let i = 0; i < logBtns.length; i++) {
         if (provider) {
-          logBtns[i].textContent = "Logout";
-          logBtns[i].addEventListener("click", () => {
+          logBtns[i].textContent = 'Logout';
+          logBtns[i].addEventListener('click', () => {
             disableButton(logBtns[i]);
             localStorage.clear();
             firebase.auth().signOut().catch(console.log);
           });
         } else {
-          logBtns[i].textContent = "Login";
-          logBtns[i].addEventListener("click", () => {
+          logBtns[i].textContent = 'Login';
+          logBtns[i].addEventListener('click', () => {
             disableButton(logBtns[i]);
-            redirectTo("/admin");
+            redirectTo('/admin');
           });
         }
       }
@@ -163,9 +168,9 @@
         if (doc.exists) {
           const blog = doc.data();
           localStorage.setItem(doc.id, JSON.stringify(blog));
-          document.querySelector("title").textContent = `${blog.title} - Blog`;
+          document.querySelector('title').textContent = `${blog.title} - Blog`;
           document.querySelector(
-            ".hero"
+            '.hero'
           ).innerHTML = `<h2 class="section__heading left">
           ${blog.title}
         </h2>
@@ -176,11 +181,11 @@
             </div>
             <div class="author__details">
               <h3>${blog.authorName}</h3>
-              <p>${moment(blog.createdAt).format("MMM, DD YYYY")}</p>
+              <p>${moment(blog.createdAt).format('MMM, DD YYYY')}</p>
             </div>
           </div>
           ${
-            provider === "password"
+            provider === 'password'
               ? `
           <div class="controls">
             <a href="../admin/pages/edit.html?id=${doc.id}" class="btn"
@@ -191,7 +196,7 @@
             </button>
           </div>
           `
-              : ""
+              : ''
           }
         </div>
         <img
@@ -199,7 +204,7 @@
           class="responsive"
           alt="post-image"
         />`;
-          document.querySelector(".blog").innerHTML = `
+          document.querySelector('.blog').innerHTML = `
         ${blog.body}
         <div class="blog__reactions">
           <button class="like btn " onclick="toggleLike()">
@@ -209,29 +214,31 @@
             </button>
         </div>`;
           postRef
-            .collection("likers")
+            .collection('likers')
             .get()
             .then((docs) => {
               docs.forEach((doc) => {
                 if (doc.id === userUid) {
                   document
-                    .querySelector(".blog__reactions .like.btn")
-                    .classList.add("active");
+                    .querySelector('.blog__reactions .like.btn')
+                    .classList.add('active');
                 }
               });
             })
             .catch(console.log);
           document.querySelector(
-            "#comments .section__heading.left"
+            '#comments .section__heading.left'
           ).textContent = `Comments (${blog.comments || 0})`;
+
+          Prism.highlightAll();
           disableLoader();
         } else {
-          throw new Error("Post Not found!!");
+          throw new Error('Post Not found!!');
         }
       });
 
-      postRef.collection("commenters").onSnapshot((docs) => {
-        let html = "";
+      postRef.collection('commenters').onSnapshot((docs) => {
+        let html = '';
         docs.forEach((doc) => {
           const comment = doc.data();
           html += `
@@ -248,14 +255,14 @@
                   </div>
                 </div>
                 ${
-                  provider === "password"
+                  provider === 'password'
                     ? `
                 <div class="controls">
                   <button class="btn" onclick="deleteComment('${doc.id}')">
                     <i class="fa fa-trash"></i> <span>Delete</span>
                   </button>
                 </div>`
-                    : ""
+                    : ''
                 }
               </div>
               <div class="comment__body">
@@ -266,23 +273,23 @@
             </div>
           </div>`;
         });
-        document.querySelector(".comments").innerHTML = html;
+        document.querySelector('.comments').innerHTML = html;
       });
       function deleteComment(id) {
-        const result = confirm("Are you sure to delete comment?");
+        const result = confirm('Are you sure to delete comment?');
         if (result) {
-          postRef.collection("commenters").doc(id).delete();
+          postRef.collection('commenters').doc(id).delete();
           postRef.update({ comments: decrement });
         }
       }
       function deletePost() {
-        const result = confirm("Want to delete?");
+        const result = confirm('Want to delete?');
         if (result) {
           postRef
             .delete()
             .then(() => {
-              console.log("Post deleted successfully");
-              redirectTo("/admin/pages");
+              console.log('Post deleted successfully');
+              redirectTo('/admin/pages');
             })
             .catch((err) => {
               console.log(err);
@@ -290,33 +297,33 @@
         }
       }
       function toggleLike() {
-        const likeButton = document.querySelector(".like");
-        likeButton.classList.toggle("active");
-        const number = likeButton.querySelector("span");
-        if (likeButton.classList.contains("active")) {
-          if (!provider) return redirectTo("/admin");
+        const likeButton = document.querySelector('.like');
+        likeButton.classList.toggle('active');
+        const number = likeButton.querySelector('span');
+        if (likeButton.classList.contains('active')) {
+          if (!provider) return redirectTo('/admin');
           number.textContent = `${parseInt(number.textContent) + 1}`;
           postRef.update({ likes: increment });
           postRef
-            .collection("likers")
+            .collection('likers')
             .doc(userUid)
             .set({ name: displayName, createdAt: Date.now() })
             .catch(console.log);
         } else {
           number.textContent = `${parseInt(number.textContent) - 1}`;
           postRef.update({ likes: decrement });
-          postRef.collection("likers").doc(userUid).delete().catch(console.log);
+          postRef.collection('likers').doc(userUid).delete().catch(console.log);
         }
       }
 
-      const commentForm = document.querySelector(".comment-form");
-      commentForm.addEventListener("submit", addComment);
+      const commentForm = document.querySelector('.comment-form');
+      commentForm.addEventListener('submit', addComment);
       function addComment(e) {
         e.preventDefault();
         if (!commentForm.body.value.trim())
           return showErrorIn(
-            commentForm.querySelector("#comment-form"),
-            "Please provide a comment!"
+            commentForm.querySelector('#comment-form'),
+            'Please provide a comment!'
           );
         const comment = {
           body: commentForm.body.value.trim(),
@@ -326,9 +333,9 @@
           authorProfile: photoURL,
         };
         console.log(comment);
-        db.collection("posts")
+        db.collection('posts')
           .doc(postId)
-          .collection("commenters")
+          .collection('commenters')
           .add(comment)
           .then(() => {
             postRef.update({ comments: increment });

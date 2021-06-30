@@ -100,22 +100,22 @@
         </div>
       </main>
     </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="../../js/ckeditor.js"></script>
     <script src="../../js/init.js"></script>
     <script src="../../js/utils.js"></script>
     <script src="../../js/navbar.js"></script>
     <script src="../../js/editor.js"></script>
     <script>
       let file;
-      const editForm = document.querySelector(".edit-form");
-      const previewImage = editForm.querySelector(".img-preview");
-      const postId = location.href.split("?id=")[1].split("#")[0];
-      const post = firebase.firestore().collection("posts").doc(postId);
+      const editForm = document.querySelector('.edit-form');
+      const previewImage = editForm.querySelector('.img-preview');
+      const postId = location.href.split('?id=')[1].split('#')[0];
+      const post = firebase.firestore().collection('posts').doc(postId);
       const currentPost = JSON.parse(localStorage.getItem(postId));
       post
         .get()
@@ -124,35 +124,35 @@
             const blog = doc.data();
             previewImage.innerHTML = `<img src="${blog.image}" alt=""/>`;
             editForm.title.value = blog.title;
-            const editor = editForm.querySelector("#editor");
+            const editor = editForm.querySelector('#editor');
             const refreshEditor = setInterval(() => {
               if (!editor.value) {
                 editor.value = blog.body;
-                console.log("New value: ", editor.value);
+                console.log('New value: ', editor.value);
                 clearInterval(refreshEditor);
               }
             }, 200);
             disableLoader();
           } else {
-            throw new Error("Post not found!!");
+            throw new Error('Post not found!!');
           }
         })
         .catch((err) => {
           console.log(err);
-          showErrorIn(editForm.querySelector("#error-panel"), err.message);
+          showErrorIn(editForm.querySelector('#error-panel'), err.message);
           disableLoader();
         });
 
-      editForm.image.addEventListener("change", showPreviewImg);
+      editForm.image.addEventListener('change', showPreviewImg);
 
       function showPreviewImg(e) {
-        previewImage.innerHTML = "";
+        previewImage.innerHTML = '';
         file = e.target.files[0];
         if (file) {
           const reader = new FileReader();
-          reader.addEventListener("load", () => {
-            const preview = document.createElement("img");
-            preview.setAttribute("src", reader.result);
+          reader.addEventListener('load', () => {
+            const preview = document.createElement('img');
+            preview.setAttribute('src', reader.result);
 
             return previewImage.appendChild(preview);
           });
@@ -161,17 +161,17 @@
         }
       }
 
-      editForm.addEventListener("submit", async (e) => {
+      editForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const title = editForm.title.value.trim();
         const body = editForm.body.value.trim();
 
-        if (!validate(editForm.title) || !validate(editForm.body)) {
-          return showErrorIn(
-            document.querySelector("#error-panel"),
-            "Please fill in all fields!"
-          );
-        }
+        // if (!validate(editForm.title) || !validate(editForm.body)) {
+        //   return showErrorIn(
+        //     document.querySelector('#error-panel'),
+        //     'Please fill in all fields!'
+        //   );
+        // }
         enableLoader();
         if (file) {
           const imageUrl = await uploadImage(file, editForm.submit);
@@ -184,10 +184,10 @@
         const blogData = { title, body, image };
         post
           .update(blogData)
-          .then(() => redirectTo("/admin"))
+          .then(() => redirectTo('/admin'))
           .catch((err) => {
             console.log(err);
-            showErrorIn(editForm.querySelector("#error-panel"), err.message);
+            showErrorIn(editForm.querySelector('#error-panel'), err.message);
             disableLoader();
           });
       }

@@ -282,6 +282,7 @@
         let html = '';
         docs.forEach(doc => {
           const blog = doc.data();
+          if (blog.dev) return;
           html += `<a href="./pages/blog.html?id=${doc.id}" class="card">
             <div class="card__column-top">
               <div class="card__image">
