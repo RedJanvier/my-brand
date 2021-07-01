@@ -135,11 +135,11 @@
         const title = createForm.title.value.trim();
         const body = createForm.body.value.trim();
 
-        if (!validate(createForm.title) || !validate(createForm.body))
-          return showErrorIn(
-            createForm.querySelector('#error-panel'),
-            'please fill all fields!'
-          );
+        // if (!validate(createForm.title) || !validate(createForm.body))
+        //   return showErrorIn(
+        //     createForm.querySelector('#error-panel'),
+        //     'please fill all fields!'
+        //   );
         disableButton(createBtn);
         const metadata = {
           'content-type': 'image/x-jpeg',

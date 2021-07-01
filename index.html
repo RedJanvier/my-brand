@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RedJanvier</title>
+    <meta name="description" content="Latest and trending tech news with insightful and clear details">
+    <meta name="og:title" property="og:title" content="RedJanvier portfolio and blog site">
+    <meta name="twitter:card" content="Latest and trending tech news with insightful and clear details">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://redjanvier.uzakurahub.xyz/">
+    <link rel="canonical" href="https://redjanvier.netlify.app/">
+    <!-- <link rel="canonical" href="https://redjanvier.uzakurahub.xyz/"> -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -215,7 +222,7 @@
         </div>
         <p class="footer__text">
           &copy; 2020 Made with ❤ by
-          <a href="https://github.com/redjanvier" class="active dark"
+          <a href="https://github.com/redjanvier" rel="external nofollow" class="active dark"
             >RedJanvier</a
           >
         </p>
@@ -234,8 +241,8 @@
         let html = '';
         docs.forEach(doc => {
           const project = doc.data();
-          let links = project.live && `<a href="${project.live}" class="btn">Visit Site</a>`; 
-          links += project.code && `<a href="${project.code}" class="btn">View Source</a>`; 
+          let links = project.live && `<a href="${project.live}" rel="external nofollow" class="btn">Visit Site</a>`; 
+          links += project.code && `<a href="${project.code}" rel="external nofollow" class="btn">View Source</a>`; 
           html += `<div class="slides fade">
               <div class="card straight">
                 <div class="card__column">
