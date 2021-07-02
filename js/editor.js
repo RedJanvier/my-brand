@@ -1,6 +1,6 @@
 ClassicEditor.create(document.querySelector('#editor'), {
   toolbar: {
-    items: ['heading', 'bold', 'italic', 'link', 'codeBlock', 'table', 'undo'],
+    items: ['heading', 'bold', 'italic', '|', 'image', 'link', 'codeBlock', 'table','|', 'undo'],
   },
   codeBlock: {
     languages: [
