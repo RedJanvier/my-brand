@@ -1,0 +1,53 @@
+---
+import MainHead from '../components/MainHead.astro';
+import Button from '../components/Button/index.jsx';
+import Footer from '../components/Footer/index.jsx';
+import Nav from '../components/Nav/index.jsx';
+
+const { content } = Astro.props;
+const provider = 'password';
+---
+
+<html lang={content.lang || 'en'}>
+	<head>
+		<MainHead title={content.title} description={content.description} />
+    <link rel="stylesheet" href="../css/prism.css" />
+	</head>
+	<body>
+		<div class="container">
+			<Nav />
+      <header class="section hero">
+				<h2 class="section__heading left">{content.title}</h2>
+        <div class="section__action">
+          <div class="author">
+            <div class="author__profile">
+              <img src={content.authorProfile} alt="blog-author" />
+            </div>
+            <div class="author__details">
+              <h3>{content.authorName || 'RedJanvier'}</h3>
+              <!-- <p>${moment(content.createdAt).format('MMM, DD YYYY')}</p> -->
+            </div>
+          </div>
+          {(provider === 'password') &&
+						<div class="controls">
+							<a href={"../admin/pages/edit.html?id=" + content.id} class="btn"><i class="fa fa-pencil"></i> <span>edit</span></a>
+							<button onclick="deletePost()" class="btn">
+								<i class="fa fa-trash"></i> <span>delete</span>
+							</button>
+						</div>
+					}
+					</div>
+			</header>
+      <section class="section blog">
+				<slot />
+				<div class="blog__reactions">
+				<button class="like btn " onclick="toggleLike()">
+					<i class="fa fa-heart-o"></i> <span class="unhide">{content.likes || 0}</span>
+				</button>
+				</div>
+			</section>
+		</div>
+		<script is:inline src="/js/utils.js"></script>
+		<script is:inline src="/js/slides.js"></script>
+	</body>
+</html>

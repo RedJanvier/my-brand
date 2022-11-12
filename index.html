@@ -1,72 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RedJanvier</title>
-    <meta name="author" content="RedJanvier">
-    <meta name="description" content="Latest and trending tech news with insightful and clear details">
-    <meta name="og:title" property="og:title" content="RedJanvier portfolio and blog site">
-    <meta name="twitter:card" content="Latest and trending tech news with insightful and clear details">
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://redjanvier.uzakurahub.xyz/">
-    <link rel="canonical" href="https://redjanvier.netlify.app/">
-    <!-- <link rel="canonical" href="https://redjanvier.uzakurahub.xyz/"> -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <div class="container">
-      <nav class="navbar">
-        <h1 class="navbar__logo">RedJanvier</h1>
-        <ul class="navbar__links">
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><button onclick="redirectTo('/admin')" class="btn logBtn">Login</button></li>
-        </ul>
-        <div class="mobile">
-          <a href="#0"><i class="fa fa-bars"></i></a>
-          <ul class="navbar__mobile">
-            <li><a href="#0" class="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li>
-              <a href="#contact">Contact</a>
-            </li>
-            <li><button onclick="redirectTo('/admin')" class="btn logBtn">Login</button></li>
-          </ul>
-        </div>
-      </nav>
-      <header class="section hero">
-        <h2 class="section__heading">Designer and Full-stack Developer</h2>
-        <p class="section__subheading">
+    <div className="container">
+      <header className="section hero">
+        <h2 className="section__heading">Designer and Full-stack Developer</h2>
+        <p className="section__subheading">
           I design and code beautifully simple things, and I do it with care.
         </p>
-        <img src="./img/profile.jpg" class="profile" alt="my-profile" /> <br />
+        <img src="./img/profile.jpg" className="profile" alt="my-profile" /> <br />
         <img
           src="./img/hero-illustration.svg"
-          class="illustration"
+          className="illustration"
           alt="main-illustration"
         />
       </header>
-      <section id="about" class="section colored">
-        <h2 class="section__heading">Hi, I’m Janvier. Nice to meet you.</h2>
-        <p class="section__subheading">
+      <section id="about" className="section colored">
+        <h2 className="section__heading">Hi, I’m Janvier. Nice to meet you.</h2>
+        <p className="section__subheading">
           It has been more than three years now that I help businesses grow through
           well presented and simply functional and tested web applictions,
           amazing websites that attract customers through powerful SEO process
           and I am so confident that your problems will be solved through the
           software we’ll build together.
         </p>
-        <div class="card straight">
-          <div class="card__column">
+        <div className="card straight">
+          <div className="card__column">
             <img src="./img/designer.svg" alt="designer-icon" />
             <h3>Designer</h3>
             <p>
@@ -84,7 +44,7 @@
               <li>Sketch</li>
             </ul>
           </div>
-          <div class="card__column">
+          <div className="card__column">
             <img src="./img/frontend.svg" alt="frontend-icon" />
             <h3>Frontend Developer</h3>
             <p>
@@ -102,7 +62,7 @@
               <li>Redux, Vuex & MobX </li>
             </ul>
           </div>
-          <div class="card__column">
+          <div className="card__column">
             <img src="./img/mentor.svg" alt="backend-icon" />
             <h3>Backend Developer</h3>
             <p>
@@ -122,17 +82,17 @@
           </div>
         </div>
       </section>
-      <hr class="section-separator" />
-      <section id="portfolio" class="section">
-        <h2 class="section__heading">My Recent Work</h2>
-        <p class="section__subheading">
+      <hr className="section-separator" />
+      <section id="portfolio" className="section">
+        <h2 className="section__heading">My Recent Work</h2>
+        <p className="section__subheading">
           Here are a few design projects I've worked on recently. Want to see
           yours?
-          <a href="#contact" class="active">Email me.</a>
+          <a href="#contact" className="active">Email me.</a>
         </p>
-        <div class="slides-container">
-          <div class="lds-ring purple" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-            <p class="purple">Loading Projects...</p>
+        <div className="slides-container">
+          <div className="lds-ring purple" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <p className="purple">Loading Projects...</p>
             <div></div>
             <div></div>
             <div></div>
@@ -140,45 +100,46 @@
           </div>
         </div>
         <br />
-        <div class="section__action">
-          <a href="https://github.com/RedJanvier" class="btn" target="_blank"
-          ><i class="fa fa-github"></i> More on Github</a
+        <div className="section__action">
+          <a href="https://github.com/RedJanvier" className="btn" target="_blank"
+          ><i className="fa fa-github"></i> More on Github</a
           >
         </div>
       </section>
-      <section id="blog" class="section colored">
-        <h2 class="section__heading">Blog</h2>
-        <p class="section__subheading">Latest posts from my blog.</p>
-        <div class="blogs grid">
-          <div class="lds-ring white">
-            <span class="white">Loading Blogs...</span>
+      <section id="blog" className="section colored">
+        <h2 className="section__heading">Blog</h2>
+        <p className="section__subheading">Latest posts from my blog.</p>
+        <div className="blogs grid">
+          <div className="lds-ring white">
+            <span className="white">Loading Blogs...</span>
             <div></div>
             <div></div>
             <div></div>
             <div></div>
           </div>
         </div>
-        <div class="section__action">
-          <a href="#" class="btn">Read more here</a>
+        <div className="section__action">
+          <a href="#" className="btn">Read more here</a>
         </div>
-      </section><hr class="section-separator" />
-      <section id="contact" class="section">
-        <h2 class="section__heading">Contact Me</h2>
-        <p class="section__subheading">
+      </section>
+      <hr className="section-separator" />
+      <section id="contact" className="section">
+        <h2 className="section__heading">Contact Me</h2>
+        <p className="section__subheading">
           Interested in my work?
-          <a href="#" class="active">Don’t leave without saying hi!</a>
+          <a href="#" className="active">Don’t leave without saying hi!</a>
         </p>
-        <form class="form contact-form">
-          <div id="error-panel" class="error fade"></div>
-          <div class="form__field">
+        <form className="form contact-form">
+          <div id="error-panel" className="error fade"></div>
+          <div className="form__field">
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" onchange="validate(this)" onkeyup="validate(this)" placeholder="Your full name" />
           </div>
-          <div class="form__field">
+          <div className="form__field">
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" onchange="validate(this)" onkeyup="validate(this)" placeholder="Your Email" />
           </div>
-          <div class="form__field">
+          <div className="form__field">
             <label for="message">Message:</label>
             <textarea
               name="message"
@@ -186,48 +147,10 @@
               placeholder="Your message" onchange="validate(this)" onkeyup="validate(this)" 
             ></textarea>
           </div>
-          <div class="form__field">
-            <button type="submit" name="submit" class="btn">Send Message</button>
+          <div className="form__field">
+            <button type="submit" name="submit" className="btn">Send Message</button>
           </div>
         </form>
-      <footer class="section colored footer">
-        <div class="section__overlay">
-          <div class="card dark">
-            <h2 class="subscribe__heading">Subscribe to Mail List</h2>
-            <form class="form inline subscribe-form">
-              <div id="error-panel" class="error fade"></div>
-              <div class="form__field">
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  placeholder="email"
-                  onkeyup="validate(this)"
-                  onchange="validate(this)"
-                />
-              </div>
-              <div class="form__field">
-                <button type="button" class="btn light">Subscribe</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <p class="section__subheading">
-          Connect further more for the best implementation of your ideas.
-        </p>
-        <div class="footer__links">
-          <i class="fa fa-facebook" onclick="redirectTo('https://www.facebook.com/jan.h.red')"></i>
-          <i class="fa fa-github" onclick="redirectTo('https://github.com/RedJanvier')"></i>
-          <i class="fa fa-twitter" onclick="redirectTo('https://twitter.com/red_janvier')"></i>
-          <i class="fa fa-stack-overflow" onclick="redirectTo('https://www.facebook.com/jan.h.red')"></i>
-        </div>
-        <p class="footer__text">
-          &copy; 2020 Made with ❤ by
-          <a href="https://github.com/redjanvier" rel="external nofollow" class="active dark"
-            >RedJanvier</a
-          >
-        </p>
-      </footer>
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
@@ -242,14 +165,14 @@
         let html = '';
         docs.forEach(doc => {
           const project = doc.data();
-          let links = project.live && `<a href="${project.live}" rel="external nofollow" class="btn">Visit Site</a>`; 
-          links += project.code && `<a href="${project.code}" rel="external nofollow" class="btn">View Source</a>`; 
-          html += `<div class="slides fade">
-              <div class="card straight">
-                <div class="card__column">
+          let links = project.live && `<a href="${project.live}" rel="external nofollow" className="btn">Visit Site</a>`; 
+          links += project.code && `<a href="${project.code}" rel="external nofollow" className="btn">View Source</a>`; 
+          html += `<div className="slides fade">
+              <div className="card straight">
+                <div className="card__column">
                   <img src="${project.image}" />
                 </div>
-                <div class="card__column">
+                <div className="card__column">
                   <h4>${project.title}</h4>
                   <p>
                     ${project.body}
@@ -258,8 +181,8 @@
                 </div>
               </div>
             </div>`;
-            html += `<a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-          <a class="next" onclick="changeSlide(1)">&#10095;</a>`
+            html += `<a className="prev" onclick="changeSlide(-1)">&#10094;</a>
+          <a className="next" onclick="changeSlide(1)">&#10095;</a>`
           document.querySelector('.slides-container').innerHTML = html;
           initSlides();
         })
@@ -290,19 +213,19 @@
         let html = '';
         docs.forEach(doc => {
           const blog = doc.data();
-          html += `<a href="./pages/blog.html?id=${doc.id}" class="card">
-            <div class="card__column-top">
-              <div class="card__image">
+          html += `<a href="./pages/blog.html?id=${doc.id}" className="card">
+            <div className="card__column-top">
+              <div className="card__image">
                 <img src="${blog.image}" alt="post-image" />
               </div>
               <h3>
                ${blog.title}
               </h3>
             </div>
-            <div class="card__column-footer">
-              <span><i class="fa fa-heart-o"></i> ${blog.likes || 0}</span>
-              <span><i class="fa fa-commenting-o"></i> ${blog.comments || 0}</span>
-              <span><i class="fa fa-eye"></i> ${blog.views || 0}</span>
+            <div className="card__column-footer">
+              <span><i className="fa fa-heart-o"></i> ${blog.likes || 0}</span>
+              <span><i className="fa fa-commenting-o"></i> ${blog.comments || 0}</span>
+              <span><i className="fa fa-eye"></i> ${blog.views || 0}</span>
             </div>
           </a>`
         });

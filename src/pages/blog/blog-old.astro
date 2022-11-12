@@ -1,0 +1,70 @@
+---
+import { query, collection, orderBy, getDocs, DocumentData, limit } from "firebase/firestore"; 
+import MainHead from '../components/MainHead.astro';
+import Button from '../components/Button/index.jsx';
+import Footer from '../components/Footer/index.jsx';
+import Nav from '../components/Nav/index.jsx';
+import { db } from '../js/init';
+
+interface IProject extends DocumentData {
+	id: string | undefined
+}
+
+
+console.log(Astro.url);
+
+const blogsRef = await getDocs(query(collection(db, 'posts'), orderBy("createdAt", "desc"), limit(6)));
+const blogs: IProject[] = [];
+blogsRef.forEach(doc => {
+	const blog: IProject = {...doc.data(), id: doc.id};
+	blogs.push(blog);
+});
+
+const provider = 'password';
+const content = {
+	lang: '',
+	title: '',
+	description: '',
+	authorProfile: '',
+	authorName: '',
+	likes: 0
+};
+
+---
+
+<html lang={content.lang || 'en'}>
+	<head>
+		<MainHead title={content.title} description={content.description} />
+    <link rel="stylesheet" href="../css/prism.css" />
+	</head>
+	<body>
+		<div class="container">
+			<Nav />
+      <header class="section hero">
+				<h2 class="section__heading left">{content.title}</h2>
+        <div class="section__action">
+          <div class="author">
+            <div class="author__profile">
+              <img src={content.authorProfile} alt="blog-author" />
+            </div>
+            <div class="author__details">
+              <h3>{content.authorName || 'RedJanvier'}</h3>
+              <!-- <p>${moment(content.createdAt).format('MMM, DD YYYY')}</p> -->
+            </div>
+          </div>
+				</div>
+			</header>
+      <section class="section blog">
+				<slot />
+				<div class="blog__reactions">
+				<button class="like btn " onclick="toggleLike()">
+					<i class="fa fa-heart-o"></i> <span class="unhide">{content.likes || 0}</span>
+				</button>
+				</div>
+			</section>
+			<Footer />
+		</div>
+		<script is:inline src="/js/utils.js"></script>
+		<script is:inline src="/js/slides.js"></script>
+	</body>
+</html>

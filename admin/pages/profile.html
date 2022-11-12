@@ -36,7 +36,7 @@
           <li><a href="./portfolio.html">Portfolio</a></li>
           <li>
             <div class="author__profile">
-              <img src="../../img/blank_avatar.png" />
+              <img src="/assets/img/blank_avatar.png" />
             </div>
           </li>
         </ul>
@@ -72,7 +72,7 @@
                   accept="image/x-png,image/x-jpeg"
                 />
                 <div class="profile__preview img-preview">
-                  <img src="../../img/blank_avatar.png" />
+                  <img src="/assets/img/blank_avatar.png" />
                 </div>
               </div>
               <div class="form__field">
@@ -138,7 +138,7 @@
       editForm.email.value = user.email;
       editForm.name.value = user.displayName;
       previewImage.querySelector("img").src =
-        user.photoURL || "../../img/blank_avatar.png";
+        user.photoURL || "/assets/img/blank_avatar.png";
       disableLoader();
 
       editForm.addEventListener("submit", (e) => {
