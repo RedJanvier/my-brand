@@ -15,7 +15,10 @@ function disableButton(btn) {
 function enableButton(btn) {
   return (btn.disabled = "");
 }
-function redirectTo(path) {
+function redirectTo(path, isNav) {
+
+  if (isNav) document.querySelector('.navbar__links a.active')?.classList.remove('active');
+
   return (location.href = location.href.includes("github")
     ? `/my-brand/ui${path}`
     : path);

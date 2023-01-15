@@ -1,10 +1,38 @@
 ---
 import { addDays, format } from 'date-fns/fp';
+import Markdown from 'astro/components/Markdown.astro';
 import { query, doc, DocumentData, getDoc, getDocs, collection } from "firebase/firestore";
 import MainHead from '../../components/MainHead.astro';
 import Footer from '../../components/Footer/index.jsx';
 import Nav from '../../components/Nav/index.jsx';
 import { db } from '../../js/init';
+import hljs from 'highlight.js';
+import javascript from 'highlight.js/lib/languages/javascript';
+import typescript from 'highlight.js/lib/languages/typescript';
+import css from 'highlight.js/lib/languages/css';
+import markdown from 'highlight.js/lib/languages/markdown';
+import bash from 'highlight.js/lib/languages/bash';
+import json from 'highlight.js/lib/languages/json';
+import dockerfile from 'highlight.js/lib/languages/dockerfile';
+import xml from 'highlight.js/lib/languages/xml';
+import yaml from 'highlight.js/lib/languages/yaml';
+// import MyRender from '../../components/Render';
+
+const supportedLanguages = {
+  javascript,
+  typescript,
+  css,
+  markdown,
+  bash,
+  json,
+  dockerfile,
+  yaml,
+  xml,
+};
+
+for (const lang in supportedLanguages) {
+  hljs.registerLanguage(lang, supportedLanguages[lang]);
+}
 
 interface IProject extends DocumentData {
 	id: string | undefined
@@ -38,9 +66,9 @@ if (blogRef.exists()) {
   }
 }
 
-console.log(content);
 
-
+const {Content, frontmatter} = Astro.props;
+console.log(frontmatter)
 ---
 
 <html lang={content.lang || 'en'}>
@@ -66,7 +94,7 @@ console.log(content);
 				</div>
 			</header>
       <section class="section blog">
-        <div set:text={content.body || content.content}></div>
+        <!-- <MyRender content={content.body || content.content}/> -->
 				<div class="blog__reactions">
 				<button class="like btn " onclick="toggleLike()">
 					<i class="fa fa-heart-o"></i> <span class="unhide">{content.likes || 0}</span>

@@ -8,8 +8,8 @@
 }
 :root {
   --main-color: #333;
-  --secondary: #7510f7;
-  --secondary-dark: #270b4b;
+  --secondary: #2B464F;
+  --secondary-dark: #515644;
   --separate-color: #d6d6d6;
   --inverse-color: white;
   --middle-color: #5a5a5a;
@@ -139,6 +139,12 @@ html {
 .card__column img {
   margin: auto;
 }
+.card__column-img {
+  height: 90px;
+  display: flex;
+  align-items: center;
+}
+
 .card__column-top img {
   width: 100%;
 }
@@ -324,15 +330,31 @@ html {
   margin-top: 0;
   padding-top: 0;
 }
-.section.footer,
-.section.footer::before {
+.section.footer {
   margin-top: 4rem;
+  padding: 2rem 0;
+  position: relative;
 }
+
+.section.footer::before {
+  top: 0;
+  height: 100%;
+}
+
+.footer__links .fa::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .footer__links .fa {
-  padding: 1rem;
   color: var(--inverse-color);
   border: 1px solid var(--inverse-color);
   border-radius: 50%;
+  position: relative;
+  width: 3rem;
+  height: 3rem;
 }
 .footer__links.login-links .fa {
   color: var(--main-color);
@@ -343,6 +365,9 @@ html {
 }
 .footer__links {
   font-size: 1.5rem;
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
 }
 .footer__text {
   margin-top: 2rem;

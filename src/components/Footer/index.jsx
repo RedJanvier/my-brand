@@ -3,27 +3,6 @@
 function Footer() {
 	return (
 		<footer className="section colored footer">
-			<div className="section__overlay">
-				<div className="card dark">
-					<h2 className="subscribe__heading">Subscribe to Mail List</h2>
-					<form className="form inline subscribe-form">
-						<div id="error-panel" className="error fade"></div>
-						<div className="form__field">
-							<input
-								type="text"
-								name="email"
-								id="email"
-								placeholder="email"
-								onkeyup="validate(this)"
-								onchange="validate(this)"
-							/>
-						</div>
-						<div className="form__field">
-							<button type="button" className="btn light">Subscribe</button>
-						</div>
-					</form>
-				</div>
-			</div>
 			<p className="section__subheading">
 				Connect further more for the best implementation of your ideas.
 			</p>

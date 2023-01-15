@@ -17,6 +17,11 @@
   "dependencies": {
     "date-fns": "^2.29.3",
     "firebase": "9.13.0",
-    "preact": "^10.7.3"
+    "highlight.js": "^11.7.0",
+    "preact": "^10.7.3",
+    "react": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "react-markdown": "^8.0.4",
+    "react-syntax-highlighter": "^15.5.0"
   }
 }
