@@ -5,6 +5,9 @@ tmp/
 .nyc_output
 coverage
 build/
+dist/
 .dccache
 DS_Store
 .vscode
+yarn.lock
+package-*.json

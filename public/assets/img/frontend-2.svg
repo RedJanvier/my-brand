@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 48" width="50" height="48">
+	<title>frontend-svg</title>
+	<defs>
+		<image  width="50" height="48" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAwCAMAAABkKdmIAAAAAXNSR0IB2cksfwAAAGxQTFRFAAAAK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPK0ZPZpqoowAAACR0Uk5TAEHM/8pGSznO74C7f/cgEDCQ8L9w0MBgz6BAULDg0s1UT8lE7xBqcwAAAT9JREFUeJzd1V1DgyAUBuBTb60wE3Qfpptt1f//jwmaHJSRZ3f13oiTR0EOk+juHoI8PBJtJMDmiZ6hMkEUXgjISZAcrwMpNJEh0sUKAkcKpShDSRV+NROpKilxAytEAxNkINtckK0j0txGbpjL3yOxlU0TrZQWkh0iJZcmexzWDEzn5qdpgNod/U8xot/8nRtU41GZ66QXw51tW/UbyKYFNzPCBdWAmVrehCQQdMCe6ckEJBQFP2GGk1BQCbB19IaTDGh8n/6fg5/Zq9mCFBV/yhFomTAK1fIpZLg5oYuK2Rtjpp/8Lirm6+JNUJFcLFbfmqNtdDjFxbLGemNrrB2lS8NFpJJNaVwvNnnTJCt5iMZYkZFcIXVsO6ZJdDumSccmv5JoE+ucJKn8N/IOJflWKpzpIv3ubYg+zhLw+UXfbWwcrV/POicAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<g id="Website">
+		<use id="Layer 1" href="#img1" x="0" y="0"/>
+	</g>
+</svg>
