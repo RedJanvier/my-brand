@@ -1,35 +1,35 @@
 ---
-import { query, collection, orderBy, DocumentData, limit, getDoc } from "firebase/firestore"; 
-import MainHead from '../components/MainHead.astro';
-import Button from '../components/Button/index.jsx';
-import Footer from '../components/Footer/index.jsx';
-import Nav from '../components/Nav/index.jsx';
-import { db } from '../js/init';
+// import { query, collection, orderBy, DocumentData, limit, getDoc } from "firebase/firestore"; 
+// import MainHead from '../components/MainHead.astro';
+// import Button from '../components/Button/index.jsx';
+// import Footer from '../components/Footer/index.jsx';
+// import Nav from '../components/Nav/index.jsx';
+// import { db } from '../js/init';
 
-interface IProject extends DocumentData {
-	id: string | undefined
-}
-const content = {
-	lang: '',
-	title: '',
-	description: '',
-	authorProfile: '',
-	authorName: '',
-	likes: 0
-};
+// interface IProject extends DocumentData {
+// 	id: string | undefined
+// }
+// const content = {
+// 	lang: '',
+// 	title: '',
+// 	description: '',
+// 	authorProfile: '',
+// 	authorName: '',
+// 	likes: 0
+// };
 
-console.log("URL PARAMS: ", Astro.url.searchParams.get('id'));
+// console.log("URL PARAMS: ", Astro.url.searchParams.get('id'));
 
-const blogsRef = await getDoc(query(collection(db, 'posts'), orderBy("createdAt", "desc"), limit(6)));
-const blogs: IProject[] = [];
-blogsRef.forEach(doc => {
-	const blog: IProject = {...doc.data(), id: doc.id};
-	blogs.push(blog);
-});
+// const blogsRef = await getDoc(query(collection(db, 'posts'), orderBy("createdAt", "desc"), limit(6)));
+// const blogs: IProject[] = [];
+// blogsRef.forEach(doc => {
+// 	const blog: IProject = {...doc.data(), id: doc.id};
+// 	blogs.push(blog);
+// });
 
 ---
 
-<html lang={content.lang || 'en'}>
+<!-- <html lang={content.lang || 'en'}>
 	<head>
 		<MainHead title={content.title} description={content.description} />
     <link rel="stylesheet" href="../css/prism.css" />
@@ -45,9 +45,9 @@ blogsRef.forEach(doc => {
               <img src={content.authorProfile} alt="blog-author" />
             </div>
             <div class="author__details">
-              <h3>{content.authorName || 'RedJanvier'}</h3>
+              <h3>{content.authorName || 'RedJanvier'}</h3> -->
               <!-- <p>${moment(content.createdAt).format('MMM, DD YYYY')}</p> -->
-							<p>{Astro.url.searchParams.get('nid')}</p>
+							<!-- <p>{Astro.url.searchParams.get('nid')}</p>
             </div>
           </div>
 				</div>
@@ -64,4 +64,4 @@ blogsRef.forEach(doc => {
 		<script is:inline src="/js/utils.js"></script>
 		<script is:inline src="/js/slides.js"></script>
 	</body>
-</html>
+</html> -->
