@@ -29,24 +29,23 @@ blogsRef.forEach(doc => {
 	blogs.push(blog);
 });
 
+const yearsOfExperience = new Date().getFullYear() - 2019;
+
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
-<html lang="en">
+<html lang="en-RW">
 	<head>
-		<MainHead
-			title="RedJanvier portfolio and blog site"
-			description="Latest and trending tech news with insightful and clear details"
-		/>
+		<MainHead title="RedJanvier"/>
 	</head>
 	<body>
 		<div class="container">
 			<Nav />
-			<header class="section hero">
-        <h2 class="section__heading">Designer and Full-stack Developer</h2>
+			<main class="section hero">
+        <h2 class="section__heading">I am a Full-stack <span class="animated-role" id="role"><span class="current-role" id="role">Developer</span></span></h2>
         <p class="section__subheading">
-          I design and code beautifully simple things, and I do it with care.
+          I design and develop beautifully simple things with care.
         </p>
         <img src="/assets/img/profile 2.jpg" class="profile" alt="my-profile" /> <br />
         <img
@@ -54,15 +53,11 @@ blogsRef.forEach(doc => {
           class="illustration"
           alt="main-illustration"
         />
-      </header>
+      </main>
       <section id="about" class="section colored">
-        <h2 class="section__heading">Hi, I’m Janvier. Nice to meet you.</h2>
+        <h2 class="section__heading">Hi, I’m Janvier Ntwali. Nice to meet you.</h2>
         <p class="section__subheading">
-          It has been more than three years now that I help businesses grow through
-          well presented and simply functional and tested web applictions,
-          amazing websites that attract customers through powerful SEO process
-          and I am so confident that your problems will be solved through the
-          software we’ll build together.
+          With over {yearsOfExperience} years of experience in web development, I specialize in creating visually appealing and user-friendly web applications that drive business growth. My expertise in SEO ensures that these websites attract a large audience while my skills and experience can help solve any web development challenges you may have. Let's work together to build a software solution that exceeds your expectations.
         </p>
         <div class="card straight">
           <div class="card__column">
@@ -77,7 +72,7 @@ blogsRef.forEach(doc => {
             <h4>Things I enjoy designing:</h4>
             <p>UX, UI, Web, Mobile, Apps, Logos</p>
             <h4>Design Tools</h4>
-            <ul>
+            <ul class="tools animate">
               <li>Figma</li>
               <li>Invision</li>
               <li>AdobeXD</li>
@@ -97,11 +92,11 @@ blogsRef.forEach(doc => {
             <h4>Languages I speak:</h4>
             <p>HTML, CSS, Sass, React, PWA, EJS, HBS</p>
             <h4>Dev Tools</h4>
-            <ul>
+            <ul class="tools animate">
+              <li>Astro</li>
               <li>Git & Github</li>
               <li>Reactjs & Vuejs</li>
               <li>React Native, Nextjs and Nuxtjs</li>
-              <li>Apollo GraphQL</li>
               <li>Redux, Vuex & MobX </li>
             </ul>
           </div>
@@ -117,12 +112,12 @@ blogsRef.forEach(doc => {
             <h4>Experiences I have:</h4>
             <p>Node, Express, HeadlessCMS, Severless, Docker, TypeScript</p>
             <h4>Amazing Tools</h4>
-            <ul>
+            <ul class="tools animate">
               <li>REST & GRAPHQL</li>
               <li>Postgres & MySQL</li>
               <li>MongoDB & CouchDB</li>
               <li>Terminal & CLI apps</li>
-              <li>GCP, AWS, Digital Ocean & Heroku</li>
+              <li>AWS, Digital Ocean & Heroku</li>
             </ul>
           </div>
         </div>
@@ -138,13 +133,13 @@ blogsRef.forEach(doc => {
        {projects.length && <div class="slides-container">
 					 {projects.map(project => (
 						<div class="slides fade">
-							<div class="card straight">
-								<div class="card__column">
-									<img src={project.image} />
+							<div class="card straight fixed">
+								<div class="card__column dim">
+									<img src={project.image} alt={project.title + ' - Project Image'} />
 								</div>
 								<div class="card__column">
 									<h4>{project.title}</h4>
-									<p set:html={project.body}></p>
+									<div set:html={project.body}></div>
 									{project.live && <a href={project.live} rel="external nofollow" class="btn">Visit Site</a>}
 									{project.code && <a href={project.code} rel="external nofollow" class="btn">View Source</a>}
 								</div>
@@ -152,8 +147,8 @@ blogsRef.forEach(doc => {
 						</div>
 						))
 					}
-					{projects.length && <a class="prev" onclick="changeSlide(-1)">&#10094;</a>}
-          {projects.length && <a class="next" onclick="changeSlide(1)">&#10095;</a>}
+					{projects.length && <button class="prev" onclick="changeSlide(-1)">&#10094;</button>}
+          {projects.length && <button class="next" onclick="changeSlide(1)">&#10095;</button>}
         </div>}
         <br />
         <div class="section__action">
@@ -206,7 +201,7 @@ blogsRef.forEach(doc => {
               placeholder="Your message" onchange="validate(this)" onkeyup="validate(this)"></textarea>
           </div>
           <div class="form__field">
-            <button type="submit" name="submit" class="btn">Send Message</button>
+            <button type="submit" name="submit" class="btn active">Send Message</button>
           </div>
         </form>
 			</section>
