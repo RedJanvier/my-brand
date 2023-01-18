@@ -13,7 +13,7 @@ function Footer() {
 				<i className="fa fa-stack-overflow" onclick="redirectTo('https://www.facebook.com/jan.h.red')"></i>
 			</div>
 			<p className="footer__text">
-				&copy; 2020 Made with ❤ by
+				&copy; 2023 Made with ❤ by<span> </span>
 				<a href="https://github.com/redjanvier" rel="external nofollow" className="active dark">RedJanvier</a>
 			</p>
 		</footer>
