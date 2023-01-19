@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/RedJanvier/my-brand.svg?branch=develop)](https://travis-ci.org/RedJanvier/my-brand)
 [![Coverage Status](https://coveralls.io/repos/github/RedJanvier/my-brand/badge.svg?branch=develop)](https://coveralls.io/github/RedJanvier/my-brand?branch=develop)
 
-A personal website plus blog
+A personal website
 
 ### Documentation
 
