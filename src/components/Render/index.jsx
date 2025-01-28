@@ -1,7 +1,5 @@
 /* eslint-disable react/display-name */
 import Render from 'react-markdown';
-import * as React from 'react/index.js';
-
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { nord } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { FaTerminal as Terminal } from 'react-icons/fa';

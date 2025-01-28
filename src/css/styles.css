@@ -110,6 +110,7 @@ html {
 }
 .card__column.dim {
   background-color: #b2b2b2;
+  padding: 0;
 }
 .card__column h4 {
   margin-top: 2rem;

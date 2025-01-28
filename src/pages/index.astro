@@ -4,6 +4,7 @@ import { query, collection, orderBy, getDocs, DocumentData, limit } from "fireba
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav/index.jsx';
 import Footer from '../components/Footer/index.jsx';
+// import HeroSpline from '../components/HeroSpline/index.jsx';
 // import Loader from '../components/Loader';
 import { db } from '../js/init';
 // import * as utils from '../js/utils';
@@ -29,7 +30,7 @@ blogsRef.forEach(doc => {
 	blogs.push(blog);
 });
 
-const yearsOfExperience = new Date().getFullYear() - 2019;
+const yearsOfExperience = new Date().getFullYear() - 2018;
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -52,7 +53,8 @@ const yearsOfExperience = new Date().getFullYear() - 2019;
           src="/assets/img/hero-illustration-2.svg"
           class="illustration"
           alt="main-illustration"
-        />
+        /> 
+        <!-- <HeroSpline /> -->
       </main>
       <section id="about" class="section colored">
         <h2 class="section__heading">Hi, I’m Janvier Ntwali. Nice to meet you.</h2>
@@ -90,14 +92,14 @@ const yearsOfExperience = new Date().getFullYear() - 2019;
               amazing functional site for your business
             </p>
             <h4>Languages I speak:</h4>
-            <p>HTML, CSS, Sass, React, PWA, EJS, HBS</p>
+            <p>HTML, CSS, Sass, Vue.js, React, PWA</p>
             <h4>Dev Tools</h4>
             <ul class="tools animate">
               <li>Astro</li>
               <li>Git & Github</li>
-              <li>Reactjs & Vuejs</li>
-              <li>React Native, Nextjs and Nuxtjs</li>
-              <li>Redux, Vuex & MobX </li>
+              <li>React.js & Vue.js</li>
+              <li>Next.js and Nuxt.js</li>
+              <li>Pinia, Redux, Vuex & MobX </li>
             </ul>
           </div>
           <div class="card__column">
@@ -110,13 +112,13 @@ const yearsOfExperience = new Date().getFullYear() - 2019;
               data highly scalable and modification ease
             </p>
             <h4>Experiences I have:</h4>
-            <p>Node, Express, HeadlessCMS, Severless, Docker, TypeScript</p>
+            <p>Java, Spring Boot, HeadlessCMS, Severless, Docker, TypeScript</p>
             <h4>Amazing Tools</h4>
             <ul class="tools animate">
               <li>REST & GRAPHQL</li>
               <li>Postgres & MySQL</li>
               <li>MongoDB & CouchDB</li>
-              <li>Terminal & CLI apps</li>
+              <li>Hibernate & Nest.js</li>
               <li>AWS, Digital Ocean & Heroku</li>
             </ul>
           </div>
