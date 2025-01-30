@@ -1,7 +1,6 @@
 let slide = 1;
-function initSlides(delaySeconds = 5){
+function initSlides(){
   showSlides(slide);
-  setInterval(() => changeSlide(1), delaySeconds * 1000);
 }
 function changeSlide(n) {
   showSlides((slide += n));
@@ -25,3 +24,17 @@ function showSlides(n) {
 }
 
 initSlides();
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+const fadeInElements = document.querySelectorAll('.fade-in-text');
+fadeInElements.forEach(el => observer.observe(el));
