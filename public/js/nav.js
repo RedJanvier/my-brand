@@ -5,7 +5,7 @@ document.querySelectorAll('.navbar__links a').forEach(link => {
   });
 });
 
-const roles = ['Architect', 'Tester', 'Designer', 'Developer'];
+const roles = ['Architect', 'Designer', 'Developer'];
 let i = 0;
 
 const animationChangeDelay = 3000;
