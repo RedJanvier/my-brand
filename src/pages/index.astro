@@ -44,31 +44,30 @@ const yearsOfExperience = new Date().getFullYear() - 2018;
     <Nav />
     <main class="section bordered hero">
       <div>
-        <h2 class="section__heading fade-in-text">Hey I’m Janvier Ntwali.<br />A Software <span class="animated-role" id="role"><span class="current-role" id="role">Developer</span></span></h2>
+        <h2 class="section__heading fade-in-text">Hey, I’m Janvier Ntwali.<br />Senior Software Engineer &amp; <span class="animated-role" id="role"><span class="current-role">System Architect</span></span></h2>
         <p class="section__subheading fade-in-text">
-          Designer, developer and architect of beautifully simple things with care.
+          8+ years building enterprise-grade platforms and distributed systems — from pixel-perfect UIs to Kubernetes-orchestrated backends.
         </p>
         <img src="/assets/img/profile 2.jpg" class="profile" alt="my-profile" /> <br />
-        <!-- <img
-          src="/assets/img/hero-illustration-2.svg"
-          class="illustration"
-          alt="main-illustration"
-        />  -->
-        <!-- <HeroSpline /> -->
-        <a href="#contact" class="animated-button7 fade-in-text">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Contact Me
-        </a>
+        <div class="fade-in-text" style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:1.5rem;">
+          <a href="#contact" class="animated-button7">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Contact Me
+          </a>
+          <a href="https://www.linkedin.com/in/janvierntwali" class="btn-cv" target="_blank" rel="noopener">
+            <i class="fa fa-linkedin"></i> Connect on LinkedIn
+          </a>
+        </div>
       </div>
     </main>
 		<div class="container">
       <section id="about" class="section colored">
         <h2 class="section__heading fade-in-text">Nice to meet you, a little bit about me...</h2>
         <p class="section__subheading fade-in-text">
-          With over {yearsOfExperience} years of experience in web development, I specialize in creating visually appealing and user-friendly web applications that drive business growth. My expertise in SEO ensures that these websites attract a large audience while my skills and experience can help solve any web development challenges you may have. Let's work together to build a software solution that exceeds your expectations.
+          With {yearsOfExperience}+ years of professional engineering, I design and build large-scale systems for enterprise clients across Europe and Africa — including UniCredit Group and MSC Explora. I architect backend services in Spring Boot, Nest.js and Django, orchestrate infrastructure with Kubernetes on AWS/GCP/Azure, and deliver polished frontends in React, Vue and Astro. I care about correctness, performance, and the teams that maintain the code.
         </p>
         <div class="card straight fade-in-text">
           <div class="card__column">
@@ -115,20 +114,133 @@ const yearsOfExperience = new Date().getFullYear() - 2018;
             <div class="card__column-img">
               <img src="/assets/img/mentor-2.svg" alt="backend-icon" />
             </div>
-            <h3>Backend Developer</h3>
+            <h3>Backend &amp; Infrastructure</h3>
             <p>
-              Advance your business even further with impressive control on your
-              data highly scalable and modification ease
+              Scalable, production-hardened services with a focus on reliability,
+              observability and deployment automation.
             </p>
-            <h4>Experiences I have:</h4>
-            <p>Java, Spring Boot, HeadlessCMS, Severless, Docker, TypeScript</p>
-            <h4>Amazing Tools</h4>
+            <h4>Core Languages &amp; Runtimes:</h4>
+            <p>Java, TypeScript/Node.js, Python</p>
+            <h4>Frameworks &amp; Tools</h4>
             <ul class="tools animate">
-              <li>REST & GRAPHQL</li>
-              <li>Postgres & MySQL</li>
-              <li>MongoDB & CouchDB</li>
-              <li>Hibernate & Nest.js</li>
-              <li>AWS, Digital Ocean & Heroku</li>
+              <li>Spring Boot &amp; Nest.js</li>
+              <li>Django &amp; Flask</li>
+              <li>Docker &amp; Kubernetes</li>
+              <li>CI/CD: Jenkins, CircleCI</li>
+              <li>Jest, Cypress &amp; Selenium</li>
+              <li>AWS, GCP &amp; Azure</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section id="experience" class="section">
+        <h2 class="section__heading fade-in-text">Experience</h2>
+        <p class="section__subheading fade-in-text">
+          A career built on enterprise delivery, technical leadership, and increasingly complex distributed systems.
+        </p>
+        <div class="experience-timeline fade-in-text">
+
+          <div class="experience-entry">
+            <div class="experience-entry__meta">
+              <span class="experience-entry__role">Senior Software Engineer</span>
+              <span class="experience-entry__company">Codeland S.r.l — Italy</span>
+              <span class="experience-entry__period">2022 – Present</span>
+            </div>
+            <ul>
+              <li>Architected and delivered enterprise web platforms for <span class="stat-highlight">UniCredit Group</span>, <span class="stat-highlight">MSC Explora</span>, Quattroruote and Il Cucchiaio d'Argento, serving hundreds of thousands of monthly users.</li>
+              <li>Led frontend-to-backend implementation in React/Vue/Nuxt.js paired with Spring Boot microservices, deployed on Kubernetes clusters in Azure/GCP.</li>
+              <li>Introduced CI/CD pipelines (Jenkins, CircleCI) and automated test suites (Jest, Cypress) that cut regression cycles from days to hours.</li>
+            </ul>
+          </div>
+
+          <div class="experience-entry">
+            <div class="experience-entry__meta">
+              <span class="experience-entry__role">Full-Stack Engineer</span>
+              <span class="experience-entry__company">UzakuraHub / SomaTek AI — Rwanda</span>
+              <span class="experience-entry__period">2020 – 2022</span>
+            </div>
+            <ul>
+              <li>Built and scaled marketplace platforms and AI-integrated products from zero to production, owning architecture, DevOps and frontend delivery.</li>
+              <li>Designed RESTful and GraphQL APIs in Nest.js and Django, backed by PostgreSQL and MongoDB, containerised with Docker on AWS.</li>
+              <li>Collaborated across remote cross-functional teams, owning end-to-end delivery of multiple product verticals.</li>
+            </ul>
+          </div>
+
+          <div class="experience-entry">
+            <div class="experience-entry__meta">
+              <span class="experience-entry__role">Software Developer</span>
+              <span class="experience-entry__company">ATLP Rwanda (Andela Training &amp; Learning Programme)</span>
+              <span class="experience-entry__period">2018 – 2020</span>
+            </div>
+            <ul>
+              <li>Built foundational products within a structured engineering programme, gaining professional depth across the full web stack.</li>
+              <li>Contributed to open-source tools and mentored junior peers through code reviews and pair programming.</li>
+              <li>Delivered two production-ready applications in React and Node.js/Express within the programme's final cohort cycle.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section id="skills" class="section">
+        <h2 class="section__heading fade-in-text">Tech Stack</h2>
+        <p class="section__subheading fade-in-text">
+          Tools and technologies I use professionally, not just experimentally.
+        </p>
+        <div class="tech-stack fade-in-text">
+          <div class="tech-category">
+            <p class="tech-category__label">Frontend</p>
+            <ul class="tech-badges">
+              <li class="tech-badge">React</li>
+              <li class="tech-badge">Vue.js</li>
+              <li class="tech-badge">Angular</li>
+              <li class="tech-badge">Next.js</li>
+              <li class="tech-badge">Nuxt.js</li>
+              <li class="tech-badge">Astro</li>
+              <li class="tech-badge">TypeScript</li>
+              <li class="tech-badge">Sass/CSS</li>
+            </ul>
+          </div>
+          <div class="tech-category">
+            <p class="tech-category__label">Backend</p>
+            <ul class="tech-badges">
+              <li class="tech-badge">Spring Boot</li>
+              <li class="tech-badge">Nest.js</li>
+              <li class="tech-badge">Express</li>
+              <li class="tech-badge">Django</li>
+              <li class="tech-badge">Flask</li>
+              <li class="tech-badge">GraphQL</li>
+              <li class="tech-badge">REST APIs</li>
+              <li class="tech-badge">PostgreSQL</li>
+              <li class="tech-badge">MongoDB</li>
+            </ul>
+          </div>
+          <div class="tech-category">
+            <p class="tech-category__label">Infrastructure &amp; DevOps</p>
+            <ul class="tech-badges">
+              <li class="tech-badge">Docker</li>
+              <li class="tech-badge">Kubernetes</li>
+              <li class="tech-badge">AWS</li>
+              <li class="tech-badge">GCP</li>
+              <li class="tech-badge">Azure</li>
+              <li class="tech-badge">Jenkins</li>
+              <li class="tech-badge">CircleCI</li>
+              <li class="tech-badge">GitHub Actions</li>
+            </ul>
+          </div>
+          <div class="tech-category">
+            <p class="tech-category__label">Testing</p>
+            <ul class="tech-badges">
+              <li class="tech-badge">Jest</li>
+              <li class="tech-badge">Cypress</li>
+              <li class="tech-badge">Selenium</li>
+              <li class="tech-badge">Vitest</li>
+              <li class="tech-badge">React Testing Library</li>
             </ul>
           </div>
         </div>
@@ -138,9 +250,8 @@ const yearsOfExperience = new Date().getFullYear() - 2018;
     <section id="portfolio" class="section colored">
       <h2 class="section__heading fade-in-text">My Recent Work</h2>
       <p class="section__subheading fade-in-text">
-        Here are a few design projects I've worked on recently. Want to see
-        yours?
-        <a href="mailto:janvierntwali@gmail.com" class="white">Email janvierntwali@gmail.com</a>
+        Selected engineering work — platforms built for enterprise clients and product teams.
+        <a href="mailto:janvierntwali@gmail.com" class="white">Reach out at janvierntwali@gmail.com</a>
       </p>
      {projects.length && <div class="slides-container fade-in-text">
         {projects.length && <button class="prev" onclick="changeSlide(-1)">&#10094;</button>}

@@ -5,7 +5,7 @@ document.querySelectorAll('.navbar__links a').forEach(link => {
   });
 });
 
-const roles = ['Architect', 'Designer', 'Developer'];
+const roles = ['System Architect', 'Backend Engineer', 'Frontend Engineer'];
 let i = 0;
 
 const animationChangeDelay = 3000;
