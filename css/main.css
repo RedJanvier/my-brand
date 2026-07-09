@@ -23,7 +23,8 @@
   --accent-glow:    oklch(63% 0.088 210 / 0.35);
   /* Secondary brand tones */
   --olive:          oklch(55% 0.045 122); /* ≈ brand #515644 */
-  --pink:           oklch(81.7% 0.103 20); /* ≈ brand #FFA8A8, used sparingly */
+  --pink:          oklch(55% 0.045 122); /* ≈ brand #515644 */
+  /*--pink:           oklch(81.7% 0.103 20);  ≈ brand #FFA8A8, used sparingly */
 
   --font-display: "Fraunces", "Georgia", serif;
   --font-body:    "Switzer", "Helvetica Neue", sans-serif;
