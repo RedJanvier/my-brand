@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing — RedJanvier · Janvier Ntwali</title>
+  <meta name="description" content="Notes from production by Janvier Ntwali (RedJanvier): architecture, delivery and frontend engineering." />
+  <meta name="author" content="Janvier Ntwali Habiyaremye" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0a0e10" />
+  <link rel="canonical" href="https://redjanvier.netlify.app/blog.html" />
+
+  <link rel="icon" href="assets/favicon_io/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/favicon_io/apple-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <meta property="og:title" content="Writing — RedJanvier" />
+  <meta property="og:description" content="Notes from production: architecture, delivery and frontend engineering." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://redjanvier.netlify.app/blog.html" />
+  <meta property="og:site_name" content="RedJanvier" />
+  <meta property="og:image" content="https://redjanvier.netlify.app/assets/img/janvier.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://redjanvier.netlify.app/assets/img/janvier.jpg" />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..640;1,9..144,400..640&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <main class="page-top">
+    <div class="wrap">
+      <div class="article-hero">
+        <div class="crumbs"><a href="index.html">Home</a> <span class="label--muted">/</span> <a href="blog.html">Writing</a></div>
+        <h1>Notes from production.</h1>
+        <p class="tagline">Things I learned shipping real systems: event-driven architecture, CI/CD, frontend performance and the occasional hard-won mistake.</p>
+      </div>
+
+      <div class="post-list" id="post-list">
+        <p class="loading">Loading posts&hellip;</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    const boot = async () => {
+      const { loadCollection, esc } = await import("./js/content.js");
+      try {
+        const posts = (await loadCollection("blog"))
+          .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+        document.getElementById("post-list").innerHTML = posts.map((p) => `
+          <a class="post-item" href="post.html?slug=${esc(p.slug)}">
+            <span class="date">${esc(p.date || "")}</span>
+            <span><h3>${esc(p.title)}</h3><p class="excerpt">${esc(p.excerpt || "")}</p></span>
+            <span class="go" aria-hidden="true">&rarr;</span>
+          </a>`).join("");
+      } catch {
+        document.getElementById("post-list").innerHTML =
+          '<p class="error-note">Posts unavailable. Serve over HTTP to load markdown content.</p>';
+      }
+    };
+    if (window.marked) boot();
+    else document.querySelector('script[src*="marked"]').addEventListener("load", boot);
+  </script>
+</body>
+</html>

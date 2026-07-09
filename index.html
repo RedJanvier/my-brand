@@ -1,242 +1,372 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  </head>
-  <body>
-    <div className="container">
-      <header className="section hero">
-        <h2 className="section__heading">Designer and Full-stack Developer</h2>
-        <p className="section__subheading">
-          I design and code beautifully simple things, and I do it with care.
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RedJanvier — Janvier Ntwali · Senior Full-Stack Engineer</title>
+  <meta name="description" content="Janvier Ntwali Habiyaremye (RedJanvier) is a Senior Full-Stack Software Engineer in Kigali, Rwanda, building production web platforms with React, Vue, Next.js, NestJS and Java Spring Boot." />
+  <meta name="author" content="Janvier Ntwali Habiyaremye" />
+  <meta name="keywords" content="Janvier Ntwali, RedJanvier, Full-Stack Engineer, Software Engineer Rwanda, Kigali developer, React, Vue, Next.js, NestJS, Java Spring Boot, Kafka, AWS" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0a0e10" />
+  <link rel="canonical" href="https://redjanvier.netlify.app/" />
+
+  <!-- Favicons & PWA -->
+  <link rel="icon" href="assets/favicon_io/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/favicon_io/apple-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="RedJanvier — Janvier Ntwali · Senior Full-Stack Engineer" />
+  <meta property="og:description" content="7+ years shipping production web platforms, from WCAG-compliant UIs to Kafka-backed services on AWS." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://redjanvier.netlify.app/" />
+  <meta property="og:site_name" content="RedJanvier" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://redjanvier.netlify.app/assets/img/janvier.jpg" />
+  <meta property="og:image:alt" content="Janvier Ntwali — Senior Full-Stack Engineer" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@red_janvier" />
+  <meta name="twitter:title" content="RedJanvier — Senior Full-Stack Engineer" />
+  <meta name="twitter:description" content="7+ years shipping production web platforms, from WCAG-compliant UIs to Kafka-backed services on AWS." />
+  <meta name="twitter:image" content="https://redjanvier.netlify.app/assets/img/janvier.jpg" />
+
+  <!-- Fonts: preconnect + swap so text never blocks -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..640;1,9..144,400..640&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/main.css" />
+
+  <!-- three.js import map: only the hero page pays for it, and only after paint -->
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+
+  <!-- Structured data: Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Janvier Ntwali Habiyaremye",
+    "alternateName": "RedJanvier",
+    "url": "https://redjanvier.netlify.app/",
+    "image": "https://redjanvier.netlify.app/assets/img/janvier.jpg",
+    "jobTitle": "Senior Full-Stack Software Engineer",
+    "email": "mailto:janvierntwali@gmail.com",
+    "telephone": "+250789775922",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kigali",
+      "addressCountry": "Rwanda"
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Code of Africa (DCCS Group)"
+    },
+    "knowsAbout": [
+      "React", "Vue.js", "Next.js", "NestJS", "Java Spring Boot",
+      "Apache Kafka", "AWS", "TypeScript", "Microservices", "Web Accessibility"
+    ],
+    "sameAs": [
+      "https://github.com/redjanvier",
+      "https://linkedin.com/in/red-janvier",
+      "https://x.com/red_janvier"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="top" aria-label="Intro">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+    <div class="hero-inner">
+      <div class="hero-kicker" data-stagger style="--i:0">
+        <span class="pulse" aria-hidden="true"></span>
+        <span class="label">Kigali, Rwanda &middot; Available for select projects</span>
+      </div>
+
+      <h1 class="display" data-stagger style="--i:1">
+        I build web platforms that <span class="ital">survive production.</span>
+      </h1>
+
+      <div class="hero-sub">
+        <p data-stagger style="--i:2">
+          <strong>Janvier Ntwali</strong>, Senior Full-Stack Engineer. Seven-plus years across
+          <strong>React, Vue, Next.js, NestJS and Java Spring Boot</strong>, currently shipping
+          enterprise portals for European clients at Code of Africa (DCCS Group).
         </p>
-        <img src="./img/profile.jpg" className="profile" alt="my-profile" /> <br />
-        <img
-          src="./img/hero-illustration.svg"
-          className="illustration"
-          alt="main-illustration"
-        />
-      </header>
-      <section id="about" className="section colored">
-        <h2 className="section__heading">Hi, I’m Janvier. Nice to meet you.</h2>
-        <p className="section__subheading">
-          It has been more than three years now that I help businesses grow through
-          well presented and simply functional and tested web applictions,
-          amazing websites that attract customers through powerful SEO process
-          and I am so confident that your problems will be solved through the
-          software we’ll build together.
-        </p>
-        <div className="card straight">
-          <div className="card__column">
-            <img src="./img/designer.svg" alt="designer-icon" />
-            <h3>Designer</h3>
-            <p>
-              Amazing designs with a simplistic touch of well thought
-              interactions that provide unforgettable experience
-            </p>
-            <h4>Things I enjoy designing:</h4>
-            <p>UX, UI, Web, Mobile, Apps, Logos</p>
-            <h4>Design Tools</h4>
-            <ul>
-              <li>Figma</li>
-              <li>Invision</li>
-              <li>AdobeXD</li>
-              <li>Pen & Paper</li>
-              <li>Sketch</li>
-            </ul>
-          </div>
-          <div className="card__column">
-            <img src="./img/frontend.svg" alt="frontend-icon" />
-            <h3>Frontend Developer</h3>
-            <p>
-              I enjoy taking your beautiful ideas from a beautiful design to an
-              amazing functional site for your business
-            </p>
-            <h4>Languages I speak:</h4>
-            <p>HTML, CSS, Sass, React, PWA, EJS, HBS</p>
-            <h4>Dev Tools</h4>
-            <ul>
-              <li>Git & Github</li>
-              <li>Reactjs & Vuejs</li>
-              <li>React Native, Nextjs and Nuxtjs</li>
-              <li>Apollo GraphQL</li>
-              <li>Redux, Vuex & MobX </li>
-            </ul>
-          </div>
-          <div className="card__column">
-            <img src="./img/mentor.svg" alt="backend-icon" />
-            <h3>Backend Developer</h3>
-            <p>
-              Advance your business even further with impressive control on your
-              data highly scalable and modification ease
-            </p>
-            <h4>Experiences I have:</h4>
-            <p>Node, Express, HeadlessCMS, Severless, Docker, TypeScript</p>
-            <h4>Amazing Tools</h4>
-            <ul>
-              <li>REST & GRAPHQL</li>
-              <li>Postgres & MySQL</li>
-              <li>MongoDB & CouchDB</li>
-              <li>Terminal & CLI apps</li>
-              <li>GCP, AWS, Digital Ocean & Heroku</li>
-            </ul>
-          </div>
+        <div class="hero-ctas" data-stagger style="--i:3">
+          <a class="btn btn--solid" href="projects.html">Selected work <span class="arrow">&rarr;</span></a>
+          <a class="btn" href="#contact">Get in touch</a>
         </div>
-      </section>
-      <hr className="section-separator" />
-      <section id="portfolio" className="section">
-        <h2 className="section__heading">My Recent Work</h2>
-        <p className="section__subheading">
-          Here are a few design projects I've worked on recently. Want to see
-          yours?
-          <a href="#contact" className="active">Email me.</a>
-        </p>
-        <div className="slides-container">
-          <div className="lds-ring purple" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-            <p className="purple">Loading Projects...</p>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-        <br />
-        <div className="section__action">
-          <a href="https://github.com/RedJanvier" className="btn" target="_blank"
-          ><i className="fa fa-github"></i> More on Github</a
-          >
-        </div>
-      </section>
-      <section id="blog" className="section colored">
-        <h2 className="section__heading">Blog</h2>
-        <p className="section__subheading">Latest posts from my blog.</p>
-        <div className="blogs grid">
-          <div className="lds-ring white">
-            <span className="white">Loading Blogs...</span>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-        <div className="section__action">
-          <a href="#" className="btn">Read more here</a>
-        </div>
-      </section>
-      <hr className="section-separator" />
-      <section id="contact" className="section">
-        <h2 className="section__heading">Contact Me</h2>
-        <p className="section__subheading">
-          Interested in my work?
-          <a href="#" className="active">Don’t leave without saying hi!</a>
-        </p>
-        <form className="form contact-form">
-          <div id="error-panel" className="error fade"></div>
-          <div className="form__field">
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name" onchange="validate(this)" onkeyup="validate(this)" placeholder="Your full name" />
-          </div>
-          <div className="form__field">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" onchange="validate(this)" onkeyup="validate(this)" placeholder="Your Email" />
-          </div>
-          <div className="form__field">
-            <label for="message">Message:</label>
-            <textarea
-              name="message"
-              id="message"
-              placeholder="Your message" onchange="validate(this)" onkeyup="validate(this)" 
-            ></textarea>
-          </div>
-          <div className="form__field">
-            <button type="submit" name="submit" className="btn">Send Message</button>
-          </div>
-        </form>
+      </div>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script>
-    <script src="./js/init.js"></script>
-    <script src="./js/utils.js"></script>
-    <script src="./js/index.js"></script>
-    <script src="./js/subscribe.js"></script>
-    <script>
-      db.collection('projects').orderBy("createdAt", "desc").get().then(docs => {
-        let html = '';
-        docs.forEach(doc => {
-          const project = doc.data();
-          let links = project.live && `<a href="${project.live}" rel="external nofollow" className="btn">Visit Site</a>`; 
-          links += project.code && `<a href="${project.code}" rel="external nofollow" className="btn">View Source</a>`; 
-          html += `<div className="slides fade">
-              <div className="card straight">
-                <div className="card__column">
-                  <img src="${project.image}" />
-                </div>
-                <div className="card__column">
-                  <h4>${project.title}</h4>
-                  <p>
-                    ${project.body}
-                  </p>
-                  ${links}
-                </div>
-              </div>
-            </div>`;
-            html += `<a className="prev" onclick="changeSlide(-1)">&#10094;</a>
-          <a className="next" onclick="changeSlide(1)">&#10095;</a>`
-          document.querySelector('.slides-container').innerHTML = html;
-          initSlides();
-        })
-      }).catch(console.log);
-      const {displayName, uid:userUid, providerData: [ { providerId: provider }]} = JSON.parse(localStorage.getItem("user")) || {uid: null, providerData: [ { providerId: null }]};
-      const logBtns = document.getElementsByClassName("logBtn");
-      for(let i = 0; i<logBtns.length; i++){ 
-        if(provider) {
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-          }
-          logBtns[i].textContent = "Logout";
-          logBtns[i].addEventListener("click", () => {
-            disableButton(logBtns[i]);
-            localStorage.clear();
-            firebase.auth().signOut().catch(console.log);
-          });
-        } else {
-          logBtns[i].textContent = "Login"
-          logBtns[i].addEventListener("click", () => {
-            disableButton(logBtns[i]);
-            redirectTo("/admin")
-          });
-        }
+
+    <div class="scroll-hint" aria-hidden="true">Scroll</div>
+  </section>
+
+  <!-- ===================== MARQUEE ===================== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>React</span><span>Vue 3</span><span>Next.js</span><span>NestJS</span>
+      <span>Spring Boot</span><span>TypeScript</span><span>Apache Kafka</span><span>AWS</span>
+      <span>Liferay DXP</span><span>AEM 6.5</span><span>Docker</span><span>Kubernetes</span>
+      <span>PostgreSQL</span><span>Redis</span><span>Terraform</span><span>Jenkins</span>
+    </div>
+  </div>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">01</span>
+        <h2>About</h2>
+        <span class="head-note">Designer, developer and architect of beautifully simple things, with care.</span>
+      </div>
+
+      <div class="about-grid">
+        <div>
+          <p class="about-lede reveal">
+            Comfortable <em>end-to-end</em>: from a WCAG-compliant interface all the way down
+            to Kafka-backed services running on AWS.
+          </p>
+          <p class="about-body reveal" style="--d:1">
+            I have spent the last seven years inside real production systems: the Prada
+            e-commerce frontend, UniCredit's Dimensione Sociale platform, MSC's Explora
+            Journeys, IoT payment systems, and an AI Chrome extension I co-founded. What
+            connects them is a habit of measuring: release cycles cut by 38%, hosting cost
+            down ~25%, post-deploy defects down ~30%.
+          </p>
+          <p class="about-body reveal" style="--d:2">
+            I care as much about how software feels as how it scales. That means obsessing
+            over component architecture and micro-interactions on the frontend, and over
+            event-driven design, observability and clean APIs on the backend.
+          </p>
+        </div>
+
+        <div class="about-aside">
+          <figure class="portrait reveal">
+            <img src="assets/img/janvier.jpg"
+                 alt="Janvier Ntwali Habiyaremye, Senior Full-Stack Engineer, in Kigali, Rwanda"
+                 width="1080" height="1080" loading="lazy" decoding="async" />
+            <figcaption><span class="label">Janvier Ntwali</span> · Kigali, Rwanda</figcaption>
+          </figure>
+
+          <div class="stats reveal" style="--d:1">
+            <div class="stat"><b data-count="7">0<sup>+</sup></b><span>Years in production</span></div>
+            <div class="stat"><b data-count="218">0</b><span>Public repositories</span></div>
+            <div class="stat"><b data-count="38">0<sup>%</sup></b><span>Faster release cycles (CI/CD)</span></div>
+            <div class="stat"><b data-count="10">0<sup>+</sup></b><span>Countries using my APIs</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">02</span>
+        <h2>What I work with</h2>
+      </div>
+
+      <div class="skills-rows">
+        <div class="skill-row reveal">
+          <h3>Frontend</h3>
+          <p><b>React, Vue 3, Next.js, Nuxt</b> with Redux and Pinia; Liferay DXP portlets and AEM 6.5 components; Tailwind CSS, Chart.js, streaming UI with the Vercel AI SDK. Accessibility is a requirement, not a nice-to-have.</p>
+        </div>
+        <div class="skill-row reveal" style="--d:1">
+          <h3>Backend</h3>
+          <p><b>Node.js, NestJS, Express</b> and <b>Java Spring Boot</b> (MVC, Security). REST APIs, microservices, event-driven architecture on <b>Apache Kafka</b> and RabbitMQ.</p>
+        </div>
+        <div class="skill-row reveal" style="--d:2">
+          <h3>AI / LLM</h3>
+          <p><b>OpenAI and Anthropic APIs</b>, AI agents and tool use, responsible-AI patterns. Co-founded SomaTek AI, an extension that simplifies complex technical content.</p>
+        </div>
+        <div class="skill-row reveal" style="--d:3">
+          <h3>Data</h3>
+          <p><b>PostgreSQL, MySQL, MongoDB, Redis</b>, MariaDB, Supabase. Schema design, high-volume document storage, cache strategies.</p>
+        </div>
+        <div class="skill-row reveal" style="--d:4">
+          <h3>Cloud &amp; DevOps</h3>
+          <p><b>AWS</b> (EC2, S3, CloudWatch), Docker, Kubernetes, Terraform, Jenkins CI/CD, GitHub Actions, GitLab. Observability with metrics, logging and alerting.</p>
+        </div>
+        <div class="skill-row reveal" style="--d:5">
+          <h3>Quality</h3>
+          <p><b>Jest, Mocha, JUnit, Mockito</b>, TDD, integration testing. SOLID, design patterns, code review and mentoring as everyday practice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">03</span>
+        <h2>Experience</h2>
+        <span class="head-note">Enterprise platforms, startups, and everything between.</span>
+      </div>
+
+      <div class="xp-list">
+        <div class="xp reveal">
+          <span class="when">2025 &mdash; Now</span>
+          <div>
+            <h3>Code of Africa <span>/ DCCS Group</span></h3>
+            <p class="role">Senior Software Engineer &middot; Kigali</p>
+            <p class="role">Custom Liferay DXP portlets, Vue 3 components and REST APIs for European enterprise clients. Caching, API optimization and WCAG-compliant UI across customer portals.</p>
+          </div>
+          <span class="win"><b>38%</b> faster releases via Jenkins CI/CD</span>
+        </div>
+
+        <div class="xp reveal" style="--d:1">
+          <span class="when">2024 &mdash; 2025</span>
+          <div>
+            <h3>SomaTek AI <span>/ Co-Founder</span></h3>
+            <p class="role">Senior Software Engineer &middot; Remote</p>
+            <p class="role">Co-founded an AI Chrome extension that simplifies complex technical text and images using OpenAI and Anthropic APIs. Built the React + Chart.js analytics dashboard.</p>
+          </div>
+          <span class="win"><b>~25%</b> hosting cost cut, <b>~30%</b> fewer post-deploy bugs</span>
+        </div>
+
+        <div class="xp reveal" style="--d:2">
+          <span class="when">2021 &mdash; 2024</span>
+          <div>
+            <h3>Codeland S.r.l <span>/ Milan</span></h3>
+            <p class="role">Senior Software Engineer &middot; Remote</p>
+            <p class="role">Lead Front-End Engineer on the Prada e-commerce project; re-engineered UniCredit's Dimensione Sociale on AEM 6.5; Kafka event-driven services; mentored 3 junior React developers.</p>
+          </div>
+          <span class="win"><b>~40%</b> system efficiency gain, <b>~20%</b> lower latency on AWS</span>
+        </div>
+
+        <div class="xp reveal" style="--d:3">
+          <span class="when">2021</span>
+          <div>
+            <h3>STES Group <span>/ Kigali</span></h3>
+            <p class="role">Software Engineer</p>
+            <p class="role">RESTful APIs in Java Spring MVC + Security; built the Smart IoT Tap &amp; Eat UI in Vue.js; introduced GitFlow across the team.</p>
+          </div>
+          <span class="win"><b>~30%</b> faster payment responses</span>
+        </div>
+
+        <div class="xp reveal" style="--d:4">
+          <span class="when">2020 &mdash; 2021</span>
+          <div>
+            <h3>Andela <span>/ Remote</span></h3>
+            <p class="role">Software Developer</p>
+            <p class="role">Architected ~90% of an open-source employee-management REST API used in 10+ countries; led a Java monolith-to-microservices migration on Docker and Kubernetes.</p>
+          </div>
+          <span class="win"><b>~99.9%</b> uptime sustained</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED PROJECTS ===================== -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">04</span>
+        <h2>Selected projects</h2>
+        <span class="head-note">Case studies with the technical choices behind each build.</span>
+      </div>
+
+      <div class="projects-grid" id="featured-grid">
+        <p class="loading">Loading projects&hellip;</p>
+      </div>
+
+      <div class="projects-cta reveal">
+        <a class="btn" href="projects.html">All projects <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WRITING ===================== -->
+  <!-- <section id="writing">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">05</span>
+        <h2>Writing</h2>
+        <span class="head-note">Notes from production: architecture, delivery, lessons learned.</span>
+      </div>
+      <div class="post-list" id="recent-posts">
+        <p class="loading">Loading posts&hellip;</p>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num">06</span>
+        <h2>Contact</h2>
+      </div>
+      <h3 class="display reveal">
+        Have an idea worth building? <a href="mailto:janvierntwali@gmail.com">Say hi.</a>
+      </h3>
+      <div class="contact-row reveal" style="--d:1">
+        <a href="mailto:janvierntwali@gmail.com">janvierntwali@gmail.com</a>
+        <a href="tel:+250789775922">+250 789 775 922</a>
+        <a href="https://github.com/redjanvier" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/red-janvier" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- marked only needed for content loading -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module">
+    // Featured projects + recent posts, after marked is ready.
+    const boot = async () => {
+      const { loadCollection, projectCard, esc } = await import("./js/content.js");
+
+      try {
+        const projects = await loadCollection("projects");
+        const featured = projects.filter((p) => p.featured).slice(0, 4);
+        document.getElementById("featured-grid").innerHTML =
+          featured.map(projectCard).join("");
+      } catch {
+        document.getElementById("featured-grid").innerHTML =
+          '<p class="error-note">Projects unavailable. Serve the site over HTTP (e.g. netlify dev) to load markdown content.</p>';
       }
-    const blogs = document.querySelector(".blogs");
-      db.collection("posts").orderBy("createdAt", "desc").limit(6).get().then(docs => {
-        let html = '';
-        docs.forEach(doc => {
-          const blog = doc.data();
-          html += `<a href="./pages/blog.html?id=${doc.id}" className="card">
-            <div className="card__column-top">
-              <div className="card__image">
-                <img src="${blog.image}" alt="post-image" />
-              </div>
-              <h3>
-               ${blog.title}
-              </h3>
-            </div>
-            <div className="card__column-footer">
-              <span><i className="fa fa-heart-o"></i> ${blog.likes || 0}</span>
-              <span><i className="fa fa-commenting-o"></i> ${blog.comments || 0}</span>
-              <span><i className="fa fa-eye"></i> ${blog.views || 0}</span>
-            </div>
-          </a>`
-        });
-        blogs.innerHTML = html;
-      }).catch(err => {
-          console.log(err);
-          showErrorIn(document.querySelector('#error-panel'), err.message);
-        });
-        function showPosition(position) {
-          firebase.firestore().collection("visitors").doc(userUid).set({ name: displayName, longitude: position.coords.longitude, latitude: position.coords.latitude }).catch(console.log)
-        }
-        </script>
-  </body>
+
+      // try {
+      //   const posts = (await loadCollection("blog"))
+      //     .sort((a, b) => (b.date || "").localeCompare(a.date || ""))
+      //     .slice(0, 3);
+      //   document.getElementById("recent-posts").innerHTML = posts.map((p) => `
+      //     <a class="post-item reveal in" href="post.html?slug=${esc(p.slug)}">
+      //       <span class="date">${esc(p.date || "")}</span>
+      //       <span><h3>${esc(p.title)}</h3><p class="excerpt">${esc(p.excerpt || "")}</p></span>
+      //       <span class="go" aria-hidden="true">&rarr;</span>
+      //     </a>`).join("");
+      // } catch {
+      //   document.getElementById("recent-posts").innerHTML =
+      //     '<p class="error-note">Posts unavailable offline.</p>';
+      // }
+
+      // Re-observe injected .reveal nodes
+      document.querySelectorAll("#featured-grid .reveal").forEach((el) => el.classList.add("in"));
+    };
+    if (window.marked) boot();
+    else document.querySelector('script[src*="marked"]').addEventListener("load", boot);
+  </script>
+  <script type="module">
+    // Defer the 3D hero until the browser is idle so first paint is instant.
+    const start = () => import("./js/hero3d.js");
+    "requestIdleCallback" in window ? requestIdleCallback(start, { timeout: 1500 }) : setTimeout(start, 300);
+  </script>
+</body>
 </html>
