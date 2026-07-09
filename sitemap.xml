@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://redjanvier.netlify.app/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://redjanvier.netlify.app/projects.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://redjanvier.netlify.app/blog.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <url><loc>https://redjanvier.netlify.app/project.html?slug=bloom-spa</loc><priority>0.8</priority></url>
+  <url><loc>https://redjanvier.netlify.app/project.html?slug=autoelite</loc><priority>0.8</priority></url>
+  <url><loc>https://redjanvier.netlify.app/project.html?slug=studify</loc><priority>0.8</priority></url>
+  <url><loc>https://redjanvier.netlify.app/project.html?slug=aht-institute</loc><priority>0.8</priority></url>
+  <url><loc>https://redjanvier.netlify.app/project.html?slug=somatek-ai</loc><priority>0.8</priority></url>
+  <url><loc>https://redjanvier.netlify.app/project.html?slug=redcakes</loc><priority>0.7</priority></url>
+  <url><loc>https://redjanvier.netlify.app/project.html?slug=prada-ecommerce</loc><priority>0.8</priority></url>
+  <url><loc>https://redjanvier.netlify.app/project.html?slug=awesome-marketplace</loc><priority>0.7</priority></url>
+  <url><loc>https://redjanvier.netlify.app/project.html?slug=ur-news</loc><priority>0.7</priority></url>
+  <url><loc>https://redjanvier.netlify.app/project.html?slug=employee-management-api</loc><priority>0.7</priority></url>
+
+  <url><loc>https://redjanvier.netlify.app/post.html?slug=frontend-performance-3d</loc><priority>0.6</priority></url>
+  <url><loc>https://redjanvier.netlify.app/post.html?slug=kafka-event-driven</loc><priority>0.6</priority></url>
+  <url><loc>https://redjanvier.netlify.app/post.html?slug=cutting-release-cycles</loc><priority>0.6</priority></url>
+</urlset>
